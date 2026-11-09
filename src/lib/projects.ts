@@ -1,0 +1,858 @@
+import {
+  Apple,
+  Axe,
+  Banana,
+  Blocks,
+  Car,
+  CircleDot,
+  Crown,
+  Crosshair,
+  Ghost,
+  Leaf,
+  Link2,
+  Mountain,
+  Smartphone,
+  Star,
+  Sword,
+  Swords,
+  Tablet,
+  Terminal,
+  WandSparkles,
+  type LucideIcon,
+  Monitor,
+} from "lucide-react";
+
+export type CategoryId =
+  | "zelda"
+  | "mario"
+  | "pokemon"
+  | "action"
+  | "rpg"
+  | "fighting"
+  | "donkey-kong"
+  | "racing"
+  | "simulation";
+
+export type CategoryFilterId = "all" | CategoryId;
+export type PlatformId = "windows" | "linux" | "macos" | "android" | "ios";
+export type PlatformFilterId = "all" | PlatformId;
+export type HostId = "github" | "gitlab";
+export type StatusId = "playable" | "beta" | "experimental";
+
+export type Project = {
+  id: string;
+  titleZh: string;
+  game: string;
+  repo: string;
+  host: HostId;
+  stars: number;
+  category: CategoryId;
+  platforms: PlatformId[];
+  status: StatusId;
+  icon: LucideIcon;
+  description: string;
+  aliases?: string[];
+};
+
+export const categories: {
+  id: CategoryId;
+  label: string;
+  icon: LucideIcon;
+}[] = [
+  { id: "zelda", label: "塞尔达传说", icon: Sword },
+  { id: "mario", label: "马力欧", icon: Star },
+  { id: "pokemon", label: "宝可梦", icon: CircleDot },
+  { id: "action", label: "动作冒险", icon: WandSparkles },
+  { id: "rpg", label: "角色扮演", icon: Mountain },
+  { id: "fighting", label: "格斗", icon: Swords },
+  { id: "donkey-kong", label: "咚奇刚", icon: Banana },
+  { id: "racing", label: "竞速", icon: Car },
+  { id: "simulation", label: "模拟经营", icon: Leaf },
+];
+
+export const platforms: {
+  id: PlatformId;
+  label: string;
+  icon: LucideIcon;
+  short: string;
+}[] = [
+  { id: "windows", label: "Windows", icon: Monitor, short: "Win" },
+  { id: "linux", label: "Linux", icon: Terminal, short: "Linux" },
+  { id: "macos", label: "macOS", icon: Apple, short: "Mac" },
+  { id: "android", label: "Android", icon: Smartphone, short: "Android" },
+  { id: "ios", label: "iOS / iPadOS", icon: Tablet, short: "iOS" },
+];
+
+export const statuses: Record<StatusId, { label: string; dot: string }> = {
+  playable: { label: "可玩", dot: "bg-emerald-500" },
+  beta: { label: "测试版", dot: "bg-amber-500" },
+  experimental: { label: "实验性", dot: "bg-sky-500" },
+};
+
+export const projects: Project[] = [
+  {
+    id: "las-recomp",
+    titleZh: "塞尔达传说：织梦岛",
+    game: "The Legend of Zelda: Link's Awakening",
+    repo: "peiikai/LASRecomp",
+    host: "github",
+    stars: 2387,
+    category: "zelda",
+    platforms: ["windows", "linux", "macos"],
+    status: "beta",
+    icon: Sword,
+    description:
+      "Switch 版静态重编译，支持随机化模式、超宽屏与最高 8K 内部分辨率，基于 Vulkan 渲染。",
+    aliases: ["las", "links awakening", "织梦岛"],
+  },
+  {
+    id: "savage-wind",
+    titleZh: "塞尔达传说：旷野之息",
+    game: "The Legend of Zelda: Breath of the Wild",
+    repo: "Revivedx/SavageWindRecomp",
+    host: "github",
+    stars: 4273,
+    category: "zelda",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: Sword,
+    description:
+      "原生重编译，包含大师试炼与英杰们的诗篇 DLC，在 Windows、Linux 与 Steam Deck 上运行。",
+    aliases: ["botw", "breath of the wild", "旷野之息"],
+  },
+  {
+    id: "botw-android",
+    titleZh: "塞尔达传说：旷野之息（Android）",
+    game: "The Legend of Zelda: Breath of the Wild",
+    repo: "mamcjr/BOTWRecompAndroid",
+    host: "github",
+    stars: 810,
+    category: "zelda",
+    platforms: ["android"],
+    status: "beta",
+    icon: Smartphone,
+    description:
+      "面向 Android 的静态重编译版本，支持游戏 1.0.0 / 1.6.0 / 1.8.2 三个版本。",
+    aliases: ["botw", "android", "旷野之息", "手机"],
+  },
+  {
+    id: "totk-pc",
+    titleZh: "塞尔达传说：王国之泪",
+    game: "The Legend of Zelda: Tears of the Kingdom",
+    repo: "valentderah/totk-pc-recomp",
+    host: "github",
+    stars: 7107,
+    category: "zelda",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: Sword,
+    description:
+      "原生 x86-64 移植，支持 1.1.0 / 1.2.1 / 1.4.3，包含 DLSS、HDR10 与超宽屏支持。",
+    aliases: ["totk", "tears of the kingdom", "王国之泪"],
+  },
+  {
+    id: "ultra-tears",
+    titleZh: "王国之泪：UltraTears",
+    game: "The Legend of Zelda: Tears of the Kingdom",
+    repo: "kuraeow/ultratears",
+    host: "github",
+    stars: 909,
+    category: "zelda",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: Sword,
+    description:
+      "另一套《王国之泪》移植：本地从你的游戏转储构建，约 30 分钟，针对 Steam Deck 优化。",
+    aliases: ["totk", "ultratears", "王国之泪", "steam deck"],
+  },
+  {
+    id: "mac-native-games",
+    titleZh: "塞尔达传说：Apple 原生版",
+    game: "BotW / TotK on Apple Devices",
+    repo: "ly05010419/MacNativeGames",
+    host: "github",
+    stars: 7759,
+    category: "zelda",
+    platforms: ["macos", "ios"],
+    status: "experimental",
+    icon: Apple,
+    description:
+      "技术探索：把 Switch 的 NVN 图形搬到 Metal，在 Mac、iPhone、iPad 上原生运行《王国之泪》与《旷野之息》。",
+    aliases: ["botw", "totk", "ios", "iphone", "ipad", "mac", "苹果"],
+  },
+  {
+    id: "smo-recomp",
+    titleZh: "超级马力欧：奥德赛（Windows）",
+    game: "Super Mario Odyssey",
+    repo: "Coz-0/smo-recomp",
+    host: "github",
+    stars: 90,
+    category: "mario",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Star,
+    description:
+      "《奥德赛》1.4.1 静态重编译，目前仅有 Windows 源码，尚无公开发布版本。",
+    aliases: ["smo", "odyssey", "奥德赛"],
+  },
+  {
+    id: "smm2",
+    titleZh: "超级马力欧创作家 2",
+    game: "Super Mario Maker 2",
+    repo: "smm2recomp/smm2recomp",
+    host: "github",
+    stars: 268,
+    category: "mario",
+    platforms: ["windows", "linux", "macos", "android", "ios"],
+    status: "beta",
+    icon: Blocks,
+    description:
+      "多平台移植，内置 100 人挑战与自建关卡服务器，覆盖 Windows、macOS、iOS 与 Android。",
+    aliases: ["smm2", "mario maker", "创作家", "ios", "android"],
+  },
+  {
+    id: "letsgo",
+    titleZh: "宝可梦 Let's Go",
+    game: "Pokémon: Let's Go, Pikachu! / Eevee!",
+    repo: "raulzrrs/letsgo-recomp",
+    host: "github",
+    stars: 300,
+    category: "pokemon",
+    platforms: ["windows"],
+    status: "beta",
+    icon: CircleDot,
+    description:
+      "皮卡丘 / 伊布原生移植，支持 FSR 3.1 帧生成、高帧率与鼠标投球。",
+    aliases: ["lets go", "pikachu", "eevee", "皮卡丘", "伊布"],
+  },
+  {
+    id: "udpr",
+    titleZh: "宝可梦：晶灿钻石",
+    game: "Pokémon Brilliant Diamond",
+    repo: "shatter9652/uDPR",
+    host: "github",
+    stars: 143,
+    category: "pokemon",
+    platforms: ["windows"],
+    status: "beta",
+    icon: CircleDot,
+    description:
+      "以 Unity 工程重建，可启动、游玩与存档；仅源码，构建流程较重。",
+    aliases: ["brilliant diamond", "bdsp", "晶灿钻石", "钻石"],
+  },
+  {
+    id: "swsh",
+    titleZh: "宝可梦 剑 / 盾",
+    game: "Pokémon Sword / Shield",
+    repo: "raulzrrs/swsh-recomp",
+    host: "github",
+    stars: 40,
+    category: "pokemon",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: CircleDot,
+    description:
+      "《剑 / 盾》1.3.2 原生 Windows 移植，新项目，基于 Let's Go 与 LAS 运行时。",
+    aliases: ["sword", "shield", "剑盾", "剑", "盾"],
+  },
+  {
+    id: "ssbu",
+    titleZh: "任天堂明星大乱斗 特别版",
+    game: "Super Smash Bros. Ultimate",
+    repo: "OpenSmash-Ultimate/OpenSmash-Ultimate",
+    host: "github",
+    stars: 165,
+    category: "fighting",
+    platforms: ["windows", "linux"],
+    status: "playable",
+    icon: Swords,
+    description:
+      "由 WindowSmash 与 ssbu-recomp 合并而成，包含全部模式、DLC 斗士与舞台，并提供安装器。",
+    aliases: ["smash", "ssbu", "大乱斗", "ultimate"],
+  },
+  {
+    id: "b2-recomp",
+    titleZh: "猎天使魔女 2",
+    game: "Bayonetta 2",
+    repo: "K0NL/B2recomp",
+    host: "github",
+    stars: 611,
+    category: "action",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: WandSparkles,
+    description:
+      "原生移植，在本地从你的转储编译，目前测试至第一章，支持 60 / 120 FPS。",
+    aliases: ["bayonetta", "猎天使魔女", "魔女"],
+  },
+  {
+    id: "witch-time",
+    titleZh: "猎天使魔女 3",
+    game: "Bayonetta 3",
+    repo: "Zexyen/Witch-Time",
+    host: "github",
+    stars: 381,
+    category: "action",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: WandSparkles,
+    description:
+      "原生重编译，支持 60 FPS、最高 4K 渲染与超宽屏比例。",
+    aliases: ["bayonetta", "witch time", "猎天使魔女", "魔女"],
+  },
+  {
+    id: "metroid-dread",
+    titleZh: "密特罗德：生存恐惧",
+    game: "Metroid Dread",
+    repo: "yozander2009-stack/Metroid-Dread-Recomp",
+    host: "github",
+    stars: 416,
+    category: "action",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: Crosshair,
+    description:
+      "早期预览版本，需游戏版本 2.1.0，另提供 Linux 与 Steam Deck AppImage。",
+    aliases: ["metroid", "dread", "密特罗德", "银河战士"],
+  },
+  {
+    id: "mp4-recomp",
+    titleZh: "密特罗德 究极 4：穿越未知",
+    game: "Metroid Prime 4: Beyond",
+    repo: "linuxopt/mp4-recomp",
+    host: "github",
+    stars: 105,
+    category: "action",
+    platforms: ["linux"],
+    status: "experimental",
+    icon: Crosshair,
+    description:
+      "Linux 专用实验性构建，刚上线，暂无 Windows 版本。",
+    aliases: ["metroid prime", "mp4", "密特罗德", "银河战士"],
+  },
+  {
+    id: "astral-chain-pc",
+    titleZh: "异界锁链",
+    game: "Astral Chain",
+    repo: "Puddz/AstralChain-PC",
+    host: "github",
+    stars: 114,
+    category: "action",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Link2,
+    description:
+      "Windows 原生移植，提供安装脚本，已测试至第一章。",
+    aliases: ["astral chain", "异界锁链", "锁链"],
+  },
+  {
+    id: "ac-recomp",
+    titleZh: "异界锁链（macOS）",
+    game: "Astral Chain",
+    repo: "swaymun/AC-Recomp",
+    host: "github",
+    stars: 30,
+    category: "action",
+    platforms: ["macos"],
+    status: "experimental",
+    icon: Link2,
+    description:
+      "macOS 实验性移植，v0.1.0，在 Mac 上第一章以 30 FPS 运行。",
+    aliases: ["astral chain", "mac", "异界锁链"],
+  },
+  {
+    id: "xcx-recomp",
+    titleZh: "异度神剑 X：决定版",
+    game: "Xenoblade Chronicles X: Definitive Edition",
+    repo: "jmars125/xcx-recomp",
+    host: "github",
+    stars: 323,
+    category: "rpg",
+    platforms: ["windows", "linux"],
+    status: "experimental",
+    icon: Mountain,
+    description:
+      "原生移植，需游戏 2.0.0 更新与主机密钥，要求支持 AVX2 的 CPU。",
+    aliases: ["xenoblade", "xcx", "异度神剑"],
+  },
+  {
+    id: "mhgu",
+    titleZh: "怪物猎人 Generations Ultimate",
+    game: "Monster Hunter Generations Ultimate",
+    repo: "morerokk/MHGURecomp",
+    host: "github",
+    stars: 597,
+    category: "rpg",
+    platforms: ["windows", "linux", "android"],
+    status: "playable",
+    icon: Axe,
+    description:
+      "完整可玩，支持 30–240 FPS、联机、Mod 与 Android，含鼠标镜头与超宽屏。",
+    aliases: ["mhgu", "monster hunter", "怪物猎人", "android"],
+  },
+  {
+    id: "fe3h",
+    titleZh: "火焰纹章：风花雪月",
+    game: "Fire Emblem: Three Houses",
+    repo: "jaigner-hub/fe3h-pc-recomp",
+    host: "github",
+    stars: 21,
+    category: "rpg",
+    platforms: ["windows"],
+    status: "playable",
+    icon: Crown,
+    description:
+      "1.2.0 原生移植，包含 DLC、金手指与 60 FPS，Windows 上可玩。",
+    aliases: ["fire emblem", "three houses", "fe3h", "火焰纹章", "风花雪月"],
+  },
+  {
+    id: "fe-engage",
+    titleZh: "火焰纹章：Engage",
+    game: "Fire Emblem Engage",
+    repo: "xgc1986/engage-pc-recomp",
+    host: "github",
+    stars: 7,
+    category: "rpg",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Crown,
+    description:
+      "实验性 Windows 移植，从自有游戏文件本地构建，发布包不含任何游戏数据。",
+    aliases: ["fire emblem", "engage", "火焰纹章"],
+  },
+  {
+    id: "wonder-recomp",
+    titleZh: "超级马力欧兄弟 惊奇",
+    game: "Super Mario Bros. Wonder",
+    repo: "BluetufieBugado/SuperMarioWonderRecomp",
+    host: "github",
+    stars: 53,
+    category: "mario",
+    platforms: ["windows", "macos", "android"],
+    status: "experimental",
+    icon: Star,
+    description:
+      "静态重编译，NVN 经 Vulkan / MoltenVK 转译，覆盖 Windows、macOS 与 Android。",
+    aliases: ["wonder", "mario wonder", "惊奇"],
+  },
+  {
+    id: "racing-8-dx",
+    titleZh: "马力欧卡丁车 8 豪华版",
+    game: "Mario Kart 8 Deluxe",
+    repo: "galarianpikachu2021-hue/Racing-8-DX-Recomp",
+    host: "github",
+    stars: 85,
+    category: "racing",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Car,
+    description:
+      "Windows 原生重编译，支持 720p 至 4K 输出、HDR10、FSR 3.1 帧生成与实验性 DLSS。",
+    aliases: ["mk8", "mk8d", "mario kart", "马车", "卡丁车"],
+  },
+  {
+    id: "lm3-recomp",
+    titleZh: "路易吉洋馆 3",
+    game: "Luigi's Mansion 3",
+    repo: "linuxer32/lm3-recomp",
+    host: "github",
+    stars: 2,
+    category: "action",
+    platforms: ["windows", "linux", "android"],
+    status: "experimental",
+    icon: Ghost,
+    description:
+      "实验性静态重编译，面向 Linux、Windows 与 Android，仍在早期开发阶段。",
+    aliases: ["luigi", "lm3", "路易吉", "洋馆"],
+  },
+  {
+    id: "mpr-recomp",
+    titleZh: "密特罗德 究极 重制版",
+    game: "Metroid Prime Remastered",
+    repo: "drakolordx7/MetroidPrimeRemasteredRecomp",
+    host: "github",
+    stars: 21,
+    category: "action",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Crosshair,
+    description:
+      "把 Switch 重制版静态重编译为 Windows x64 原生程序，需自备游戏转储。",
+    aliases: ["metroid prime", "mpr", "密特罗德", "银河战士"],
+  },
+  {
+    id: "dkb-recomp",
+    titleZh: "咚奇刚 蕉力全开",
+    game: "Donkey Kong Bananza",
+    repo: "Lucas-blip-png/dkb-pc-recomp",
+    host: "github",
+    stars: 957,
+    category: "donkey-kong",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Banana,
+    description:
+      "Switch 2 版静态重编译，Vulkan 渲染，可从标题画面玩到第一关，仍可能崩溃。",
+    aliases: ["dkb", "donkey kong", "bananza", "咚奇刚", "大金刚"],
+  },
+  {
+    id: "karpur",
+    titleZh: "宝可梦 朱",
+    game: "Pokémon Scarlet",
+    repo: "Grunttanamo/KarPur",
+    host: "github",
+    stars: 57,
+    category: "pokemon",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: CircleDot,
+    description:
+      "Windows 原生移植，基于 LAS Recomp 与 TotK Recomp 的运行时，需自备游戏文件。",
+    aliases: ["scarlet", "violet", "朱", "紫", "宝可梦"],
+  },
+  {
+    id: "xc2-recomp",
+    titleZh: "异度神剑 2",
+    game: "Xenoblade Chronicles 2",
+    repo: "circerio/XC2-Recomp",
+    host: "github",
+    stars: 12,
+    category: "rpg",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Mountain,
+    description:
+      "面向 Windows 的原生重编译研究项目，附带移植笔记与工具，尚处早期阶段。",
+    aliases: ["xenoblade", "xc2", "异度神剑"],
+  },
+  {
+    id: "recompia",
+    titleZh: "宝可梦 Pokopia",
+    game: "Pokémon Pokopia",
+    repo: "Dittobyte/Recompia",
+    host: "github",
+    stars: 763,
+    category: "simulation",
+    platforms: ["windows"],
+    status: "beta",
+    icon: Leaf,
+    description:
+      "Windows 原生重编译，支持多人联机、Mod 与功能增强，需自备游戏转储。",
+    aliases: ["pokopia", "pokemon", "宝可梦"],
+  },
+  {
+    id: "pokopia-android",
+    titleZh: "Pokopia 原生版（Android）",
+    game: "Pokémon Pokopia",
+    repo: "madebymochi/pokopia-android",
+    host: "github",
+    stars: 13,
+    category: "simulation",
+    platforms: ["android"],
+    status: "experimental",
+    icon: Smartphone,
+    description:
+      "基于 nxnative 的 Android 原生版本，需自备游戏转储，发布包不含游戏文件。",
+    aliases: ["pokopia", "pokemon", "宝可梦", "android"],
+  },
+  {
+    id: "oot-recomp",
+    titleZh: "塞尔达传说：时之笛",
+    game: "The Legend of Zelda: Ocarina of Time",
+    repo: "sostenesfreitas/ocarina-recomp",
+    host: "github",
+    stars: 1189,
+    category: "zelda",
+    platforms: ["windows"],
+    status: "beta",
+    icon: Sword,
+    description:
+      "Switch 2 版《时之笛》的静态重编译，Windows 原生运行，需自备游戏转储，发布包不含游戏文件。",
+    aliases: ["oot", "ocarina of time", "时之笛"],
+  },
+  {
+    id: "oot-echora",
+    titleZh: "时之笛：Echora",
+    game: "The Legend of Zelda: Ocarina of Time",
+    repo: "Mars7x/echora",
+    host: "github",
+    stars: 32,
+    category: "zelda",
+    platforms: ["windows", "linux"],
+    status: "experimental",
+    icon: Sword,
+    description:
+      "实验性原生重编译，支持 Windows 与 Linux，仍在早期开发阶段。",
+    aliases: ["oot", "echora", "时之笛"],
+  },
+  {
+    id: "oot-ios",
+    titleZh: "时之笛（iPhone / iPad）",
+    game: "The Legend of Zelda: Ocarina of Time",
+    repo: "dsi-hub/HookLink",
+    host: "github",
+    stars: 105,
+    category: "zelda",
+    platforms: ["ios"],
+    status: "beta",
+    icon: Tablet,
+    description:
+      "在 Mac 上从自己的游戏文件构建 iPhone / iPad 版本，基于 nxnative 与 Metal 渲染。",
+    aliases: ["oot", "hooklink", "ios", "时之笛"],
+  },
+  {
+    id: "eow-recomp",
+    titleZh: "塞尔达传说：智慧的再现",
+    game: "The Legend of Zelda: Echoes of Wisdom",
+    repo: "Nycolazs/EoWRecomp",
+    host: "github",
+    stars: 133,
+    category: "zelda",
+    platforms: ["windows", "linux", "android"],
+    status: "beta",
+    icon: WandSparkles,
+    description:
+      "原生重编译，Windows / Linux 可运行，另有 Alpha 阶段的 Android 版本，基于游戏 1.0.0。",
+    aliases: ["eow", "echoes of wisdom", "智慧的再现"],
+  },
+  {
+    id: "mkw-recomp",
+    titleZh: "马力欧卡丁车 世界",
+    game: "Mario Kart World",
+    repo: "adriadam10/mkw-recomp",
+    host: "github",
+    stars: 718,
+    category: "racing",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: Car,
+    description:
+      "Switch 2《马力欧卡丁车 世界》静态重编译，Windows / Linux 可启动并进入比赛，部分菜单仍在完善。",
+    aliases: ["mkw", "mario kart world", "马力欧卡丁车世界"],
+  },
+  {
+    id: "mkw-thwomp",
+    titleZh: "马力欧卡丁车 世界：THWOMP",
+    game: "Mario Kart World",
+    repo: "STS78721/MKW-THWOMP",
+    host: "github",
+    stars: 128,
+    category: "racing",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Car,
+    description:
+      "另一套 Windows 原生重编译，使用 Vulkan；目前可渲染片头与菜单，尚未完全可玩。",
+    aliases: ["mkw", "thwomp", "马力欧卡丁车世界"],
+  },
+  {
+    id: "mkw-kartnative",
+    titleZh: "马力欧卡丁车 世界（Mac）",
+    game: "Mario Kart World",
+    repo: "pahorema/kartnative",
+    host: "github",
+    stars: 65,
+    category: "racing",
+    platforms: ["macos"],
+    status: "beta",
+    icon: Apple,
+    description:
+      "基于 nxnative 的 Apple Silicon 版本，在 Mac 上原生运行，可完成整场大奖赛。",
+    aliases: ["mkw", "kartnative", "mac", "马力欧卡丁车世界"],
+  },
+  {
+    id: "xc3-recomp",
+    titleZh: "异度神剑 3",
+    game: "Xenoblade Chronicles 3",
+    repo: "jmars125/xc3-recomp",
+    host: "github",
+    stars: 175,
+    category: "rpg",
+    platforms: ["windows", "linux"],
+    status: "playable",
+    icon: Mountain,
+    description:
+      "原生 Windows / Linux 重编译，可从新游戏一路游玩主线、过场与战斗，包含全部四弹 DLC。",
+    aliases: ["xc3", "xenoblade 3", "异度神剑3"],
+  },
+  {
+    id: "d2r-mobile",
+    titleZh: "暗黑破坏神 II：狱火重生",
+    game: "Diablo II: Resurrected",
+    repo: "jhaizhou-ops/d2r-mobile",
+    host: "github",
+    stars: 5297,
+    category: "rpg",
+    platforms: ["ios", "macos", "android"],
+    status: "playable",
+    icon: Swords,
+    description:
+      "Switch 版《暗黑破坏神 II：狱火重生》的原生兼容层，支持 iPhone、iPad、Mac、Android 与鸿蒙，含触控操作。",
+    aliases: ["d2r", "diablo 2", "暗黑破坏神2", "狱火重生"],
+  },
+  {
+    id: "totk-weeping",
+    titleZh: "王国之泪：Weeping of the Empire",
+    game: "The Legend of Zelda: Tears of the Kingdom",
+    repo: "daniel-madrid-07/weeping-of-the-empire",
+    host: "github",
+    stars: 325,
+    category: "zelda",
+    platforms: ["windows"],
+    status: "beta",
+    icon: Sword,
+    description:
+      "Windows / Vulkan 原生版本，支持最高 240 帧、DLSS 与鼠标键盘操作，基于游戏 1.0.0 构建。",
+    aliases: ["totk", "weeping", "王国之泪"],
+  },
+  {
+    id: "totk-droid",
+    titleZh: "王国之泪（TOTKDroid）",
+    game: "The Legend of Zelda: Tears of the Kingdom",
+    repo: "mamcjr/TOTKDroid",
+    host: "github",
+    stars: 261,
+    category: "zelda",
+    platforms: ["android"],
+    status: "beta",
+    icon: Smartphone,
+    description:
+      "面向 Android 的原生版本，支持触控、Mod 与宽屏，基于游戏 1.4.3。",
+    aliases: ["totk", "android", "totkdroid", "王国之泪", "手机"],
+  },
+  {
+    id: "mp4-jaigner",
+    titleZh: "密特罗德 究极 4：Beyond（jaigner）",
+    game: "Metroid Prime 4: Beyond",
+    repo: "jaigner-hub/metroid-prime-4-recomp",
+    host: "github",
+    stars: 30,
+    category: "action",
+    platforms: ["windows"],
+    status: "playable",
+    icon: Crosshair,
+    description:
+      "Windows 原生重编译，可从标题画面、菜单、存档一路玩到开场过场，面向 Switch 1 最终更新。",
+    aliases: ["mp4", "metroid prime 4", "究极4"],
+  },
+  {
+    id: "xc2-akshar",
+    titleZh: "异度神剑 2（AksharDP）",
+    game: "Xenoblade Chronicles 2",
+    repo: "AksharDP/xc2-recomp",
+    host: "github",
+    stars: 344,
+    category: "rpg",
+    platforms: ["windows"],
+    status: "beta",
+    icon: Mountain,
+    description:
+      "Windows x86-64 原生重编译，使用 Vulkan 渲染，可启动到标题画面并游玩新游戏开场。",
+    aliases: ["xc2", "xenoblade 2", "异度神剑2"],
+  },
+  {
+    id: "letsgo-android",
+    titleZh: "宝可梦 Let's Go（Android）",
+    game: "Pokémon: Let's Go, Pikachu! / Eevee!",
+    repo: "CowKillers/letsgo-recomp-android",
+    host: "github",
+    stars: 25,
+    category: "pokemon",
+    platforms: ["android"],
+    status: "beta",
+    icon: Smartphone,
+    description:
+      "基于 letsgo-recomp 的 Android 运行时，世界、战斗与存档可用，文本显示仍待完善。",
+    aliases: ["lets go", "android", "宝可梦", "皮卡丘", "伊布"],
+  },
+  {
+    id: "super-wonders",
+    titleZh: "超级马力欧兄弟 惊奇（SuperWonders）",
+    game: "Super Mario Bros. Wonder",
+    repo: "vfjoo888/SuperWonders",
+    host: "github",
+    stars: 90,
+    category: "mario",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Star,
+    description:
+      "另一套 Windows 原生重编译，基于 DKB 与 TotK 项目，内置 F1 游戏菜单。",
+    aliases: ["wonder", "super wonders", "马力欧惊奇"],
+  },
+  {
+    id: "fefw-recomp",
+    titleZh: "火焰纹章：万缕千丝",
+    game: "Fire Emblem: Fortune's Weave",
+    repo: "Goldoire/fefw-recomp",
+    host: "github",
+    stars: 721,
+    category: "rpg",
+    platforms: ["windows"],
+    status: "beta",
+    icon: Crown,
+    description:
+      "Switch 2 新作的 Windows 原生移植，通过静态重编译构建，需自备游戏转储，发布包不含游戏文件。",
+    aliases: ["fire emblem", "fortunes weave", "万缕千丝", "火焰纹章"],
+  },
+  {
+    id: "dsr-native",
+    titleZh: "黑暗之魂：重制版（Android）",
+    game: "Dark Souls: Remastered",
+    repo: "kvse/dsr-native",
+    host: "github",
+    stars: 85,
+    category: "action",
+    platforms: ["android"],
+    status: "beta",
+    icon: Swords,
+    description:
+      "Switch 版《黑暗之魂：重制版》的 Android 静态重编译，已能较稳定地以 60 FPS 运行。",
+    aliases: ["dark souls", "dsr", "黑暗之魂", "android"],
+  },
+  {
+    id: "doom-mobile",
+    titleZh: "毁灭战士（2016，Android）",
+    game: "DOOM (2016)",
+    repo: "Desm0nt/doom-port",
+    host: "github",
+    stars: 101,
+    category: "action",
+    platforms: ["android"],
+    status: "playable",
+    icon: Crosshair,
+    description:
+      "把 Switch 版《毁灭战士（2016）》原生运行在 ARM64 Android 上，使用 Vulkan 渲染，战役可玩。",
+    aliases: ["doom", "毁灭战士", "android"],
+  },
+  {
+    id: "diablo3-port",
+    titleZh: "暗黑破坏神 III（Android）",
+    game: "Diablo III",
+    repo: "Desm0nt/diablo3-port",
+    host: "github",
+    stars: 73,
+    category: "rpg",
+    platforms: ["android"],
+    status: "beta",
+    icon: Swords,
+    description:
+      "基于 d2r-mobile 的 Android 原生版本，将 Switch 版的 NVN 图形转译到 Vulkan。",
+    aliases: ["diablo 3", "暗黑破坏神3", "android"],
+  },
+];
+
+export function repoUrl(project: Project) {
+  return `https://${project.host}.com/${project.repo}`;
+}
+
+export function repoAddress(project: Project) {
+  return `${project.host}.com/${project.repo}`;
+}
+
+export function formatStars(stars: number) {
+  if (stars >= 1000) {
+    return `${(stars / 1000).toFixed(1).replace(/\.0$/, "")}k`;
+  }
+  return String(stars);
+}
