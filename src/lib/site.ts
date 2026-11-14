@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "以游戏为单位收录 Nintendo Switch 静态重编译项目，覆盖 Windows、Linux、macOS、Android 与 iOS，聚合 GitHub 与 GitLab 上的社区移植成果。",
   url: (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://switchrecomp.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://recomp.denohub.com"
   ).replace(/\/+$/, ""),
   github: "https://github.com/justjavac",
   githubLabel: "github.com/justjavac",
