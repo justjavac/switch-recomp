@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowUpRight, Info } from "lucide-react";
 import { GithubIcon } from "@/components/brand-icons";
 import { platforms, statuses } from "@/lib/projects";
@@ -157,13 +156,16 @@ export default function AboutPage() {
               上联系维护者。项目数据来自 GitHub 与 GitLab 的公开 API，Star 数为
               {siteConfig.snapshotDate} 快照。
             </p>
-            <Link
-              href="/go/github"
+            <a
+              href={siteConfig.repository}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`在新窗口打开 ${siteConfig.repositoryLabel} 仓库`}
               className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-semibold text-foreground transition-colors hover:text-brand"
             >
-              {siteConfig.githubLabel}
+              {siteConfig.repositoryLabel}
               <ArrowUpRight className="size-3" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
