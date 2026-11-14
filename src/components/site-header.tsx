@@ -85,20 +85,25 @@ export function SiteHeader() {
         <NavLinks pathname={pathname} className="hidden md:flex" />
 
         <div className="ml-auto flex items-center gap-2">
-          <Link
-            href="/go/github"
+          <a
+            href={siteConfig.repository}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`在新窗口打开 ${siteConfig.repositoryLabel} 仓库`}
             className="hidden h-8 items-center gap-1.5 rounded-md border border-border bg-card px-2 text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:outline-none lg:flex"
           >
             <GithubIcon className="size-3" />
-            <span className="font-mono text-[10px]">{siteConfig.githubLabel}</span>
-          </Link>
-          <Link
-            href="/go/github"
-            aria-label={`查看 ${siteConfig.githubLabel} 的外部链接提示`}
+            <span className="font-mono text-[10px]">{siteConfig.repositoryLabel}</span>
+          </a>
+          <a
+            href={siteConfig.repository}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`在新窗口打开 ${siteConfig.repositoryLabel} 仓库`}
             className="grid size-8 place-items-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:outline-none lg:hidden"
           >
             <GithubIcon className="size-3.5" />
-          </Link>
+          </a>
           <ThemeToggle />
         </div>
       </div>

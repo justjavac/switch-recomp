@@ -8,6 +8,8 @@ export const siteConfig = {
   ).replace(/\/+$/, ""),
   github: "https://github.com/justjavac",
   githubLabel: "github.com/justjavac",
+  repository: "https://github.com/justjavac/switch-recomp",
+  repositoryLabel: "justjavac/switch-recomp",
   updatedAt: "2026-11-14",
   snapshotDate: "2026.11.14",
 };

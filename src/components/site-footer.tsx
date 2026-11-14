@@ -43,13 +43,16 @@ export function SiteFooter() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link
-            href="/go/github"
+          <a
+            href={siteConfig.repository}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`在新窗口打开 ${siteConfig.repositoryLabel} 仓库`}
             className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
           >
             <GithubIcon className="size-3.5" />
-            <span className="font-mono text-[11px]">{siteConfig.githubLabel}</span>
-          </Link>
+            <span className="font-mono text-[11px]">{siteConfig.repositoryLabel}</span>
+          </a>
           <span className="text-[11px]">© 2026</span>
         </div>
       </div>
