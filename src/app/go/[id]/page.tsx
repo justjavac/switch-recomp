@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, ShieldAlert, Star } from "lucide-react";
 import { GithubIcon, GitlabIcon } from "@/components/brand-icons";
-import { TrackedLink } from "@/components/tracked-link";
 import { games } from "@/lib/games";
 import {
   formatStars,
@@ -139,21 +138,15 @@ export default async function GoPage({ params }: GoPageProps) {
           </ul>
 
           <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
-            <TrackedLink
+            <a
               href={target}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              eventName={project ? "project_click" : "github_click"}
-              eventData={
-                project
-                  ? { repo: repoAddress(project), game: project.game }
-                  : { target: "github_profile" }
-              }
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand to-brand-2 px-4 py-3 text-[13px] font-semibold text-white shadow-[0_10px_24px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
             >
               继续访问 {host}
               <ArrowUpRight className="size-4" />
-            </TrackedLink>
+            </a>
 
             <Link
               href={gameHref}

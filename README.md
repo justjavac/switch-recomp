@@ -27,7 +27,6 @@ Switch 上大量游戏通过静态重编译（recompilation）被移植到 PC、
 - Tailwind CSS v4
 - shadcn 风格组件与 Radix UI
 - next-themes
-- Vercel Analytics
 
 ## 本地开发
 
@@ -58,6 +57,14 @@ NEXT_PUBLIC_SITE_URL=https://example.com
 ```
 
 该变量会影响 canonical、Open Graph、sitemap 与 robots 的输出。
+
+## 部署
+
+站点部署在腾讯云 EdgeOne，正式域名为 `https://recomp.denohub.com`。
+
+- 构建命令：`npm run build`
+- 启动命令：`npm start`
+- 若使用 EdgeOne 的 Next.js 项目托管，按控制台提示关联仓库并配置构建命令即可
 
 ## 数据同步
 
