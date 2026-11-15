@@ -4,10 +4,12 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, ChevronDown, Star } from "lucide-react";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
+import { GameReviews } from "@/components/game-reviews";
 import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
 import { games, getGame } from "@/lib/games";
 import { formatStars, platforms, repoUrl, statuses } from "@/lib/projects";
+import { getGameReviews, summarizeReviews } from "@/lib/reviews";
 import { getSeriesSlug } from "@/lib/series";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -88,6 +90,8 @@ export default async function GamePage({ params }: GamePageProps) {
 
   const status = statuses[game.status];
   const seriesSlug = getSeriesSlug(game.series);
+  const reviews = getGameReviews(game.slug);
+  const reviewSummary = summarizeReviews(reviews);
   const sortedProjects = [...game.projects].sort((a, b) => b.stars - a.stars);
   const statusOrder = { playable: 0, beta: 1, experimental: 2 } as const;
   const recommended = [...game.projects].sort(
@@ -303,6 +307,21 @@ export default async function GamePage({ params }: GamePageProps) {
               <p className="mt-3 text-[13.5px] leading-7 text-muted-foreground">
                 {game.blurb}
               </p>
+
+              {reviews.length > 0 ? (
+                <a
+                  href="#reviews"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11.5px] font-medium text-muted-foreground outline-none transition-colors hover:border-brand/40 hover:text-foreground focus-visible:ring-2 focus-visible:ring-brand/50"
+                >
+                  <Star className="size-3 fill-amber-400 text-amber-400" />
+                  <span className="font-semibold text-foreground tabular-nums">
+                    {reviewSummary.average.toFixed(1)}
+                  </span>
+                  / 5
+                  <span aria-hidden className="h-2.5 w-px bg-border" />
+                  {reviewSummary.count} 条 AI 评论
+                </a>
+              ) : null}
             </div>
 
             <div className="mt-5 rounded-xl border border-border bg-background/40 p-4">
@@ -453,6 +472,8 @@ export default async function GamePage({ params }: GamePageProps) {
           ))}
         </div>
       </section>
+
+      <GameReviews reviews={reviews} />
 
       <section
         aria-labelledby="faq-heading"
