@@ -1,26 +1,10 @@
-import { Gamepad2, Sparkles, Star, ThumbsUp } from "lucide-react";
+import { Gamepad2, Sparkles, Star } from "lucide-react";
 import {
   summarizeReviews,
   type GameReview,
 } from "@/lib/reviews";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
-
-const avatarTones = [
-  "from-sky-500 to-blue-600",
-  "from-violet-500 to-purple-600",
-  "from-rose-500 to-pink-600",
-  "from-amber-500 to-orange-600",
-  "from-emerald-500 to-teal-600",
-  "from-cyan-500 to-sky-600",
-];
-
-function toneFor(name: string) {
-  const seed = Array.from(name).reduce(
-    (total, char) => total + (char.codePointAt(0) ?? 0),
-    0,
-  );
-  return avatarTones[seed % avatarTones.length];
-}
 
 function Stars({ value, className }: { value: number; className?: string }) {
   return (
@@ -74,7 +58,7 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
             id="reviews-heading"
             className="flex flex-wrap items-center gap-2.5 text-[22px] font-bold tracking-tight sm:text-[24px]"
           >
-            玩家评论
+            AI 口碑速览
             <span className="inline-flex items-center gap-1 rounded-full border border-brand/25 bg-brand/10 px-2.5 py-1 text-[10.5px] font-semibold text-brand">
               <Sparkles className="size-3" />
               AI 生成
@@ -84,12 +68,12 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
             </span>
           </h2>
           <p className="mt-2 max-w-xl text-[13px] leading-6 text-muted-foreground">
-            模拟玩家视角整理的移植体验参考，帮你快速判断这款值不值得期待。
+            AI 模拟的口碑摘要，帮你快速了解游戏风评与移植体验，不代表真实玩家评价。
           </p>
         </div>
         <span className="inline-flex items-center gap-1.5 text-[11.5px] text-muted-foreground">
-          <ThumbsUp className="size-3.5" />
-          仅展示，不开放投稿
+          <Sparkles className="size-3.5" />
+          生成于 {siteConfig.snapshotDate} · 不开放投稿
         </span>
       </div>
 
@@ -135,7 +119,7 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
 
           <p className="mt-4 flex gap-1.5 border-t border-border pt-3 text-[10.5px] leading-5 text-muted-foreground">
             <Sparkles className="mt-0.5 size-3 shrink-0 text-brand" />
-            评论由 AI 基于公开资料模拟生成，仅用于展示游戏口碑，不代表真实玩家观点。
+            口碑内容由 AI 基于公开资料模拟生成，不代表真实玩家评价。
           </p>
         </aside>
 
@@ -148,20 +132,17 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
               <div className="flex items-start gap-3">
                 <span
                   aria-hidden
-                  className={cn(
-                    "grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br text-[13px] font-bold text-white",
-                    toneFor(review.author),
-                  )}
+                  className="grid size-9 shrink-0 place-items-center rounded-full border border-border bg-muted/50 text-muted-foreground"
                 >
-                  {review.author.slice(0, 1)}
+                  <Sparkles className="size-3.5" />
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5">
                     <p className="truncate text-[13px] font-semibold">
                       {review.author}
                     </p>
-                    <span className="shrink-0 rounded border border-border px-1.5 py-px text-[10px] leading-4 text-muted-foreground">
-                      {review.tag}
+                    <span className="shrink-0 rounded border border-border bg-muted/40 px-1.5 py-px text-[10px] leading-4 text-muted-foreground">
+                      AI · {review.tag}
                     </span>
                   </div>
                   <p className="mt-0.5 text-[10.5px] text-muted-foreground tabular-nums">
@@ -185,9 +166,9 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
                 </span>
                 <span aria-hidden className="h-2.5 w-px bg-border" />
                 <span className="tabular-nums">{review.playtime}</span>
-                <span className="ml-auto inline-flex items-center gap-1 tabular-nums">
-                  <ThumbsUp className="size-3" />
-                  {review.likes}
+                <span className="ml-auto inline-flex items-center gap-1">
+                  <Sparkles className="size-3" />
+                  AI 模拟
                 </span>
               </div>
             </article>
