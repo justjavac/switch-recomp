@@ -1,10 +1,12 @@
-import { Gamepad2, Sparkles, Star } from "lucide-react";
-import {
-  summarizeReviews,
-  type GameReview,
-} from "@/lib/reviews";
+"use client";
+
+import { useState } from "react";
+import { ChevronDown, Gamepad2, Sparkles, Star } from "lucide-react";
+import type { GameReview, ReviewSummary } from "@/lib/reviews";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
+
+const INITIAL_VISIBLE = 6;
 
 function Stars({ value, className }: { value: number; className?: string }) {
   return (
@@ -41,10 +43,15 @@ function formatDate(date: string) {
   return date.replaceAll("-", ".");
 }
 
-export function GameReviews({ reviews }: { reviews: GameReview[] }) {
-  if (reviews.length === 0) return null;
+type GameReviewsProps = {
+  reviews: GameReview[];
+  summary: ReviewSummary;
+};
 
-  const summary = summarizeReviews(reviews);
+export function GameReviews({ reviews, summary }: GameReviewsProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  if (reviews.length === 0) return null;
 
   return (
     <section
@@ -77,7 +84,7 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
         </span>
       </div>
 
-      <div className="mt-5 grid gap-4 lg:grid-cols-[280px_1fr] lg:items-start">
+      <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-[280px_1fr] lg:items-start">
         <aside className="rounded-2xl border border-border bg-card p-5 lg:sticky lg:top-24">
           <div className="flex items-end gap-3">
             <span className="text-[42px] leading-none font-bold tracking-tight tabular-nums">
@@ -123,11 +130,14 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
           </p>
         </aside>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {reviews.map((review) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {reviews.map((review, index) => (
             <article
               key={review.id}
-              className="flex h-full flex-col rounded-2xl border border-border bg-card p-4 transition-colors duration-200 hover:border-brand/30 sm:p-5"
+              className={cn(
+                "flex h-full flex-col rounded-2xl border border-border bg-card p-4 transition-colors duration-200 hover:border-brand/30 sm:p-5",
+                index >= INITIAL_VISIBLE && !expanded && "hidden",
+              )}
             >
               <div className="flex items-start gap-3">
                 <span
@@ -173,6 +183,24 @@ export function GameReviews({ reviews }: { reviews: GameReview[] }) {
               </div>
             </article>
           ))}
+          {reviews.length > INITIAL_VISIBLE ? (
+            <div className="flex justify-center sm:col-span-2">
+              <button
+                type="button"
+                onClick={() => setExpanded((value) => !value)}
+                aria-expanded={expanded}
+                className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card px-4 text-[12px] font-medium text-muted-foreground transition-colors hover:border-brand/40 hover:text-foreground"
+              >
+                {expanded ? "收起评价" : `展开全部 ${reviews.length} 条评价`}
+                <ChevronDown
+                  className={cn(
+                    "size-3.5 transition-transform duration-200",
+                    expanded && "rotate-180",
+                  )}
+                />
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

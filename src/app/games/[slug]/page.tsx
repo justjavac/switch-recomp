@@ -4,14 +4,21 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, ChevronDown, Star } from "lucide-react";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
+import {
+  FavoriteButton,
+  RecordRecentView,
+  ShareButton,
+} from "@/components/game-actions";
 import { GameReviews } from "@/components/game-reviews";
 import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
+import { gameStats } from "@/lib/game-stats";
 import { games, getGame } from "@/lib/games";
 import { formatStars, platforms, repoUrl, statuses } from "@/lib/projects";
 import { getGameReviews, summarizeReviews } from "@/lib/reviews";
 import { getSeriesSlug } from "@/lib/series";
 import { siteConfig } from "@/lib/site";
+import { formatUpdateDate, getRecentUpdatesFor } from "@/lib/updates";
 import { cn } from "@/lib/utils";
 
 type GamePageProps = {
@@ -62,20 +69,11 @@ export async function generateMetadata({
       url: `/games/${game.slug}`,
       type: "website",
       locale: "zh_CN",
-      images: [
-        {
-          url: game.image,
-          width: 1200,
-          height: 675,
-          alt: `${game.titleZh} 游戏封面`,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${game.titleZh} · ${siteConfig.name}`,
       description: `${game.blurb} 收录 ${game.projects.length} 个社区重编译项目。`,
-      images: [game.image],
     },
   };
 }
@@ -166,6 +164,8 @@ export default async function GamePage({ params }: GamePageProps) {
     .slice(0, 4)
     .map((item) => item.game);
 
+  const projectActivity = getRecentUpdatesFor(game.projects, 8);
+
   const videoGameLd = {
     "@context": "https://schema.org",
     "@type": "VideoGame",
@@ -237,6 +237,7 @@ export default async function GamePage({ params }: GamePageProps) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-6 pb-32 sm:px-6 lg:pb-20">
+      <RecordRecentView slug={game.slug} />
       <JsonLd data={[videoGameLd, breadcrumbLd, projectsLd, faqLd]} />
       <nav aria-label="面包屑" className="text-[12px] leading-6 text-muted-foreground">
         <Link href="/" className="transition-colors hover:text-foreground">
@@ -255,6 +256,29 @@ export default async function GamePage({ params }: GamePageProps) {
         )}
         <span className="mx-2 text-border">/</span>
         <span className="text-foreground">{game.titleZh}</span>
+      </nav>
+
+      <nav
+        aria-label="页内导航"
+        className="mt-3 flex flex-wrap items-center gap-1.5"
+      >
+        {[
+          { href: "#conclusion", label: "快速结论" },
+          { href: "#projects", label: "可用项目" },
+          ...(projectActivity.length > 0
+            ? [{ href: "#activity", label: "项目动态" }]
+            : []),
+          ...(reviews.length > 0 ? [{ href: "#reviews", label: "AI 口碑" }] : []),
+          { href: "#faq", label: "常见问题" },
+        ].map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[11.5px] text-muted-foreground transition-colors hover:border-brand/40 hover:text-foreground"
+          >
+            {link.label}
+          </a>
+        ))}
       </nav>
 
       <section className="mt-5 overflow-hidden rounded-2xl border border-border bg-card">
@@ -308,20 +332,27 @@ export default async function GamePage({ params }: GamePageProps) {
                 {game.blurb}
               </p>
 
-              {reviews.length > 0 ? (
-                <a
-                  href="#reviews"
-                  className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11.5px] font-medium text-muted-foreground outline-none transition-colors hover:border-brand/40 hover:text-foreground focus-visible:ring-2 focus-visible:ring-brand/50"
-                >
-                  <Star className="size-3 fill-amber-400 text-amber-400" />
-                  <span className="font-semibold text-foreground tabular-nums">
-                    {reviewSummary.average.toFixed(1)}
-                  </span>
-                  / 5
-                  <span aria-hidden className="h-2.5 w-px bg-border" />
-                  {reviewSummary.count} 条 AI 口碑
-                </a>
-              ) : null}
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                {reviews.length > 0 ? (
+                  <a
+                    href="#reviews"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11.5px] font-medium text-muted-foreground outline-none transition-colors hover:border-brand/40 hover:text-foreground focus-visible:ring-2 focus-visible:ring-brand/50"
+                  >
+                    <Star className="size-3 fill-amber-400 text-amber-400" />
+                    <span className="font-semibold text-foreground tabular-nums">
+                      {reviewSummary.average.toFixed(1)}
+                    </span>
+                    / 5
+                    <span aria-hidden className="h-2.5 w-px bg-border" />
+                    {reviewSummary.count} 条 AI 口碑
+                  </a>
+                ) : null}
+                <ShareButton
+                  title={`${game.titleZh} · ${siteConfig.name}`}
+                  url={`${siteConfig.url}/games/${game.slug}`}
+                />
+                <FavoriteButton slug={game.slug} />
+              </div>
 
               <div className="mt-4 hidden flex-wrap gap-2 lg:flex">
                 <Link
@@ -377,8 +408,9 @@ export default async function GamePage({ params }: GamePageProps) {
       </section>
 
       <section
+        id="conclusion"
         aria-labelledby="conclusion-heading"
-        className="mt-5 overflow-hidden rounded-2xl border border-brand/20 bg-gradient-to-br from-brand/[0.06] via-card to-card p-5 sm:p-6"
+        className="mt-5 scroll-mt-24 overflow-hidden rounded-2xl border border-brand/20 bg-gradient-to-br from-brand/[0.06] via-card to-card p-5 sm:p-6"
       >
         <div className="grid gap-5 lg:grid-cols-[1.45fr_1fr] lg:items-center">
           <div>
@@ -406,7 +438,7 @@ export default async function GamePage({ params }: GamePageProps) {
                 href="#projects"
                 className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3.5 py-2 text-[12px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
               >
-                对比全部 {game.projects.length} 个项目
+                查看全部 {game.projects.length} 个项目
               </a>
             </div>
           </div>
@@ -482,18 +514,82 @@ export default async function GamePage({ params }: GamePageProps) {
           </span>
         </div>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {sortedProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </section>
 
-      <GameReviews reviews={reviews} />
+      {projectActivity.length > 0 ? (
+        <section
+          id="activity"
+          aria-labelledby="activity-heading"
+          className="mt-10 scroll-mt-24 border-t border-border pt-8"
+        >
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2
+                id="activity-heading"
+                className="flex items-center gap-2.5 text-[22px] font-bold tracking-tight sm:text-[24px]"
+              >
+                项目动态
+                <span className="rounded-full border border-border bg-muted/40 px-2.5 py-0.5 text-[11px] font-normal text-muted-foreground tabular-nums">
+                  {projectActivity.length}
+                </span>
+              </h2>
+              <p className="mt-2 max-w-xl text-[13px] leading-6 text-muted-foreground">
+                按仓库最近推送时间汇总，点击可前往对应项目。
+              </p>
+            </div>
+            <span className="text-[11.5px] text-muted-foreground">
+              数据快照 {siteConfig.snapshotDate}
+            </span>
+          </div>
+
+          <ol className="mt-5 border-l border-border pl-5">
+            {projectActivity.map(({ project, updatedAt }) => {
+              const projectStatus = statuses[project.status];
+
+              return (
+                <li key={project.id} className="relative pb-5 last:pb-0">
+                  <span
+                    aria-hidden
+                    className="absolute top-1.5 -left-6 size-2 rounded-full border-2 border-background bg-brand"
+                  />
+                  <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                    <Link
+                      href={`/go/${project.id}`}
+                      className="text-[13px] font-semibold transition-colors hover:text-brand"
+                    >
+                      {project.titleZh}
+                    </Link>
+                    <span className="inline-flex items-center gap-1 text-[10.5px] text-muted-foreground">
+                      <span
+                        className={cn("size-1.5 rounded-full", projectStatus.dot)}
+                      />
+                      {projectStatus.label}
+                    </span>
+                    <span className="ml-auto shrink-0 text-[10.5px] text-muted-foreground tabular-nums">
+                      {formatUpdateDate(updatedAt)}
+                    </span>
+                  </div>
+                  <p className="mt-1 line-clamp-2 text-[11.5px] leading-5 text-muted-foreground">
+                    {project.description}
+                  </p>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      ) : null}
+
+      <GameReviews reviews={reviews} summary={reviewSummary} />
 
       <section
+        id="faq"
         aria-labelledby="faq-heading"
-        className="mt-10 border-t border-border pt-8"
+        className="mt-10 scroll-mt-24 border-t border-border pt-8"
       >
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -559,11 +655,12 @@ export default async function GamePage({ params }: GamePageProps) {
             </Link>
           </div>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {relatedGames.map((related, index) => (
               <GameCard
                 key={related.slug}
                 game={related}
+                stats={gameStats[related.slug]}
                 index={index}
               />
             ))}

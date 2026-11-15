@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Gamepad2 } from "lucide-react";
+import { Gamepad2, Rss } from "lucide-react";
 import { GithubIcon } from "@/components/brand-icons";
 import { siteConfig } from "@/lib/site";
 
@@ -34,6 +34,13 @@ export function SiteFooter() {
           <Link href="/about" className="transition-colors hover:text-foreground">
             收录说明
           </Link>
+          <a
+            href="/feed.xml"
+            className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
+          >
+            <Rss className="size-3" />
+            订阅更新
+          </a>
           <Link
             href="/privacy"
             className="transition-colors hover:text-foreground"

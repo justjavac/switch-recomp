@@ -11,6 +11,7 @@ import {
   repoAddress,
   repoUrl,
   statuses,
+  type Project,
 } from "@/lib/projects";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,30 @@ type GoPageProps = {
 };
 
 const GITHUB_TARGET_ID = "github";
+
+function otherProjectReason(entry: Project, current: Project) {
+  if (entry.status === "playable" && current.status !== "playable") {
+    return "已标注为可玩，完成度更高";
+  }
+
+  const extraPlatforms = entry.platforms.filter(
+    (platformId) => !current.platforms.includes(platformId),
+  );
+
+  if (extraPlatforms.length > 0) {
+    const labels = extraPlatforms
+      .map((platformId) => platforms.find((item) => item.id === platformId)?.label)
+      .filter(Boolean)
+      .join(" / ");
+    return `额外支持 ${labels}`;
+  }
+
+  if (entry.stars > current.stars) {
+    return "Star 更多，社区更活跃";
+  }
+
+  return "另一个社区实现，可对比构建说明";
+}
 
 export function generateStaticParams() {
   return [
@@ -171,19 +196,27 @@ export default async function GoPage({ params }: GoPageProps) {
             </Link>
           </div>
 
-          {otherProjects.length > 0 ? (
-            <ul className="mt-3 space-y-2">
+          {otherProjects.length > 0 && project ? (
+            <ul className="mt-3 space-y-1">
               {otherProjects.map((entry) => (
-                <li
-                  key={entry.id}
-                  className="flex items-center justify-between gap-3 text-[12px]"
-                >
-                  <span className="min-w-0 truncate text-foreground">
-                    {entry.titleZh}
-                  </span>
-                  <span className="shrink-0 font-mono text-[10.5px] text-muted-foreground">
-                    {formatStars(entry.stars)} ★
-                  </span>
+                <li key={entry.id}>
+                  <Link
+                    href={`/go/${entry.id}`}
+                    className="group -mx-2 flex items-center justify-between gap-3 rounded-lg px-2 py-2 text-[12px] transition-colors hover:bg-muted/50"
+                  >
+                    <span className="min-w-0">
+                      <span className="block truncate font-medium text-foreground transition-colors group-hover:text-brand">
+                        {entry.titleZh}
+                      </span>
+                      <span className="mt-0.5 block truncate text-[10.5px] text-muted-foreground">
+                        {otherProjectReason(entry, project)}
+                      </span>
+                    </span>
+                    <span className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[10.5px] text-muted-foreground">
+                      {formatStars(entry.stars)} ★
+                      <ArrowUpRight className="size-3" />
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>

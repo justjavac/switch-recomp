@@ -1,16 +1,18 @@
 import Link from "next/link";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight, Sparkles, Star } from "lucide-react";
 import { GameArt } from "@/components/game-art";
 import type { Game } from "@/lib/games";
+import type { GameStats } from "@/lib/game-stats";
 import { formatStars, platforms, statuses } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
 type GameCardProps = {
   game: Game;
+  stats: GameStats;
   index: number;
 };
 
-export function GameCard({ game, index }: GameCardProps) {
+export function GameCard({ game, stats, index }: GameCardProps) {
   const status = statuses[game.status];
 
   return (
@@ -42,6 +44,31 @@ export function GameCard({ game, index }: GameCardProps) {
           <p className="line-clamp-2 min-h-10 text-[12.5px] leading-5 text-muted-foreground">
             {game.blurb}
           </p>
+
+          <div className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-medium">
+            {stats.playable > 0 ? (
+              <span
+                title="已标注为可玩的项目数"
+                className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-emerald-600 dark:text-emerald-400"
+              >
+                {stats.playable} 个可玩
+              </span>
+            ) : null}
+            {stats.reviewCount > 0 ? (
+              <span
+                title="AI 口碑平均分（满分 5 分）"
+                className="inline-flex items-center gap-1 rounded-full bg-amber-400/10 px-2 py-0.5 text-amber-600 dark:text-amber-400"
+              >
+                <Sparkles className="size-2.5" />
+                AI {stats.reviewAverage.toFixed(1)}
+              </span>
+            ) : null}
+            {stats.updatedDate ? (
+              <span className="text-muted-foreground">
+                {stats.updatedDate} 更新
+              </span>
+            ) : null}
+          </div>
 
           <div className="mt-auto flex items-center gap-2 border-t border-border/70 pt-3">
             <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">

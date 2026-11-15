@@ -1,5 +1,6 @@
 import { Directory } from "@/components/directory";
 import { JsonLd } from "@/components/json-ld";
+import { gameStats } from "@/lib/game-stats";
 import { games } from "@/lib/games";
 import { siteConfig } from "@/lib/site";
 
@@ -30,7 +31,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={[websiteLd, listLd]} />
-      <Directory />
+      <Directory stats={gameStats} />
     </>
   );
 }

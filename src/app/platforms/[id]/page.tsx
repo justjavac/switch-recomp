@@ -12,6 +12,7 @@ import {
 import { GameCard } from "@/components/game-card";
 import { JsonLd } from "@/components/json-ld";
 import { ProjectUpdateRow } from "@/components/project-update-row";
+import { gameStats } from "@/lib/game-stats";
 import { games } from "@/lib/games";
 import {
   formatStars,
@@ -343,9 +344,14 @@ export default async function PlatformPage({ params }: PlatformPageProps) {
           </Link>
         </div>
 
-        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {platformGames.map((game, index) => (
-            <GameCard key={game.slug} game={game} index={index} />
+            <GameCard
+              key={game.slug}
+              game={game}
+              stats={gameStats[game.slug]}
+              index={index}
+            />
           ))}
         </div>
       </section>

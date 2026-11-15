@@ -21,10 +21,12 @@ import {
 } from "lucide-react";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
+import { LibraryShelf } from "@/components/library-shelf";
 import { RecentUpdates } from "@/components/recent-updates";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { featuredGame, games } from "@/lib/games";
+import type { GameStats } from "@/lib/game-stats";
 import {
   formatStars,
   platforms,
@@ -33,6 +35,14 @@ import {
   type PlatformFilterId,
 } from "@/lib/projects";
 import { cn } from "@/lib/utils";
+
+type SortId = "stars" | "updated" | "reviews";
+
+const sortOptions: { id: SortId; label: string }[] = [
+  { id: "stars", label: "热度" },
+  { id: "updated", label: "最近更新" },
+  { id: "reviews", label: "AI 评分" },
+];
 
 const platformCoverage = platforms.map((platform) => ({
   ...platform,
@@ -58,9 +68,11 @@ const indexedGames = games.map((game) => ({
     .toLowerCase(),
 }));
 
-export function Directory() {
+export function Directory({ stats }: { stats: Record<string, GameStats> }) {
   const [query, setQuery] = useState("");
   const [platform, setPlatform] = useState<PlatformFilterId>("all");
+  const [playableOnly, setPlayableOnly] = useState(false);
+  const [sort, setSort] = useState<SortId>("stars");
   const deferredQuery = useDeferredValue(query);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -93,22 +105,53 @@ export function Directory() {
       .split(/\s+/)
       .filter(Boolean);
 
-    return indexedGames
+    const filtered = indexedGames
       .filter(({ game, haystack }) => {
         if (platform !== "all" && !game.platforms.includes(platform)) {
+          return false;
+        }
+        if (playableOnly && !(stats[game.slug]?.playable > 0)) {
           return false;
         }
         return terms.every((term) => haystack.includes(term));
       })
       .map(({ game }) => game);
-  }, [deferredQuery, platform]);
 
-  const filtersActive = query.trim() !== "" || platform !== "all";
+    return filtered.sort((a, b) => {
+      const statsA = stats[a.slug];
+      const statsB = stats[b.slug];
+
+      if (sort === "updated") {
+        return (
+          (statsB?.updatedAt ?? "").localeCompare(statsA?.updatedAt ?? "") ||
+          b.stars - a.stars
+        );
+      }
+
+      if (sort === "reviews") {
+        return (
+          (statsB?.reviewAverage ?? 0) - (statsA?.reviewAverage ?? 0) ||
+          b.stars - a.stars
+        );
+      }
+
+      return b.stars - a.stars;
+    });
+  }, [deferredQuery, platform, playableOnly, sort, stats]);
+
+  const filtersActive =
+    query.trim() !== "" || platform !== "all" || playableOnly;
   const featuredStatus = statuses[featuredGame.status];
+  const sortLabel =
+    sortOptions.find((option) => option.id === sort)?.label ?? "热度";
+  const playableGameCount = games.filter(
+    (game) => (stats[game.slug]?.playable ?? 0) > 0,
+  ).length;
 
   function resetFilters() {
     setQuery("");
     setPlatform("all");
+    setPlayableOnly(false);
   }
 
   return (
@@ -207,7 +250,7 @@ export function Directory() {
             <div>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand to-brand-2 px-3 py-1 text-[11px] font-semibold text-white">
                 <Flame className="size-3.5" />
-                本周推荐
+                热度推荐
               </span>
               <h2 className="mt-3.5 text-[22px] leading-tight font-bold tracking-tight sm:text-[26px]">
                 {featuredGame.titleZh}
@@ -252,6 +295,8 @@ export function Directory() {
         </Link>
       </section>
 
+      <LibraryShelf games={games} />
+
       {!filtersActive ? <RecentUpdates /> : null}
 
       <section
@@ -274,7 +319,7 @@ export function Directory() {
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-[11.5px] text-muted-foreground">
             <Flame className="size-3.5 text-orange-400" />
-            按热度排序
+            按{sortLabel}排序
           </span>
         </div>
 
@@ -341,7 +386,7 @@ export function Directory() {
           </div>
         </div>
 
-        <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-4 flex flex-col gap-3 border-t border-border pt-4 lg:flex-row lg:items-center lg:justify-between">
           <p
             aria-live="polite"
             className="text-[13px] leading-6 text-muted-foreground"
@@ -359,23 +404,74 @@ export function Directory() {
               </>
             )}
           </p>
-          {filtersActive && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={resetFilters}
-              className="h-8 w-fit gap-1.5 rounded-full px-2.5 text-[12px] text-muted-foreground"
+          <div className="flex flex-wrap items-center gap-2">
+            <div
+              role="group"
+              aria-label="排序方式"
+              className="inline-flex items-center gap-0.5 rounded-full border border-border bg-card p-0.5"
             >
-              <RotateCcw className="size-3.5" />
-              清除筛选
-            </Button>
-          )}
+              {sortOptions.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setSort(option.id)}
+                  aria-pressed={sort === option.id}
+                  className={cn(
+                    "h-7 rounded-full px-2.5 text-[11.5px] font-medium transition-colors",
+                    sort === option.id
+                      ? "bg-foreground/90 text-background"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setPlayableOnly((value) => !value)}
+              aria-pressed={playableOnly}
+              className={cn(
+                "inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-[11.5px] font-medium transition-colors",
+                playableOnly
+                  ? "border-transparent bg-gradient-to-r from-brand to-brand-2 text-white"
+                  : "border-border bg-card text-muted-foreground hover:border-brand/40 hover:text-foreground",
+              )}
+            >
+              <Gamepad2 className="size-3" />
+              只看可玩
+              <span
+                className={cn(
+                  "tabular-nums",
+                  playableOnly ? "text-white/75" : "text-muted-foreground",
+                )}
+              >
+                {playableGameCount}
+              </span>
+            </button>
+            {filtersActive && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={resetFilters}
+                className="h-8 w-fit gap-1.5 rounded-full px-2.5 text-[12px] text-muted-foreground"
+              >
+                <RotateCcw className="size-3.5" />
+                清除筛选
+              </Button>
+            )}
+          </div>
         </div>
 
         {results.length > 0 ? (
-          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {results.map((game, index) => (
-              <GameCard key={game.slug} game={game} index={index} />
+              <GameCard
+                key={game.slug}
+                game={game}
+                stats={stats[game.slug]}
+                index={index}
+              />
             ))}
           </div>
         ) : (
