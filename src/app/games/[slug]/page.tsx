@@ -236,7 +236,7 @@ export default async function GamePage({ params }: GamePageProps) {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-6 pb-20 sm:px-6">
+    <div className="mx-auto max-w-6xl px-4 pt-6 pb-32 sm:px-6 lg:pb-20">
       <JsonLd data={[videoGameLd, breadcrumbLd, projectsLd, faqLd]} />
       <nav aria-label="面包屑" className="text-[12px] leading-6 text-muted-foreground">
         <Link href="/" className="transition-colors hover:text-foreground">
@@ -319,9 +319,25 @@ export default async function GamePage({ params }: GamePageProps) {
                   </span>
                   / 5
                   <span aria-hidden className="h-2.5 w-px bg-border" />
-                  {reviewSummary.count} 条 AI 评论
+                  {reviewSummary.count} 条 AI 口碑
                 </a>
               ) : null}
+
+              <div className="mt-4 hidden flex-wrap gap-2 lg:flex">
+                <Link
+                  href={`/go/${recommended.id}`}
+                  className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 px-4 text-[12.5px] font-semibold text-white shadow-[0_8px_20px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
+                >
+                  查看推荐项目
+                  <ArrowUpRight className="size-3.5" />
+                </Link>
+                <a
+                  href="#projects"
+                  className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-border bg-background px-4 text-[12.5px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
+                >
+                  全部 {game.projects.length} 个项目
+                </a>
+              </div>
             </div>
 
             <div className="mt-5 rounded-xl border border-border bg-background/40 p-4">
@@ -562,6 +578,28 @@ export default async function GamePage({ params }: GamePageProps) {
         <ArrowLeft className="size-3.5" />
         返回游戏库
       </Link>
+
+      <div
+        aria-label="项目快捷操作"
+        data-mobile-cta
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden"
+      >
+        <div className="mx-auto flex max-w-6xl items-center gap-2">
+          <Link
+            href={`/go/${recommended.id}`}
+            className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-brand to-brand-2 px-4 text-[13px] font-semibold text-white shadow-[0_10px_24px_-12px_var(--brand)] outline-none transition-transform duration-150 active:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
+          >
+            查看推荐项目
+            <ArrowUpRight className="size-3.5" />
+          </Link>
+          <a
+            href="#projects"
+            className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl border border-border bg-card px-4 text-[13px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
+          >
+            全部 {game.projects.length} 个项目
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
