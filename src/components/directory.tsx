@@ -15,6 +15,7 @@ import {
   MonitorSmartphone,
   RotateCcw,
   Search,
+  ShieldCheck,
   Star,
   X,
 } from "lucide-react";
@@ -121,6 +122,9 @@ export function Directory() {
               </span>
               Switch 游戏移植库
             </h1>
+            <p className="mt-2 max-w-2xl text-[14px] leading-6 text-foreground/90">
+              找到能让 Switch 游戏在 PC、Mac、Linux 与手机上原生运行的开源项目。
+            </p>
             <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
               <span className="font-semibold text-foreground tabular-nums">
                 {games.length}
@@ -167,6 +171,24 @@ export function Directory() {
               </kbd>
             )}
           </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-border/70 pt-3 text-[11.5px] leading-5 text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5">
+            <ShieldCheck className="size-3.5 text-emerald-500" />
+            仅索引公开仓库
+          </span>
+          <span aria-hidden className="h-3 w-px bg-border" />
+          <span>不提供 ROM / 密钥</span>
+          <span aria-hidden className="h-3 w-px bg-border" />
+          <span>需自备正版游戏</span>
+          <Link
+            href="/about#disclaimer"
+            className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-brand sm:ml-auto"
+          >
+            了解收录原则
+            <ArrowUpRight className="size-3" />
+          </Link>
         </div>
       </section>
 
