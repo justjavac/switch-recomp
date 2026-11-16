@@ -135,7 +135,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#3a1414] via-[#1c0a0a] to-[#080505]",
     blurb:
       "3D 马力欧的集大成之作：帽子伙伴凯皮让马力欧附身敌人与物体，环游各个国度营救碧姬公主。",
-    projectIds: ["smo-recomp"],
+    projectIds: ["smo-recomp", "smo-pc-recomp"],
   },
   {
     slug: "super-mario-maker-2",

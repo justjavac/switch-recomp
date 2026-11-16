@@ -196,6 +196,21 @@ export const projects: Project[] = [
     aliases: ["smo", "odyssey", "奥德赛"],
   },
   {
+    id: "smo-pc-recomp",
+    titleZh: "超级马力欧：奥德赛（PC 重编译）",
+    game: "Super Mario Odyssey",
+    repo: "Simon3Sarkis/super-odyssey-pc-recomp",
+    host: "github",
+    stars: 343,
+    category: "mario",
+    platforms: ["windows", "linux"],
+    status: "beta",
+    icon: Star,
+    description:
+      "《奥德赛》Windows / Linux 原生静态重编译，已发布 v0.3.0 预览版，支持高帧率、4 倍内部分辨率与 DLSS / FSR / XeSS。",
+    aliases: ["smo", "odyssey", "奥德赛", "pc"],
+  },
+  {
     id: "smm2",
     titleZh: "超级马力欧创作家 2",
     game: "Super Mario Maker 2",
