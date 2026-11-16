@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "隐私政策",
@@ -16,14 +15,14 @@ const sections = [
     title: "我们收集什么",
     body: [
       "本站不要求注册，也不收集姓名、邮箱等个人身份信息。",
-      "本站不接入第三方访问统计或广告追踪脚本。部署平台可能记录基础访问日志，例如 IP、请求路径与访问时间，用于安全防护和可用性排查，不用于识别个人身份。",
+      "本站通过 Google AdSense 展示广告。部署平台可能记录基础访问日志，例如 IP、请求路径与访问时间，用于安全防护和可用性排查，不用于识别个人身份。",
     ],
   },
   {
     title: "Cookie 与本地存储",
     body: [
-      "站点使用浏览器本地存储保存浅色 / 深色主题偏好，该信息不会上传到服务器。",
-      "当前版本不投放广告，也不使用广告追踪 Cookie。",
+      "站点使用浏览器本地存储保存浅色 / 深色主题偏好，以及你主动收藏和最近浏览的游戏，这些信息不会上传到服务器。",
+      "Google AdSense 及其合作伙伴可能使用 Cookie 或类似技术，根据你访问本站和其他网站的情况投放、限制和衡量广告。你可以通过 Google 广告设置（adssettings.google.com）关闭个性化广告，或通过 aboutads.info 管理参与第三方广告联盟的 Cookie；关闭后你仍会看到广告，但相关性会降低。",
     ],
   },
   {
@@ -36,7 +35,8 @@ const sections = [
   {
     title: "广告与联盟链接",
     body: [
-      "如果未来通过广告、赞助或联盟链接维持站点运营，会在页面中明确标注，并同步更新本政策。",
+      "本站通过 Google AdSense 展示广告，发布商 ID 为 ca-pub-5061364613986259。广告由 Google 及其合作伙伴提供，本站不直接控制具体广告内容，也不会因你点击广告而获得你的个人信息。",
+      "广告收入用于覆盖域名、构建与维护成本。如果未来增加赞助或联盟链接，会在页面中明确标注，并同步更新本政策。",
     ],
   },
   {
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
         你的数据如何被使用
       </h1>
       <p className="mt-3 text-[14px] leading-7 text-muted-foreground">
-        最后更新：{siteConfig.snapshotDate}
+        最后更新：2026.11.16
       </p>
 
       <div className="mt-8 space-y-8">
