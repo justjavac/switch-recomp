@@ -18,6 +18,7 @@ export function GameCard({ game, stats, index }: GameCardProps) {
   return (
     <Link
       href={`/games/${game.slug}`}
+      prefetch={false}
       aria-label={`${game.titleZh}，${game.projects.length} 个项目`}
       className="group animate-card-in block h-full rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
       style={{ animationDelay: `${Math.min(index, 12) * 24}ms` }}

@@ -19,19 +19,32 @@ export function SiteFooter() {
           aria-label="站点导航"
           className="flex items-center gap-5 text-[12.5px] font-medium"
         >
-          <Link href="/" className="transition-colors hover:text-foreground">
+          <Link
+            href="/"
+            prefetch={false}
+            className="transition-colors hover:text-foreground"
+          >
             游戏库
           </Link>
-          <Link href="/series" className="transition-colors hover:text-foreground">
+          <Link
+            href="/series"
+            prefetch={false}
+            className="transition-colors hover:text-foreground"
+          >
             系列
           </Link>
           <Link
             href="/platforms"
+            prefetch={false}
             className="transition-colors hover:text-foreground"
           >
             平台支持
           </Link>
-          <Link href="/about" className="transition-colors hover:text-foreground">
+          <Link
+            href="/about"
+            prefetch={false}
+            className="transition-colors hover:text-foreground"
+          >
             收录说明
           </Link>
           <a
@@ -43,6 +56,7 @@ export function SiteFooter() {
           </a>
           <Link
             href="/privacy"
+            prefetch={false}
             className="transition-colors hover:text-foreground"
           >
             隐私
