@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/app-link";
 import { ArrowUpRight, Star } from "lucide-react";
 import { GithubIcon, GitlabIcon } from "@/components/brand-icons";
 import { Card, CardContent } from "@/components/ui/card";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, ShieldAlert, Star } from "lucide-react";
 import { GithubIcon, GitlabIcon } from "@/components/brand-icons";

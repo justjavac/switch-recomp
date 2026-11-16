@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/app-link";
 import { Heart } from "lucide-react";
 import { coverClass, type Game } from "@/lib/games";
 import { LIBRARY_EVENT, readFavorites } from "@/lib/game-library";

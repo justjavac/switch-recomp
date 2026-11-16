@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/app-link";
 import { Gamepad2, Rss } from "lucide-react";
 import { GithubIcon } from "@/components/brand-icons";
 import { siteConfig } from "@/lib/site";

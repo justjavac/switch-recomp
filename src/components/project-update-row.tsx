@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/app-link";
 import { ArrowUpRight } from "lucide-react";
 import { GameArt } from "@/components/game-art";
 import { statuses } from "@/lib/projects";

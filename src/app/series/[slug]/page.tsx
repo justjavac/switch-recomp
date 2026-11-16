@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, ChevronDown, Layers, Star } from "lucide-react";
 import { GameArt } from "@/components/game-art";

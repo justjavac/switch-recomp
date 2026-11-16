@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/app-link";
 import { ArrowUpRight, ChevronDown, Layers } from "lucide-react";
 import { GameArt } from "@/components/game-art";
 import { JsonLd } from "@/components/json-ld";
