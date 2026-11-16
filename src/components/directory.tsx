@@ -22,7 +22,6 @@ import {
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
 import { LibraryShelf } from "@/components/library-shelf";
-import { RecentUpdates } from "@/components/recent-updates";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { featuredGame, games } from "@/lib/games";
@@ -296,8 +295,6 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
       </section>
 
       <LibraryShelf games={games} />
-
-      {!filtersActive ? <RecentUpdates /> : null}
 
       <section
         id="games"
