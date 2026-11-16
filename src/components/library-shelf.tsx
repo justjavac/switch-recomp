@@ -38,6 +38,7 @@ function ShelfChip({ game, label }: ShelfItem) {
   return (
     <Link
       href={`/games/${game.slug}`}
+      prefetch={false}
       className="group flex w-44 shrink-0 items-center gap-2 rounded-xl border border-border bg-background/60 p-1.5 outline-none transition-colors hover:border-brand/40 focus-visible:ring-2 focus-visible:ring-brand/50"
     >
       <span className="relative aspect-[16/10] w-14 shrink-0 overflow-hidden rounded-lg">

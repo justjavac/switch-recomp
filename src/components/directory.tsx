@@ -226,6 +226,7 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
           <span>需自备正版游戏</span>
           <Link
             href="/about#disclaimer"
+            prefetch={false}
             className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-brand sm:ml-auto"
           >
             了解收录原则
@@ -237,6 +238,7 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
       <section className="mx-auto max-w-7xl px-4 pt-5 sm:px-6">
         <Link
           href={`/games/${featuredGame.slug}`}
+          prefetch={false}
           className="group grid overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:border-brand/40 hover:shadow-[0_28px_60px_-38px_rgba(0,0,0,0.9)] lg:grid-cols-[1.3fr_1fr]"
         >
           <GameArt

@@ -41,6 +41,7 @@ function NavLinks({
           <Link
             key={href}
             href={href}
+            prefetch={false}
             aria-current={active ? "page" : undefined}
             className={cn(
               "inline-flex items-center gap-1.5 rounded-full font-medium outline-none transition-all duration-150 focus-visible:ring-2 focus-visible:ring-brand/50",
