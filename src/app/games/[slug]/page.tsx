@@ -534,7 +534,9 @@ export default async function GamePage({ params }: GamePageProps) {
           {sortedProjects.map((project, index) => (
             <Fragment key={project.id}>
               <ProjectCard project={project} index={index} />
-              {index === 1 && adSlots.gameInArticle ? (
+              {index === 1 &&
+              game.projects.length >= 4 &&
+              adSlots.gameInArticle ? (
                 <div className="sm:col-span-2">
                   <AdSlot
                     slot={adSlots.gameInArticle}
@@ -698,7 +700,7 @@ export default async function GamePage({ params }: GamePageProps) {
       </div>
 
       <aside className="mt-10 hidden lg:mt-0 lg:block">
-        <div className="sticky top-24 space-y-4">
+        <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto [scrollbar-width:none]">
           <AdSlot
             slot={adSlots.gameSidebar}
             format="vertical"

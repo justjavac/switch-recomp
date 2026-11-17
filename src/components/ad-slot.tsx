@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { adsenseClient } from "@/lib/ads";
-import { cn } from "@/lib/utils";
 
 type AdFormat = "auto" | "horizontal" | "rectangle" | "vertical";
 
@@ -19,6 +18,7 @@ export function AdSlot({
   minHeight,
   className,
 }: AdSlotProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
 
   useEffect(() => {
@@ -35,14 +35,55 @@ export function AdSlot({
     }
   }, [slot]);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    const ins = container?.querySelector<HTMLElement>("ins.adsbygoogle");
+    if (!container || !ins) {
+      return;
+    }
+
+    const collapse = () => {
+      container.style.display = "none";
+    };
+
+    const sync = () => {
+      const status = ins.getAttribute("data-ad-status");
+      if (status === "unfilled") {
+        collapse();
+      } else if (status === "filled") {
+        container.style.display = "";
+        container.style.minHeight = "";
+      }
+    };
+
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(ins, {
+      attributes: true,
+      attributeFilter: ["data-ad-status"],
+    });
+    // 广告被拦截或长时间未填充时折叠，避免留下大块空白
+    const timer = window.setTimeout(() => {
+      if (!ins.getAttribute("data-ad-status")) {
+        collapse();
+      }
+    }, 5000);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+    };
+  }, [slot]);
+
   if (!slot) {
     return null;
   }
 
   return (
     <div
+      ref={containerRef}
       aria-label="广告"
-      className={cn("overflow-hidden", className)}
+      className={className}
       style={minHeight ? { minHeight } : undefined}
     >
       <ins
