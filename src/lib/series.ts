@@ -112,6 +112,31 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "id Software 的高速第一人称射击系列，强调移动、资源管理与处决。",
   },
+  {
+    slug: "star-fox",
+    name: "星际火狐",
+    description: "任天堂的 3D 空战射击系列，以轨道射击与小队作战为特色。",
+  },
+  {
+    slug: "splatoon",
+    name: "斯普拉遁",
+    description: "以墨水涂地对战为核心的第三人称射击系列，风格张扬。",
+  },
+  {
+    slug: "yokai-watch",
+    name: "妖怪手表",
+    description: "Level-5 的妖怪收集 RPG 系列，围绕现世与妖怪界的日常冒险。",
+  },
+  {
+    slug: "cruisn",
+    name: "Cruis'n",
+    description: "起源于街机的竞速系列，以夸张赛道与爽快漂移著称。",
+  },
+  {
+    slug: "torchlight",
+    name: "火炬之光",
+    description: "轻量化的暗黑风 ARPG 系列，强调刷装备与随机地牢。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions
