@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Fragment,
   useDeferredValue,
   useEffect,
   useMemo,
@@ -19,12 +20,14 @@ import {
   Star,
   X,
 } from "lucide-react";
+import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
 import { LibraryShelf } from "@/components/library-shelf";
 import { NewGamesRail } from "@/components/new-games-rail";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { adSlots } from "@/lib/ads";
 import { featuredGame, games, newGames } from "@/lib/games";
 import type { GameStats } from "@/lib/game-stats";
 import {
@@ -468,12 +471,22 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
         {results.length > 0 ? (
           <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {results.map((game, index) => (
-              <GameCard
-                key={game.slug}
-                game={game}
-                stats={stats[game.slug]}
-                index={index}
-              />
+              <Fragment key={game.slug}>
+                <GameCard
+                  game={game}
+                  stats={stats[game.slug]}
+                  index={index}
+                />
+                {index === 5 && adSlots.homeInFeed ? (
+                  <div className="sm:col-span-2 lg:col-span-3 xl:col-span-4">
+                    <AdSlot
+                      slot={adSlots.homeInFeed}
+                      format="horizontal"
+                      minHeight={250}
+                    />
+                  </div>
+                ) : null}
+              </Fragment>
             ))}
           </div>
         ) : (

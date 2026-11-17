@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, ChevronDown, Star } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ChevronDown, Flame, Star } from "lucide-react";
+import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
 import {
@@ -14,7 +16,8 @@ import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
 import { gameStats } from "@/lib/game-stats";
 import { games, getGame } from "@/lib/games";
-import { formatStars, platforms, repoUrl, statuses } from "@/lib/projects";
+import { adSlots } from "@/lib/ads";
+import { formatStars, platforms, projects, repoUrl, statuses } from "@/lib/projects";
 import { getGameReviews, summarizeReviews } from "@/lib/reviews";
 import { getSeriesSlug } from "@/lib/series";
 import { siteConfig } from "@/lib/site";
@@ -170,6 +173,11 @@ export default async function GamePage({ params }: GamePageProps) {
     .slice(0, 8)
     .map((item) => item.game);
 
+  const hotProjects = [...projects]
+    .filter((project) => !game.projects.some((item) => item.id === project.id))
+    .sort((a, b) => b.stars - a.stars)
+    .slice(0, 5);
+
   const projectActivity = getRecentUpdatesFor(game.projects, 8);
 
   const videoGameLd = {
@@ -245,6 +253,8 @@ export default async function GamePage({ params }: GamePageProps) {
     <div className="mx-auto max-w-6xl px-4 pt-6 pb-32 sm:px-6 lg:pb-20">
       <RecordRecentView slug={game.slug} />
       <JsonLd data={[videoGameLd, breadcrumbLd, projectsLd, faqLd]} />
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start lg:gap-8">
+      <div className="min-w-0">
       <nav aria-label="面包屑" className="text-[12px] leading-6 text-muted-foreground">
         <Link href="/" className="transition-colors hover:text-foreground">
           游戏库
@@ -522,7 +532,18 @@ export default async function GamePage({ params }: GamePageProps) {
 
         <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {sortedProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <Fragment key={project.id}>
+              <ProjectCard project={project} index={index} />
+              {index === 1 && adSlots.gameInArticle ? (
+                <div className="sm:col-span-2">
+                  <AdSlot
+                    slot={adSlots.gameInArticle}
+                    format="horizontal"
+                    minHeight={250}
+                  />
+                </div>
+              ) : null}
+            </Fragment>
           ))}
         </div>
       </section>
@@ -673,6 +694,45 @@ export default async function GamePage({ params }: GamePageProps) {
           </div>
         </section>
       ) : null}
+
+      </div>
+
+      <aside className="mt-10 hidden lg:mt-0 lg:block">
+        <div className="sticky top-24 space-y-4">
+          <AdSlot
+            slot={adSlots.gameSidebar}
+            format="vertical"
+            minHeight={600}
+          />
+          <div className="rounded-xl border border-border bg-card p-4">
+            <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+              <Flame className="size-3.5 text-brand" />
+              全站热门项目
+            </h2>
+            <ol className="mt-3 space-y-3">
+              {hotProjects.map((project, index) => (
+                <li key={project.id} className="flex gap-2.5">
+                  <span className="mt-0.5 w-4 shrink-0 text-[11px] font-semibold text-muted-foreground tabular-nums">
+                    {index + 1}
+                  </span>
+                  <div className="min-w-0">
+                    <Link
+                      href={`/go/${project.id}`}
+                      className="block truncate text-[12.5px] font-medium transition-colors hover:text-brand"
+                    >
+                      {project.titleZh}
+                    </Link>
+                    <p className="mt-0.5 text-[11px] text-muted-foreground">
+                      {formatStars(project.stars)} Star
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </aside>
+      </div>
 
       <Link
         href="/"
