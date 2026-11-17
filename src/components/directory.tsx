@@ -22,9 +22,10 @@ import {
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
 import { LibraryShelf } from "@/components/library-shelf";
+import { NewGamesRail } from "@/components/new-games-rail";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { featuredGame, games } from "@/lib/games";
+import { featuredGame, games, newGames } from "@/lib/games";
 import type { GameStats } from "@/lib/game-stats";
 import {
   formatStars,
@@ -295,6 +296,8 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
           </div>
         </Link>
       </section>
+
+      <NewGamesRail games={newGames} />
 
       <LibraryShelf games={games} />
 

@@ -49,6 +49,7 @@ export type Game = {
   stars: number;
   status: StatusId;
   aliases: string[];
+  addedAt?: string;
 };
 
 const genres: Record<CategoryId, string> = {
@@ -82,6 +83,25 @@ type GameDefinition = Omit<
 > & {
   console?: GameConsole;
   projectIds: string[];
+};
+
+const recentlyAdded: Record<string, string> = {
+  "star-fox": "2026-11-15",
+  "splatoon-raiders": "2026-11-15",
+  "new-pokemon-snap": "2026-11-15",
+  "yokai-watch-4": "2026-11-15",
+  "cruisn-blast": "2026-11-15",
+  "torchlight-ii": "2026-11-15",
+  "kirby-forgotten-land": "2026-11-16",
+  "hyrule-warriors-de": "2026-11-16",
+  "mario-strikers-battle-league": "2026-11-16",
+  "dead-or-alive-xtreme-3": "2026-11-16",
+  "shadow-fight-2": "2026-11-16",
+  "divinity-original-sin-2": "2026-11-17",
+  "pillars-of-eternity": "2026-11-17",
+  "super-kirby-clash": "2026-11-17",
+  "kirby-air-riders": "2026-11-17",
+  "mahou-shoujo-no-majo-saiban": "2026-11-17",
 };
 
 const gameDefinitions: GameDefinition[] = [
@@ -789,6 +809,7 @@ export const games: Game[] = gameDefinitions
         .filter((id) => platformSet.has(id)),
       stars: gameProjects.reduce((total, project) => total + project.stars, 0),
       status,
+      addedAt: recentlyAdded[definition.slug],
       aliases: Array.from(
         new Set([
           ...gameProjects.flatMap((project) => project.aliases ?? []),
@@ -800,6 +821,11 @@ export const games: Game[] = gameDefinitions
     };
   })
   .sort((a, b) => b.stars - a.stars);
+
+export const newGames = games
+  .filter((game) => game.addedAt)
+  .sort((a, b) => (b.addedAt ?? "").localeCompare(a.addedAt ?? ""))
+  .slice(0, 8);
 
 export const featuredGame = games[0];
 

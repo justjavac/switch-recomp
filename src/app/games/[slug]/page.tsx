@@ -154,14 +154,20 @@ export default async function GamePage({ params }: GamePageProps) {
 
   const relatedGames = games
     .filter((item) => item.slug !== game.slug)
-    .map((item) => ({
-      game: item,
-      score:
-        (item.series === game.series ? 2 : 0) +
-        (item.category === game.category ? 1 : 0),
-    }))
+    .map((item) => {
+      const sharedPlatforms = item.platforms.filter((platform) =>
+        game.platforms.includes(platform),
+      ).length;
+      return {
+        game: item,
+        score:
+          (item.series === game.series ? 4 : 0) +
+          (item.category === game.category ? 2 : 0) +
+          Math.min(sharedPlatforms, 2),
+      };
+    })
     .sort((a, b) => b.score - a.score || b.game.stars - a.game.stars)
-    .slice(0, 4)
+    .slice(0, 8)
     .map((item) => item.game);
 
   const projectActivity = getRecentUpdatesFor(game.projects, 8);
@@ -644,7 +650,7 @@ export default async function GamePage({ params }: GamePageProps) {
                 相关游戏
               </h2>
               <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
-                同系列或同类型的移植项目，继续逛逛。
+                同系列、同类型或同平台的热门移植项目，继续逛逛。
               </p>
             </div>
             <Link
