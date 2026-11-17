@@ -96,7 +96,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#123524] via-[#0a1a12] to-[#050807]",
     blurb:
       "1993 年掌机经典的重制版：林克漂流到可湖之岛，收集八件乐器唤醒风鱼，轻松又带着一丝感伤。",
-    projectIds: ["las-recomp"],
+    projectIds: ["las-recomp", "zlaa-android"],
   },
   {
     slug: "breath-of-the-wild",
@@ -122,7 +122,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#2a2410] via-[#15130a] to-[#070706]",
     blurb:
       "《旷野之息》续作，加入究极手组装、倒转乾坤与天空群岛，把自由解谜推到新的高度。",
-    projectIds: ["totk-pc", "ultra-tears", "mac-native-games", "totk-weeping", "totk-droid"],
+    projectIds: ["totk-pc", "ultra-tears", "mac-native-games", "totk-weeping", "totk-droid", "totk-mobile", "totk-ios", "totk-linux"],
   },
   {
     slug: "super-mario-odyssey",
@@ -135,7 +135,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#3a1414] via-[#1c0a0a] to-[#080505]",
     blurb:
       "3D 马力欧的集大成之作：帽子伙伴凯皮让马力欧附身敌人与物体，环游各个国度营救碧姬公主。",
-    projectIds: ["smo-recomp", "smo-pc-recomp"],
+    projectIds: ["smo-recomp", "smo-pc-recomp", "powerful-moon"],
   },
   {
     slug: "super-mario-maker-2",
@@ -410,7 +410,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#102c3a] via-[#08161d] to-[#05080a]",
     blurb:
       "云海之上的阿尔斯特，少年莱克斯与「天之圣杯」焰相遇，围绕乐园展开宏大的冒险。",
-    projectIds: ["xc2-recomp", "xc2-akshar"],
+    projectIds: ["xc2-recomp", "xc2-akshar", "xc2-ns2"],
   },
   {
     slug: "pokemon-pokopia",
@@ -438,7 +438,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#1b2a12] via-[#0d1509] to-[#050805]",
     blurb:
       "N64 经典在 Switch 2 上的全新重制：林克拔起大师之剑，穿梭过去与未来，阻止加侬多夫夺取三角力量。",
-    projectIds: ["oot-recomp", "oot-echora", "oot-ios"],
+    projectIds: ["oot-recomp", "oot-echora", "oot-ios", "oot-greenkid", "oot-pc-recomp"],
   },
   {
     slug: "echoes-of-wisdom",
@@ -558,7 +558,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#122a4a] via-[#0a1526] to-[#05080b]",
     blurb:
       "Switch 2 上的《星际火狐》重制：福克斯·麦克劳德率领星际火狐小队，在 3D 空战与地面战中对抗安德罗斯军团。",
-    projectIds: ["space-animals-recomp"],
+    projectIds: ["space-animals-recomp", "starfox-vulkan"],
   },
   {
     slug: "splatoon-raiders",
