@@ -626,6 +626,71 @@ const gameDefinitions: GameDefinition[] = [
       "Runic Games 的暗黑风 ARPG，Switch 版包含宠物、联网合作与随机地牢，节奏轻快。",
     projectIds: ["torchlight2-port"],
   },
+  {
+    slug: "kirby-forgotten-land",
+    titleZh: "星之卡比 探索发现",
+    titleEn: "Kirby and the Forgotten Land",
+    series: "星之卡比",
+    year: 2022,
+    category: "action",
+    icon: Star,
+    cover: "from-[#3a1a2a] via-[#1d0d15] to-[#080506]",
+    blurb:
+      "卡比的首次 3D 平台冒险：在被遗忘的废墟世界用「塞满嘴」变形，救出被掳走的瓦多迪。",
+    projectIds: ["kirby-fl-recomp"],
+  },
+  {
+    slug: "hyrule-warriors-de",
+    titleZh: "塞尔达无双：海拉鲁全明星豪华版",
+    titleEn: "Hyrule Warriors: Definitive Edition",
+    series: "塞尔达无双",
+    year: 2018,
+    category: "action",
+    icon: Swords,
+    cover: "from-[#3a2410] via-[#1d1208] to-[#080604]",
+    blurb:
+      "《塞尔达无双》的 Switch 决定版，集结系列历代角色在无双战场横扫千军，收录全部 DLC。",
+    projectIds: ["hwde-recomp"],
+  },
+  {
+    slug: "mario-strikers-battle-league",
+    titleZh: "马力欧足球 战斗联赛",
+    titleEn: "Mario Strikers: Battle League",
+    series: "马力欧足球",
+    year: 2022,
+    category: "fighting",
+    icon: CircleDot,
+    cover: "from-[#12223a] via-[#0a1220] to-[#05080b]",
+    blurb:
+      "马力欧足球系列新作：五人制激烈对抗，可用撞击、道具与「超绝必杀」抢断射门。",
+    projectIds: ["strikers-recomp"],
+  },
+  {
+    slug: "dead-or-alive-xtreme-3",
+    titleZh: "死或生 沙滩排球 3：Scarlet",
+    titleEn: "Dead or Alive Xtreme 3: Scarlet",
+    series: "死或生",
+    year: 2019,
+    category: "simulation",
+    icon: Sparkles,
+    cover: "from-[#123a4a] via-[#0a1f28] to-[#05080b]",
+    blurb:
+      "在南方小岛与角色们度假的休闲作品，以小游戏、沙滩排球与换装为核心。",
+    projectIds: ["doax3-recomp"],
+  },
+  {
+    slug: "shadow-fight-2",
+    titleZh: "暗影格斗 2",
+    titleEn: "Shadow Fight 2",
+    series: "暗影格斗",
+    year: 2024,
+    category: "fighting",
+    icon: Swords,
+    cover: "from-[#2a1208] via-[#150904] to-[#070403]",
+    blurb:
+      "以剪影风格著称的格斗游戏，玩家扮演武者挑战各路恶魔与 Boss，可用武器与魔法连招。",
+    projectIds: ["sf2-recomp"],
+  },
 ];
 
 export const games: Game[] = gameDefinitions

@@ -137,6 +137,31 @@ export const seriesDefinitions: SeriesDefinition[] = [
     name: "火炬之光",
     description: "轻量化的暗黑风 ARPG 系列，强调刷装备与随机地牢。",
   },
+  {
+    slug: "kirby",
+    name: "星之卡比",
+    description: "任天堂的粉色卡比系列，以吞噬复制能力与轻松平台动作为特色。",
+  },
+  {
+    slug: "hyrule-warriors",
+    name: "塞尔达无双",
+    description: "《塞尔达传说》与无双玩法结合的衍生系列，主打大规模割草战场。",
+  },
+  {
+    slug: "mario-strikers",
+    name: "马力欧足球",
+    description: "马力欧世界观下的足球竞技系列，强调冲撞、道具与必杀射门。",
+  },
+  {
+    slug: "dead-or-alive",
+    name: "死或生",
+    description: "以格斗与海岛度假衍生作并行的系列，角色与演出是主要看点。",
+  },
+  {
+    slug: "shadow-fight",
+    name: "暗影格斗",
+    description: "以剪影美术与武器连招为特色的格斗游戏系列。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions
