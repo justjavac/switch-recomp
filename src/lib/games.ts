@@ -691,6 +691,72 @@ const gameDefinitions: GameDefinition[] = [
       "以剪影风格著称的格斗游戏，玩家扮演武者挑战各路恶魔与 Boss，可用武器与魔法连招。",
     projectIds: ["sf2-recomp"],
   },
+  {
+    slug: "divinity-original-sin-2",
+    titleZh: "神界：原罪 2 决定版",
+    titleEn: "Divinity: Original Sin 2 - Definitive Edition",
+    series: "神界",
+    year: 2019,
+    category: "rpg",
+    icon: WandSparkles,
+    cover: "from-[#2a1a10] via-[#150d08] to-[#070504]",
+    blurb:
+      "Larian 的回合制 CRPG 名作，支持元素互动、四人联机与自由剧情，Switch 版包含全部决定版内容。",
+    projectIds: ["dos2-port"],
+  },
+  {
+    slug: "pillars-of-eternity",
+    titleZh: "永恒之柱 完全版",
+    titleEn: "Pillars of Eternity: Complete Edition",
+    series: "永恒之柱",
+    year: 2019,
+    category: "rpg",
+    icon: Sword,
+    cover: "from-[#101c2a] via-[#08101a] to-[#05080b]",
+    blurb:
+      "黑曜石经典的等距视角 CRPG，以深刻的文本、灵魂世界观与实时暂停战斗著称，Switch 版收录全部资料片。",
+    projectIds: ["poe-port"],
+  },
+  {
+    slug: "super-kirby-clash",
+    titleZh: "超级卡比猎人队",
+    titleEn: "Super Kirby Clash",
+    series: "星之卡比",
+    year: 2019,
+    category: "action",
+    icon: Star,
+    cover: "from-[#3a1a2a] via-[#1d0d15] to-[#080506]",
+    blurb:
+      "四人协作的卡比共斗游戏：选择不同职业，合力讨伐巨大 Boss，刷装备与等级。",
+    projectIds: ["kirby-clash-recomp"],
+  },
+  {
+    slug: "kirby-air-riders",
+    titleZh: "卡比空中骑手",
+    titleEn: "Kirby Air Riders",
+    series: "星之卡比",
+    year: 2025,
+    console: "Nintendo Switch 2",
+    category: "racing",
+    icon: Star,
+    cover: "from-[#2a1a3a] via-[#150d1d] to-[#070508]",
+    blurb:
+      "《卡比飞天赛车》时隔多年的新作，在 Switch 2 上驾驶各种空中载具竞速，支持多人对战。",
+    projectIds: ["kirby-air-riders-recomp"],
+  },
+  {
+    slug: "mahou-shoujo-no-majo-saiban",
+    titleZh: "魔法少女ノ魔女裁判",
+    titleEn: "Mahou Shoujo no Majo Saiban",
+    series: "魔法少女ノ魔女裁判",
+    year: 2025,
+    category: "rpg",
+    icon: Sparkles,
+    cover: "from-[#2a1235] via-[#15091a] to-[#070509]",
+    blurb:
+      "哥特风格的悬疑推理冒险：一群魔法少女被困于牢狱，通过辩论与审判找出隐藏的魔女。",
+    projectIds: ["manosaba-ios"],
+  },
 ];
 
 export const games: Game[] = gameDefinitions

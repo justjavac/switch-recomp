@@ -162,6 +162,21 @@ export const seriesDefinitions: SeriesDefinition[] = [
     name: "暗影格斗",
     description: "以剪影美术与武器连招为特色的格斗游戏系列。",
   },
+  {
+    slug: "divinity",
+    name: "神界",
+    description: "Larian 的奇幻 CRPG 系列，以元素互动与高自由度著称。",
+  },
+  {
+    slug: "pillars-of-eternity",
+    name: "永恒之柱",
+    description: "黑曜石的等距视角 CRPG 系列，世界观围绕灵魂与轮回展开。",
+  },
+  {
+    slug: "manosaba",
+    name: "魔法少女ノ魔女裁判",
+    description: "哥特悬疑风格的魔法少女推理冒险系列。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions
