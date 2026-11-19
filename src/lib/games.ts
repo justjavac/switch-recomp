@@ -880,6 +880,20 @@ const gameDefinitions: GameDefinition[] = [
       "4 对 4 涂地对战的最新作，加入弓、刮刀等新武器与「蛮颓镇」舞台，支持三人合作打工。",
     projectIds: ["inkypaint-recomp", "inksplash3-recomp"],
   },
+  {
+    slug: "mario-party-3",
+    titleZh: "马力欧派对 3",
+    titleEn: "Mario Party 3",
+    series: "马力欧派对",
+    year: 2000,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Star,
+    cover: "from-[#2f2410] via-[#181307] to-[#080704]",
+    blurb:
+      "N64 上最后一作《马力欧派对》，新增「故事模式」与决斗迷你游戏，最多四人同乐。",
+    projectIds: ["mp3-n64hub", "mp3-rainchus"],
+  },
 ];
 
 export const games: Game[] = gameDefinitions

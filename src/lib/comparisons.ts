@@ -73,4 +73,7 @@ export const projectNotes: Record<string, string> = {
   // 斯普拉遁 3
   "inkypaint-recomp": "Windows 早期实验版，基于 ScarletNX",
   "inksplash3-recomp": "Linux 探索项目，验证阶段",
+  // 马力欧派对 3
+  "mp3-n64hub": "支持 PC 与网页运行，30 Star",
+  "mp3-rainchus": "社区分支，Windows 构建",
 };

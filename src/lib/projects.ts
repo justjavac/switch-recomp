@@ -1484,6 +1484,36 @@ export const projects: Project[] = [
       "面向 Linux 的《斯普拉遁 3》静态重编译探索项目，处于早期验证阶段。",
     aliases: ["splatoon 3", "斯普拉遁3", "inksplash", "linux"],
   },
+  {
+    id: "mp3-n64hub",
+    titleZh: "马力欧派对 3（n64hub）",
+    game: "Mario Party 3",
+    repo: "n64hub/mario-party-3-recomp",
+    host: "github",
+    stars: 30,
+    category: "action",
+    platforms: ["windows"],
+    status: "beta",
+    icon: Star,
+    description:
+      "N64《马力欧派对 3》的静态重编译，支持 PC 与网页运行，需自备 ROM。",
+    aliases: ["mario party 3", "马力欧派对3", "mp3"],
+  },
+  {
+    id: "mp3-rainchus",
+    titleZh: "马力欧派对 3（Rainchus 版）",
+    game: "Mario Party 3",
+    repo: "Rainchus/MarioParty3-Recomp",
+    host: "github",
+    stars: 20,
+    category: "action",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Star,
+    description:
+      "社区维护的《马力欧派对 3》重编译分支，提供 Windows 构建，不含游戏数据。",
+    aliases: ["mario party 3", "马力欧派对3", "rainchus"],
+  },
 ];
 
 export function repoUrl(project: Project) {
