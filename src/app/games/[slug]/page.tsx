@@ -17,6 +17,7 @@ import { ProjectCard } from "@/components/project-card";
 import { gameStats } from "@/lib/game-stats";
 import { games, getGame } from "@/lib/games";
 import { adSlots } from "@/lib/ads";
+import { projectNotes } from "@/lib/comparisons";
 import { formatStars, platforms, projects, repoUrl, statuses } from "@/lib/projects";
 import { getGameReviews, summarizeReviews } from "@/lib/reviews";
 import { getSeriesSlug } from "@/lib/series";
@@ -529,6 +530,67 @@ export default async function GamePage({ params }: GamePageProps) {
             按 Star 排序
           </span>
         </div>
+
+        {sortedProjects.length >= 5 ? (
+          <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-card/60">
+            <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/70 px-4 py-3">
+              <h3 className="text-[13px] font-semibold">项目对比</h3>
+              <p className="text-[11.5px] text-muted-foreground">
+                {sortedProjects.length} 个项目 · 按平台与成熟度选择
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[640px] border-collapse text-left text-[12.5px]">
+                <thead>
+                  <tr className="text-[11px] text-muted-foreground">
+                    <th className="px-4 py-2 font-medium">项目</th>
+                    <th className="px-3 py-2 font-medium">平台</th>
+                    <th className="px-3 py-2 font-medium">状态</th>
+                    <th className="px-3 py-2 text-right font-medium">Stars</th>
+                    <th className="px-4 py-2 font-medium">适合</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sortedProjects.map((project) => (
+                    <tr key={project.id} className="border-t border-border/50">
+                      <td className="px-4 py-2.5 font-medium">
+                        <Link
+                          href={`/go/${project.id}`}
+                          className="transition-colors hover:text-brand"
+                        >
+                          {project.titleZh}
+                        </Link>
+                      </td>
+                      <td className="px-3 py-2.5 text-muted-foreground">
+                        {project.platforms
+                          .map(
+                            (id) =>
+                              platforms.find((item) => item.id === id)?.short ??
+                              id,
+                          )
+                          .join(" / ")}
+                      </td>
+                      <td className="px-3 py-2.5">
+                        <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                          <span
+                            className={`size-1.5 rounded-full ${statuses[project.status].dot}`}
+                          />
+                          {statuses[project.status].label}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2.5 text-right text-muted-foreground tabular-nums">
+                        {formatStars(project.stars)}
+                      </td>
+                      <td className="px-4 py-2.5 text-muted-foreground">
+                        {projectNotes[project.id] ?? "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : null}
 
         <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {sortedProjects.map((project, index) => (
