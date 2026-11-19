@@ -29,7 +29,12 @@ import {
 export type GameConsole =
   | "Nintendo Switch"
   | "Nintendo Switch 2"
-  | "Nintendo Switch / Nintendo Switch 2";
+  | "Nintendo Switch / Nintendo Switch 2"
+  | "Nintendo GameCube"
+  | "Nintendo 64"
+  | "Game Boy"
+  | "iOS / Android"
+  | "Windows / Mac";
 
 export type Game = {
   slug: string;
@@ -142,7 +147,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#2a2410] via-[#15130a] to-[#070706]",
     blurb:
       "《旷野之息》续作，加入究极手组装、倒转乾坤与天空群岛，把自由解谜推到新的高度。",
-    projectIds: ["totk-pc", "ultra-tears", "mac-native-games", "totk-weeping", "totk-droid", "totk-mobile", "totk-ios", "totk-linux"],
+    projectIds: ["totk-pc", "ultra-tears", "mac-native-games", "totk-weeping", "totk-droid", "totk-mobile", "totk-ios", "totk-linux", "totk-android"],
   },
   {
     slug: "super-mario-odyssey",
@@ -246,7 +251,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#3a1235] via-[#1d091a] to-[#080509]",
     blurb:
       "系列第三作，贝优妮塔穿梭多元宇宙对抗人造生物，新增操控召唤魔兽「恶魔奴隶」的玩法。",
-    projectIds: ["witch-time"],
+    projectIds: ["witch-time", "bayo3-recomp"],
   },
   {
     slug: "metroid-dread",
@@ -430,7 +435,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#102c3a] via-[#08161d] to-[#05080a]",
     blurb:
       "云海之上的阿尔斯特，少年莱克斯与「天之圣杯」焰相遇，围绕乐园展开宏大的冒险。",
-    projectIds: ["xc2-recomp", "xc2-akshar", "xc2-ns2"],
+    projectIds: ["xc2-recomp", "xc2-akshar", "xc2-ns2", "xc2-circerio"],
   },
   {
     slug: "pokemon-pokopia",
@@ -458,7 +463,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#1b2a12] via-[#0d1509] to-[#050805]",
     blurb:
       "N64 经典在 Switch 2 上的全新重制：林克拔起大师之剑，穿梭过去与未来，阻止加侬多夫夺取三角力量。",
-    projectIds: ["oot-recomp", "oot-echora", "oot-ios", "oot-greenkid", "oot-pc-recomp"],
+    projectIds: ["oot-recomp", "oot-echora", "oot-ios", "oot-greenkid", "oot-pc-recomp", "oot-hookshot", "oot-relink"],
   },
   {
     slug: "echoes-of-wisdom",
@@ -776,6 +781,76 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "哥特风格的悬疑推理冒险：一群魔法少女被困于牢狱，通过辩论与审判找出隐藏的魔女。",
     projectIds: ["manosaba-ios"],
+  },
+  {
+    slug: "sonic-riders",
+    titleZh: "索尼克滑板竞速",
+    titleEn: "Sonic Riders",
+    series: "索尼克",
+    year: 2006,
+    console: "Nintendo GameCube",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#102a4a] via-[#08182a] to-[#05080b]",
+    blurb:
+      "以悬浮滑板代替卡丁车的索尼克竞速外传：利用气流与特技在赛道上提速，支持分屏对战。",
+    projectIds: ["sonic-riders-recomp"],
+  },
+  {
+    slug: "super-robot-wars-64",
+    titleZh: "超级机器人大战 64",
+    titleEn: "Super Robot Wars 64",
+    series: "超级机器人大战",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "rpg",
+    icon: Swords,
+    cover: "from-[#2a2410] via-[#15120a] to-[#070706]",
+    blurb:
+      "N64 平台的系列作品，集结多部机器人动画机体，以回合制战棋推进跨作品剧情。",
+    projectIds: ["srw64-recomp"],
+  },
+  {
+    slug: "angry-birds",
+    titleZh: "愤怒的小鸟",
+    titleEn: "Angry Birds",
+    series: "愤怒的小鸟",
+    year: 2009,
+    console: "iOS / Android",
+    category: "action",
+    icon: CircleDot,
+    cover: "from-[#1a3a1a] via-[#0d1d0d] to-[#050806]",
+    blurb:
+      "拉动弹弓击倒绿猪的物理益智经典，衍生出季节、里约、太空与星球大战等多个版本。",
+    projectIds: ["angry-birds-recomp"],
+  },
+  {
+    slug: "binding-of-isaac",
+    titleZh: "以撒的结合",
+    titleEn: "The Binding of Isaac",
+    series: "以撒的结合",
+    year: 2011,
+    console: "Windows / Mac",
+    category: "action",
+    icon: Ghost,
+    cover: "from-[#2a1a10] via-[#150d08] to-[#070504]",
+    blurb:
+      "以眼泪为武器的 roguelike：每次进入地牢都是新布局，道具组合带来极高重玩价值。",
+    projectIds: ["isaac-recomp"],
+  },
+  {
+    slug: "kirby-dream-land",
+    titleZh: "星之卡比",
+    titleEn: "Kirby's Dream Land",
+    series: "星之卡比",
+    year: 1992,
+    console: "Game Boy",
+    category: "action",
+    icon: Star,
+    cover: "from-[#3a1a2a] via-[#1d0d15] to-[#080506]",
+    blurb:
+      "卡比系列初代：在梦之国普普普大陆夺回被偷走的食物与星星，短小轻快的关卡奠定了系列基础。",
+    projectIds: ["kirby-dream-land-recomp"],
   },
 ];
 
