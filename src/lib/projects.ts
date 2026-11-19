@@ -13,6 +13,7 @@ import {
   Mountain,
   Smartphone,
   Sparkles,
+  Sprout,
   Star,
   Sword,
   Swords,
@@ -1513,6 +1514,36 @@ export const projects: Project[] = [
     description:
       "社区维护的《马力欧派对 3》重编译分支，提供 Windows 构建，不含游戏数据。",
     aliases: ["mario party 3", "马力欧派对3", "rainchus"],
+  },
+  {
+    id: "city-folk-recompiled",
+    titleZh: "动物森友会：城市人（Recompiled）",
+    game: "Animal Crossing: City Folk",
+    repo: "rob646464/city-folk-recompiled",
+    host: "github",
+    stars: 8,
+    category: "simulation",
+    platforms: ["windows"],
+    status: "beta",
+    icon: Sprout,
+    description:
+      "Wii《动物森友会：城市人》静态重编译 PC 移植，需自备游戏光盘镜像。",
+    aliases: ["animal crossing", "city folk", "动物森友会", "动森"],
+  },
+  {
+    id: "accf-recomp",
+    titleZh: "动物森友会：城市人（ACCF）",
+    game: "Animal Crossing: City Folk",
+    repo: "luispolis124/ACCF-Recomp",
+    host: "github",
+    stars: 1,
+    category: "simulation",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Sprout,
+    description:
+      "基于 DolRecomp 的《城市人》重编译项目，早期阶段，需自备 Wii 光盘镜像。",
+    aliases: ["animal crossing", "accf", "动物森友会", "动森"],
   },
 ];
 

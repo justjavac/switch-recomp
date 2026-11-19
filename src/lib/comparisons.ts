@@ -76,4 +76,7 @@ export const projectNotes: Record<string, string> = {
   // 马力欧派对 3
   "mp3-n64hub": "支持 PC 与网页运行，30 Star",
   "mp3-rainchus": "社区分支，Windows 构建",
+  // 动物森友会：城市人
+  "city-folk-recompiled": "主力版本，359 Star 近亲项目作者",
+  "accf-recomp": "基于 DolRecomp 的早期版本",
 };

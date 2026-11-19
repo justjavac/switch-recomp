@@ -33,6 +33,7 @@ export type GameConsole =
   | "Nintendo GameCube"
   | "Nintendo 64"
   | "Nintendo DS"
+  | "Nintendo Wii"
   | "Game Boy"
   | "iOS / Android"
   | "Windows / Mac";
@@ -893,6 +894,20 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "N64 上最后一作《马力欧派对》，新增「故事模式」与决斗迷你游戏，最多四人同乐。",
     projectIds: ["mp3-n64hub", "mp3-rainchus"],
+  },
+  {
+    slug: "animal-crossing-city-folk",
+    titleZh: "动物森友会：城市人",
+    titleEn: "Animal Crossing: City Folk",
+    series: "动物森友会",
+    year: 2008,
+    console: "Nintendo Wii",
+    category: "simulation",
+    icon: Sprout,
+    cover: "from-[#22301a] via-[#121a0d] to-[#070a05]",
+    blurb:
+      "Wii 上的动森作品，玩家可搭巴士前往城市购物、看戏与理发，村庄生活节奏依旧悠闲。",
+    projectIds: ["city-folk-recompiled", "accf-recomp"],
   },
 ];
 
