@@ -539,7 +539,48 @@ export default async function GamePage({ params }: GamePageProps) {
                 {sortedProjects.length} 个项目 · 按平台与成熟度选择
               </p>
             </div>
-            <div className="overflow-x-auto">
+            <ul className="divide-y divide-border/50 sm:hidden">
+              {sortedProjects.map((project) => (
+                <li key={project.id} className="px-4 py-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <Link
+                      href={`/go/${project.id}`}
+                      className="min-w-0 text-[13px] leading-5 font-semibold transition-colors hover:text-brand"
+                    >
+                      {project.titleZh}
+                    </Link>
+                    <span className="shrink-0 text-[11px] text-muted-foreground tabular-nums">
+                      {formatStars(project.stars)} Star
+                    </span>
+                  </div>
+                  <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-muted-foreground">
+                    <span className="inline-flex items-center gap-1">
+                      <span
+                        className={`size-1.5 rounded-full ${statuses[project.status].dot}`}
+                      />
+                      {statuses[project.status].label}
+                    </span>
+                    <span className="text-border">·</span>
+                    <span>
+                      {project.platforms
+                        .map(
+                          (id) =>
+                            platforms.find((item) => item.id === id)?.short ??
+                            id,
+                        )
+                        .join(" / ")}
+                    </span>
+                  </div>
+                  {projectNotes[project.id] ? (
+                    <p className="mt-1.5 text-[11.5px] leading-5 text-muted-foreground">
+                      {projectNotes[project.id]}
+                    </p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+
+            <div className="hidden overflow-x-auto sm:block">
               <table className="w-full min-w-[640px] border-collapse text-left text-[12.5px]">
                 <thead>
                   <tr className="text-[11px] text-muted-foreground">
