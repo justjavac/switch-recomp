@@ -531,7 +531,7 @@ export default async function GamePage({ params }: GamePageProps) {
           </span>
         </div>
 
-        {sortedProjects.length >= 5 ? (
+        {sortedProjects.length >= 2 ? (
           <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-card/60">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/70 px-4 py-3">
               <h3 className="text-[13px] font-semibold">项目对比</h3>

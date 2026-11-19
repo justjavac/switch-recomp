@@ -435,7 +435,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#102c3a] via-[#08161d] to-[#05080a]",
     blurb:
       "云海之上的阿尔斯特，少年莱克斯与「天之圣杯」焰相遇，围绕乐园展开宏大的冒险。",
-    projectIds: ["xc2-recomp", "xc2-akshar", "xc2-ns2", "xc2-circerio"],
+    projectIds: ["xc2-recomp", "xc2-akshar", "xc2-ns2"],
   },
   {
     slug: "pokemon-pokopia",

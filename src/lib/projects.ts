@@ -1292,21 +1292,6 @@ export const projects: Project[] = [
     aliases: ["bayonetta 3", "猎天使魔女3", "bayo3"],
   },
   {
-    id: "xc2-circerio",
-    titleZh: "异度神剑 2（研究版）",
-    game: "Xenoblade Chronicles 2",
-    repo: "circerio/XC2-Recomp",
-    host: "github",
-    stars: 14,
-    category: "rpg",
-    platforms: ["windows"],
-    status: "experimental",
-    icon: Mountain,
-    description:
-      "面向 Windows 的《异度神剑 2》原生重编译研究项目，仍在早期验证阶段。",
-    aliases: ["xenoblade 2", "异度神剑2", "xc2"],
-  },
-  {
     id: "sonic-riders-recomp",
     titleZh: "索尼克滑板竞速",
     game: "Sonic Riders",
