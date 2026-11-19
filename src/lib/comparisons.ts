@@ -70,4 +70,7 @@ export const projectNotes: Record<string, string> = {
   // 密特罗德 究极 猎人
   "mph-recomp": "Windows 主力版本，290 Star",
   "hunters-android": "双屏 Android，AYN Thor 参考设备",
+  // 斯普拉遁 3
+  "inkypaint-recomp": "Windows 早期实验版，基于 ScarletNX",
+  "inksplash3-recomp": "Linux 探索项目，验证阶段",
 };

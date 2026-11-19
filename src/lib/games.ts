@@ -867,6 +867,19 @@ const gameDefinitions: GameDefinition[] = [
       "NDS 上的第一人称银河战士：以赏金猎人身份在多颗星球争夺远古力量，支持多人对战。",
     projectIds: ["mph-recomp", "hunters-android"],
   },
+  {
+    slug: "splatoon-3",
+    titleZh: "斯普拉遁 3",
+    titleEn: "Splatoon 3",
+    series: "斯普拉遁",
+    year: 2022,
+    category: "action",
+    icon: Sparkles,
+    cover: "from-[#1b2a3a] via-[#0d141d] to-[#05080a]",
+    blurb:
+      "4 对 4 涂地对战的最新作，加入弓、刮刀等新武器与「蛮颓镇」舞台，支持三人合作打工。",
+    projectIds: ["inkypaint-recomp", "inksplash3-recomp"],
+  },
 ];
 
 export const games: Game[] = gameDefinitions

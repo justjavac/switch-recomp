@@ -1454,6 +1454,36 @@ export const projects: Project[] = [
       "面向 AYN Thor 的双屏 Android 原生移植，双摇杆操作与高清 GLES 渲染。",
     aliases: ["metroid prime hunters", "hunters", "android"],
   },
+  {
+    id: "inkypaint-recomp",
+    titleZh: "斯普拉遁 3（Inkypaint）",
+    game: "Splatoon 3",
+    repo: "n-popescu/Inkypaint",
+    host: "github",
+    stars: 2,
+    category: "action",
+    platforms: ["windows"],
+    status: "experimental",
+    icon: Sparkles,
+    description:
+      "基于修改版 ScarletNX 的《斯普拉遁 3》原生 PC 移植，早期实验阶段。",
+    aliases: ["splatoon 3", "斯普拉遁3", "喷喷3"],
+  },
+  {
+    id: "inksplash3-recomp",
+    titleZh: "斯普拉遁 3（Inksplash）",
+    game: "Splatoon 3",
+    repo: "azlekayn/Inksplash3-recomp",
+    host: "github",
+    stars: 2,
+    category: "action",
+    platforms: ["linux"],
+    status: "experimental",
+    icon: Sparkles,
+    description:
+      "面向 Linux 的《斯普拉遁 3》静态重编译探索项目，处于早期验证阶段。",
+    aliases: ["splatoon 3", "斯普拉遁3", "inksplash", "linux"],
+  },
 ];
 
 export function repoUrl(project: Project) {
