@@ -79,4 +79,15 @@ export const projectNotes: Record<string, string> = {
   // 动物森友会：城市人
   "city-folk-recompiled": "主力版本，359 Star 近亲项目作者",
   "accf-recomp": "基于 DolRecomp 的早期版本",
+  // 班卓熊大冒险
+  "banjo-recomp": "主力版本，2145 Star，全平台",
+  "banjo-jiggies": "大型 mod 版本《Jiggies of Time》",
+  "banjo-nostalgia": "大型 mod 版本《Nostalgia 64》",
+  // 马力欧卡丁车 64
+  "mk64-recomp": "主力版本，支持分屏与联机",
+  "mk64-reloaded": "高清材质增强，兼容 Recomp / Dolphin",
+  // 完美黑暗
+  "pd-xbla": "XBLA 重制版，Windows 原生",
+  "pd-n64hub": "N64 原版，支持网页运行",
+  "pd-remaster": "2010 Remaster 版，ReXGlue",
 };

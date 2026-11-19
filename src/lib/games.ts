@@ -909,6 +909,48 @@ const gameDefinitions: GameDefinition[] = [
       "Wii 上的动森作品，玩家可搭巴士前往城市购物、看戏与理发，村庄生活节奏依旧悠闲。",
     projectIds: ["city-folk-recompiled", "accf-recomp"],
   },
+  {
+    slug: "banjo-kazooie",
+    titleZh: "班卓熊大冒险",
+    titleEn: "Banjo-Kazooie",
+    series: "班卓熊",
+    year: 1998,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Star,
+    cover: "from-[#2c1c14] via-[#170f0a] to-[#070504]",
+    blurb:
+      "Rare 的 3D 平台经典：熊与鸟搭档闯关，收集拼图与音符，从女巫手中救出妹妹。",
+    projectIds: ["banjo-recomp", "banjo-jiggies", "banjo-nostalgia"],
+  },
+  {
+    slug: "mario-kart-64",
+    titleZh: "马力欧卡丁车 64",
+    titleEn: "Mario Kart 64",
+    series: "马力欧卡丁车",
+    year: 1996,
+    console: "Nintendo 64",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#122c3a] via-[#0a181f] to-[#05080a]",
+    blurb:
+      "系列第二作，引入 4 人分屏、香蕉皮与龟壳道具，16 条赛道成为派对竞速的起点。",
+    projectIds: ["mk64-recomp", "mk64-reloaded"],
+  },
+  {
+    slug: "perfect-dark",
+    titleZh: "完美黑暗",
+    titleEn: "Perfect Dark",
+    series: "完美黑暗",
+    year: 2000,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#0d2226] via-[#071214] to-[#040708]",
+    blurb:
+      "Rare 的第一人称射击名作：特工乔安娜对抗外星阴谋，以深度 AI、武器与多人模式著称。",
+    projectIds: ["pd-xbla", "pd-n64hub", "pd-remaster"],
+  },
 ];
 
 export const games: Game[] = gameDefinitions
