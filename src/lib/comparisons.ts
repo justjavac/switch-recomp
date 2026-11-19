@@ -57,4 +57,17 @@ export const projectNotes: Record<string, string> = {
   // 星际火狐
   "space-animals-recomp": "Switch 2 版，Windows 原生",
   "starfox-vulkan": "Vulkan 后端 PC 版",
+  // 火焰纹章 Engage
+  "fe-engage": "基础版本，Windows 原生移植",
+  "engage-imalti0r": "DLSS + 4K + 简中 UI，功能最全",
+  "engage-xgc": "早期实验版，构建流程简单",
+  // 火焰纹章 Fortune's Weave
+  "fefw-recomp": "主力版本，244 Star，Windows 原生",
+  "fefw-may22es": "社区分支，需自备转储",
+  // 异度神剑 3
+  "xc3-recomp": "主力版本，可玩主线与 4 个 DLC",
+  "xc3-android": "Android 掌机移植，早期版本",
+  // 密特罗德 究极 猎人
+  "mph-recomp": "Windows 主力版本，290 Star",
+  "hunters-android": "双屏 Android，AYN Thor 参考设备",
 };

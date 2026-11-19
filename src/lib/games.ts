@@ -32,6 +32,7 @@ export type GameConsole =
   | "Nintendo Switch / Nintendo Switch 2"
   | "Nintendo GameCube"
   | "Nintendo 64"
+  | "Nintendo DS"
   | "Game Boy"
   | "iOS / Android"
   | "Windows / Mac";
@@ -343,7 +344,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#391620] via-[#1c0b10] to-[#080506]",
     blurb:
       "火焰纹章系列新作，主角与历代英雄「纹章士」合体作战，强调兵种相克与戒指搭配。",
-    projectIds: ["fe-engage"],
+    projectIds: ["fe-engage", "engage-imalti0r", "engage-xgc"],
   },
   {
     slug: "super-mario-bros-wonder",
@@ -503,7 +504,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#1b2a45] via-[#0d1522] to-[#05080b]",
     blurb:
       "两个敌对国家的六名少年少女并肩冒险，围绕「生命」与「送行」展开的宏大 JRPG。",
-    projectIds: ["xc3-recomp"],
+    projectIds: ["xc3-recomp", "xc3-android"],
   },
   {
     slug: "diablo-ii-resurrected",
@@ -530,7 +531,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#2a1d3a] via-[#150e1d] to-[#070508]",
     blurb:
       "火焰纹章系列在 Switch 2 上的新作：舞台是众神统治下的鞑古扎帝国，围绕斗技场与「愿望」展开新的战棋故事。",
-    projectIds: ["fefw-recomp"],
+    projectIds: ["fefw-recomp", "fefw-may22es"],
   },
   {
     slug: "dark-souls-remastered",
@@ -851,6 +852,20 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "卡比系列初代：在梦之国普普普大陆夺回被偷走的食物与星星，短小轻快的关卡奠定了系列基础。",
     projectIds: ["kirby-dream-land-recomp"],
+  },
+  {
+    slug: "metroid-prime-hunters",
+    titleZh: "密特罗德 究极 猎人",
+    titleEn: "Metroid Prime Hunters",
+    series: "密特罗德",
+    year: 2006,
+    console: "Nintendo DS",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#1a2a3a] via-[#0d151d] to-[#05080a]",
+    blurb:
+      "NDS 上的第一人称银河战士：以赏金猎人身份在多颗星球争夺远古力量，支持多人对战。",
+    projectIds: ["mph-recomp", "hunters-android"],
   },
 ];
 
