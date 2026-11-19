@@ -20,7 +20,7 @@ export function GameCard({ game, stats, index }: GameCardProps) {
       href={`/games/${game.slug}`}
       prefetch={false}
       aria-label={`${game.titleZh}，${game.projects.length} 个项目`}
-      className="group animate-card-in block h-full rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
+      className="library-card group animate-card-in block h-full rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
       style={{ animationDelay: `${Math.min(index, 12) * 24}ms` }}
     >
       <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 group-hover:-translate-y-1 group-hover:border-brand/40 group-hover:shadow-[0_24px_50px_-30px_rgba(0,0,0,0.9)]">

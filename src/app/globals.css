@@ -194,6 +194,12 @@ body {
   animation: card-in 0.4s cubic-bezier(0.22, 0.8, 0.24, 1) both;
 }
 
+/* 跳过屏外卡片渲染，减少长列表首屏工作量 */
+.library-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 320px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
