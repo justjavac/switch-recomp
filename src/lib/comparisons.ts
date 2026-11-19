@@ -90,4 +90,12 @@ export const projectNotes: Record<string, string> = {
   "pd-xbla": "XBLA 重制版，Windows 原生",
   "pd-n64hub": "N64 原版，支持网页运行",
   "pd-remaster": "2010 Remaster 版，ReXGlue",
+  // 黄金眼 007
+  "ge-recomp": "主力版本，946 Star，支持宽屏高帧率",
+  "ge-xbla": "XBLA 重制版，画面更好",
+  "ge-mac-linux": "Mac / Linux 专用构建",
+  "ge-bean": "XBLA 版另一实现，探索阶段",
+  // 路易吉洋馆 2
+  "lm2-recompiled": "Win / Linux 双平台，需欧版 ROM",
+  "lm2-mansion2": "4K / 120 FPS 分支",
 };

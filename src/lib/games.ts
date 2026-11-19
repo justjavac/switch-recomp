@@ -33,6 +33,7 @@ export type GameConsole =
   | "Nintendo GameCube"
   | "Nintendo 64"
   | "Nintendo DS"
+  | "Nintendo 3DS"
   | "Nintendo Wii"
   | "Game Boy"
   | "iOS / Android"
@@ -950,6 +951,34 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "Rare 的第一人称射击名作：特工乔安娜对抗外星阴谋，以深度 AI、武器与多人模式著称。",
     projectIds: ["pd-xbla", "pd-n64hub", "pd-remaster"],
+  },
+  {
+    slug: "goldeneye-007",
+    titleZh: "黄金眼 007",
+    titleEn: "GoldenEye 007",
+    series: "黄金眼",
+    year: 1997,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#132434] via-[#0a131c] to-[#05080a]",
+    blurb:
+      "N64 上的谍战射击里程碑：以电影为蓝本改编，任务目标、分屏对战与难度设计影响了一代人。",
+    projectIds: ["ge-recomp", "ge-xbla", "ge-mac-linux", "ge-bean"],
+  },
+  {
+    slug: "luigis-mansion-2",
+    titleZh: "路易吉洋馆 2",
+    titleEn: "Luigi's Mansion: Dark Moon",
+    series: "路易吉洋馆",
+    year: 2013,
+    console: "Nintendo 3DS",
+    category: "action",
+    icon: Ghost,
+    cover: "from-[#122a22] via-[#0a1712] to-[#050807]",
+    blurb:
+      "3DS 上的洋馆续作，以关卡制探索多座鬼屋，用「暗月之力」吸尘捉鬼并解开机关。",
+    projectIds: ["lm2-recompiled", "lm2-mansion2"],
   },
 ];
 
