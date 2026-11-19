@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:stars": "node scripts/sync-stars.mjs"
+    "sync:stars": "node scripts/sync-stars.mjs",
+    "compress:covers": "node scripts/compress-covers.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
