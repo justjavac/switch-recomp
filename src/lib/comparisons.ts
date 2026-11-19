@@ -60,7 +60,6 @@ export const projectNotes: Record<string, string> = {
   // 火焰纹章 Engage
   "fe-engage": "基础版本，Windows 原生移植",
   "engage-imalti0r": "DLSS + 4K + 简中 UI，功能最全",
-  "engage-xgc": "早期实验版，构建流程简单",
   // 火焰纹章 Fortune's Weave
   "fefw-recomp": "主力版本，244 Star，Windows 原生",
   "fefw-may22es": "社区分支，需自备转储",

@@ -1383,21 +1383,6 @@ export const projects: Project[] = [
     aliases: ["fire emblem engage", "engage", "火焰纹章"],
   },
   {
-    id: "engage-xgc",
-    titleZh: "火焰纹章 Engage（xgc 版）",
-    game: "Fire Emblem Engage",
-    repo: "xgc1986/engage-pc-recomp",
-    host: "github",
-    stars: 7,
-    category: "rpg",
-    platforms: ["windows"],
-    status: "experimental",
-    icon: Crown,
-    description:
-      "实验性 Windows 原生移植，需在本地从自己的游戏文件构建，不含游戏数据。",
-    aliases: ["fire emblem engage", "engage", "火焰纹章"],
-  },
-  {
     id: "xc3-android",
     titleZh: "异度神剑 3（Android）",
     game: "Xenoblade Chronicles 3",

@@ -346,7 +346,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#391620] via-[#1c0b10] to-[#080506]",
     blurb:
       "火焰纹章系列新作，主角与历代英雄「纹章士」合体作战，强调兵种相克与戒指搭配。",
-    projectIds: ["fe-engage", "engage-imalti0r", "engage-xgc"],
+    projectIds: ["fe-engage", "engage-imalti0r"],
   },
   {
     slug: "super-mario-bros-wonder",
