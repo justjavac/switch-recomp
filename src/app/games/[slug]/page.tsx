@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fragment } from "react";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, ChevronDown, Flame, Star } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ChevronDown, Flame, Layers, Star } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
@@ -12,6 +12,7 @@ import {
   ShareButton,
 } from "@/components/game-actions";
 import { GameReviews } from "@/components/game-reviews";
+import { InPageNav } from "@/components/in-page-nav";
 import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
 import { gameStats } from "@/lib/game-stats";
@@ -170,8 +171,17 @@ export default async function GamePage({ params }: GamePageProps) {
     .slice(0, 8)
     .map((item) => item.game);
 
-  const hotProjects = [...projects]
-    .filter((project) => !game.projects.some((item) => item.id === project.id))
+  const seriesGames = games
+    .filter((item) => item.series === game.series && item.slug !== game.slug)
+    .sort((a, b) => b.stars - a.stars)
+    .slice(0, 4);
+
+  const samePlatformProjects = [...projects]
+    .filter(
+      (project) =>
+        !game.projects.some((item) => item.id === project.id) &&
+        project.platforms.some((platform) => game.platforms.includes(platform)),
+    )
     .sort((a, b) => b.stars - a.stars)
     .slice(0, 5);
 
@@ -271,28 +281,19 @@ export default async function GamePage({ params }: GamePageProps) {
         <span className="text-foreground">{game.titleZh}</span>
       </nav>
 
-      <nav
-        aria-label="页内导航"
-        className="mt-3 flex flex-wrap items-center gap-1.5"
-      >
-        {[
+      <InPageNav
+        items={[
           { href: "#conclusion", label: "快速结论" },
           { href: "#projects", label: "可用项目" },
           { href: "#faq", label: "常见问题" },
-          ...(reviews.length > 0 ? [{ href: "#reviews", label: "AI 口碑" }] : []),
+          ...(reviews.length > 0
+            ? [{ href: "#reviews", label: "AI 口碑" }]
+            : []),
           ...(projectActivity.length > 0
             ? [{ href: "#activity", label: "项目动态" }]
             : []),
-        ].map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[11.5px] text-muted-foreground transition-colors hover:border-brand/40 hover:text-foreground"
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
+        ]}
+      />
 
       <section className="mt-5 overflow-hidden rounded-2xl border border-border bg-card">
         <div className="grid lg:grid-cols-[1.15fr_1fr]">
@@ -745,18 +746,51 @@ export default async function GamePage({ params }: GamePageProps) {
 
       <aside className="mt-10 hidden lg:mt-0 lg:block">
         <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto [scrollbar-width:none]">
+          {seriesGames.length > 0 ? (
+            <div className="rounded-xl border border-border bg-card p-4">
+              <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+                <Layers className="size-3.5 text-brand" />
+                本系列其他游戏
+              </h2>
+              <ul className="mt-3 space-y-2.5">
+                {seriesGames.map((item) => (
+                  <li key={item.slug}>
+                    <Link
+                      href={`/games/${item.slug}`}
+                      className="flex items-center justify-between gap-2 text-[12.5px] transition-colors hover:text-brand"
+                    >
+                      <span className="truncate">{item.titleZh}</span>
+                      <span className="shrink-0 text-[10.5px] text-muted-foreground tabular-nums">
+                        {item.projects.length} 个项目
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {seriesSlug ? (
+                <Link
+                  href={`/series/${seriesSlug}`}
+                  className="mt-3 inline-flex text-[11.5px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  查看全部 →
+                </Link>
+              ) : null}
+            </div>
+          ) : null}
+
           <AdSlot
             slot={adSlots.gameSidebar}
             format="vertical"
-            minHeight={600}
+            minHeight={300}
           />
+
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
               <Flame className="size-3.5 text-brand" />
-              全站热门项目
+              同平台热门
             </h2>
             <ol className="mt-3 space-y-3">
-              {hotProjects.map((project, index) => (
+              {samePlatformProjects.map((project, index) => (
                 <li key={project.id} className="flex gap-2.5">
                   <span className="mt-0.5 w-4 shrink-0 text-[11px] font-semibold text-muted-foreground tabular-nums">
                     {index + 1}
