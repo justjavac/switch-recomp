@@ -118,10 +118,6 @@ export default async function GamePage({ params }: GamePageProps) {
     .map((id) => platforms.find((platform) => platform.id === id)?.label)
     .filter(Boolean)
     .join("、");
-  const platformShortLabels = game.platforms
-    .map((id) => platforms.find((platform) => platform.id === id)?.short)
-    .filter(Boolean)
-    .join(" / ");
   const recommendedPlatforms = recommended.platforms
     .map((id) => platforms.find((platform) => platform.id === id)?.label)
     .filter(Boolean)
@@ -282,11 +278,11 @@ export default async function GamePage({ params }: GamePageProps) {
         {[
           { href: "#conclusion", label: "快速结论" },
           { href: "#projects", label: "可用项目" },
+          { href: "#faq", label: "常见问题" },
+          ...(reviews.length > 0 ? [{ href: "#reviews", label: "AI 口碑" }] : []),
           ...(projectActivity.length > 0
             ? [{ href: "#activity", label: "项目动态" }]
             : []),
-          ...(reviews.length > 0 ? [{ href: "#reviews", label: "AI 口碑" }] : []),
-          { href: "#faq", label: "常见问题" },
         ].map((link) => (
           <a
             key={link.href}
@@ -371,6 +367,62 @@ export default async function GamePage({ params }: GamePageProps) {
                 <FavoriteButton slug={game.slug} />
               </div>
 
+              <div
+                id="conclusion"
+                className="mt-4 scroll-mt-28 rounded-xl border border-brand/20 bg-gradient-to-br from-brand/[0.07] via-background/60 to-background/40 p-3.5"
+              >
+                <h2 className="text-[11px] font-semibold text-brand">
+                  快速结论
+                </h2>
+                <p className="mt-1.5 text-[13.5px] leading-6 font-semibold">
+                  {summaryHeadline}
+                </p>
+                <p className="mt-1 text-[12px] leading-6 text-muted-foreground">
+                  {summaryBody}
+                </p>
+              </div>
+
+              <dl className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[11.5px]">
+                <div className="flex items-baseline gap-1.5">
+                  <dt className="text-muted-foreground">可玩</dt>
+                  <dd className="font-semibold tabular-nums">
+                    {playableCount} / {game.projects.length}
+                  </dd>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <dt className="text-muted-foreground">热度</dt>
+                  <dd className="font-semibold tabular-nums">
+                    {formatStars(game.stars)} Star
+                  </dd>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <dt className="text-muted-foreground">快照</dt>
+                  <dd className="font-semibold tabular-nums">
+                    {siteConfig.snapshotDate}
+                  </dd>
+                </div>
+              </dl>
+
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
+                {game.platforms.map((platformId) => {
+                  const platform = platforms.find(
+                    (item) => item.id === platformId,
+                  );
+                  if (!platform) return null;
+                  const PlatformIcon = platform.icon;
+                  return (
+                    <Link
+                      key={platformId}
+                      href={`/platforms/${platform.id}`}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11.5px] text-foreground outline-none transition-colors hover:border-brand/40 hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
+                    >
+                      <PlatformIcon className="size-3 text-muted-foreground" />
+                      {platform.label}
+                    </Link>
+                  );
+                })}
+              </div>
+
               <div className="mt-4 hidden flex-wrap gap-2 lg:flex">
                 <Link
                   href={`/go/${recommended.id}`}
@@ -388,124 +440,13 @@ export default async function GamePage({ params }: GamePageProps) {
               </div>
             </div>
 
-            <div className="mt-5 rounded-xl border border-border bg-background/40 p-4">
-              <h2 className="text-[12px] font-semibold text-muted-foreground">
-                平台支持
-              </h2>
-              <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                {game.platforms.map((platformId) => {
-                  const platform = platforms.find(
-                    (item) => item.id === platformId,
-                  );
-                  if (!platform) return null;
-                  const PlatformIcon = platform.icon;
-                  return (
-                    <li key={platformId}>
-                      <Link
-                        href={`/platforms/${platform.id}`}
-                        className="inline-flex items-center gap-2 rounded-md text-[12px] text-foreground outline-none transition-colors hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
-                      >
-                        <PlatformIcon className="size-3.5 text-muted-foreground" />
-                        {platform.label}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            <div className="mt-auto border-t border-border pt-3">
+            <div className="mt-4 border-t border-border pt-3">
               <p className="text-[11px] leading-5 text-muted-foreground">
                 {game.projects.length} 个社区项目 · 数据快照{" "}
                 {siteConfig.snapshotDate}
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section
-        id="conclusion"
-        aria-labelledby="conclusion-heading"
-        className="mt-5 scroll-mt-24 overflow-hidden rounded-2xl border border-brand/20 bg-gradient-to-br from-brand/[0.06] via-card to-card p-5 sm:p-6"
-      >
-        <div className="grid gap-5 lg:grid-cols-[1.45fr_1fr] lg:items-center">
-          <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-[11px] font-semibold text-brand">
-              快速结论
-            </span>
-            <h2
-              id="conclusion-heading"
-              className="mt-3 text-[19px] leading-8 font-bold tracking-tight sm:text-[21px]"
-            >
-              {summaryHeadline}
-            </h2>
-            <p className="mt-2 text-[13px] leading-7 text-muted-foreground">
-              {summaryBody}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Link
-                href={`/go/${recommended.id}`}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 px-3.5 py-2 text-[12px] font-semibold text-white shadow-[0_8px_20px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
-              >
-                查看推荐项目
-                <ArrowUpRight className="size-3.5" />
-              </Link>
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-3.5 py-2 text-[12px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
-              >
-                查看全部 {game.projects.length} 个项目
-              </a>
-            </div>
-          </div>
-
-          <dl className="grid grid-cols-2 gap-2">
-            <div className="rounded-xl border border-border bg-background/50 p-3">
-              <dt className="text-[10.5px] font-medium text-muted-foreground">
-                覆盖平台
-              </dt>
-              <dd className="mt-1 text-[15px] font-bold tabular-nums">
-                {game.platforms.length} 个
-              </dd>
-              <dd className="mt-0.5 truncate text-[10.5px] text-muted-foreground">
-                {platformShortLabels}
-              </dd>
-            </div>
-            <div className="rounded-xl border border-border bg-background/50 p-3">
-              <dt className="text-[10.5px] font-medium text-muted-foreground">
-                可玩项目
-              </dt>
-              <dd className="mt-1 text-[15px] font-bold tabular-nums">
-                {playableCount} / {game.projects.length}
-              </dd>
-              <dd className="mt-0.5 truncate text-[10.5px] text-muted-foreground">
-                {statusSummary || "暂无状态数据"}
-              </dd>
-            </div>
-            <div className="rounded-xl border border-border bg-background/50 p-3">
-              <dt className="text-[10.5px] font-medium text-muted-foreground">
-                社区热度
-              </dt>
-              <dd className="mt-1 text-[15px] font-bold tabular-nums">
-                {formatStars(game.stars)} Star
-              </dd>
-              <dd className="mt-0.5 truncate text-[10.5px] text-muted-foreground">
-                全部项目合计
-              </dd>
-            </div>
-            <div className="rounded-xl border border-border bg-background/50 p-3">
-              <dt className="text-[10.5px] font-medium text-muted-foreground">
-                数据快照
-              </dt>
-              <dd className="mt-1 text-[15px] font-bold tabular-nums">
-                {siteConfig.snapshotDate}
-              </dd>
-              <dd className="mt-0.5 truncate text-[10.5px] text-muted-foreground">
-                公开 API 汇总
-              </dd>
-            </div>
-          </dl>
         </div>
       </section>
 
@@ -653,6 +594,52 @@ export default async function GamePage({ params }: GamePageProps) {
         </div>
       </section>
 
+      <section
+        id="faq"
+        aria-labelledby="faq-heading"
+        className="mt-10 scroll-mt-24 border-t border-border pt-8"
+      >
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2
+              id="faq-heading"
+              className="text-[22px] font-bold tracking-tight sm:text-[24px]"
+            >
+              常见问题
+            </h2>
+            <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
+              基于站内项目数据自动生成，最后更新 {siteConfig.snapshotDate}。
+            </p>
+          </div>
+          <Link
+            href="/about#status"
+            className="text-[11.5px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            查看状态定义
+          </Link>
+        </div>
+
+        <div className="mt-5 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card">
+          {faqs.map((faq, index) => (
+            <details
+              key={faq.q}
+              open={index === 0}
+              className="group px-4 sm:px-5"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg py-4 text-[13.5px] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-brand/50 [&::-webkit-details-marker]:hidden">
+                <span>{faq.q}</span>
+                <ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
+              </summary>
+              <p className="pb-4 text-[13px] leading-7 text-muted-foreground">
+                {faq.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <GameReviews reviews={reviews} summary={reviewSummary} />
+
       {projectActivity.length > 0 ? (
         <section
           id="activity"
@@ -715,52 +702,6 @@ export default async function GamePage({ params }: GamePageProps) {
           </ol>
         </section>
       ) : null}
-
-      <GameReviews reviews={reviews} summary={reviewSummary} />
-
-      <section
-        id="faq"
-        aria-labelledby="faq-heading"
-        className="mt-10 scroll-mt-24 border-t border-border pt-8"
-      >
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2
-              id="faq-heading"
-              className="text-[22px] font-bold tracking-tight sm:text-[24px]"
-            >
-              常见问题
-            </h2>
-            <p className="mt-2 text-[13px] leading-6 text-muted-foreground">
-              基于站内项目数据自动生成，最后更新 {siteConfig.snapshotDate}。
-            </p>
-          </div>
-          <Link
-            href="/about#status"
-            className="text-[11.5px] font-medium text-muted-foreground transition-colors hover:text-foreground"
-          >
-            查看状态定义
-          </Link>
-        </div>
-
-        <div className="mt-5 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card">
-          {faqs.map((faq, index) => (
-            <details
-              key={faq.q}
-              open={index === 0}
-              className="group px-4 sm:px-5"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg py-4 text-[13.5px] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-brand/50 [&::-webkit-details-marker]:hidden">
-                <span>{faq.q}</span>
-                <ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
-              </summary>
-              <p className="pb-4 text-[13px] leading-7 text-muted-foreground">
-                {faq.a}
-              </p>
-            </details>
-          ))}
-        </div>
-      </section>
 
       {relatedGames.length > 0 ? (
         <section
