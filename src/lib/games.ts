@@ -192,6 +192,19 @@ const gameDefinitions: GameDefinition[] = [
     projectIds: ["letsgo", "letsgo-android"],
   },
   {
+    slug: "pokemon-legends-arceus",
+    titleZh: "宝可梦传说 阿尔宙斯",
+    titleEn: "Pokémon Legends: Arceus",
+    series: "宝可梦",
+    year: 2022,
+    category: "pokemon",
+    icon: CircleDot,
+    cover: "from-[#2c3a12] via-[#141c0a] to-[#070805]",
+    blurb:
+      "以古代洗翠地区为舞台的开放世界实验作：在野外直接投球捕捉宝可梦，用「刚猛 / 迅疾」招式调整战斗节奏。",
+    projectIds: ["pla-pc-recomp"],
+  },
+  {
     slug: "pokemon-brilliant-diamond",
     titleZh: "宝可梦：晶灿钻石",
     titleEn: "Pokémon Brilliant Diamond",

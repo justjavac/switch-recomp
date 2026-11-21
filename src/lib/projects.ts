@@ -783,6 +783,21 @@ export const projects: Project[] = [
     aliases: ["lets go", "android", "宝可梦", "皮卡丘", "伊布"],
   },
   {
+    id: "pla-pc-recomp",
+    titleZh: "宝可梦传说 阿尔宙斯（PC 重编译）",
+    game: "Pokémon Legends: Arceus",
+    repo: "fabioschmidt01/PokeL-ARecomp",
+    host: "github",
+    stars: 116,
+    category: "pokemon",
+    platforms: ["windows", "linux"],
+    status: "experimental",
+    icon: CircleDot,
+    description:
+      "《阿尔宙斯》Windows / Linux 原生静态重编译，把 Switch 的 ARM64 代码 AOT 翻译为 C 后在 Vulkan 上运行，需自备 1.1.1 版本游戏与 prod.keys。",
+    aliases: ["pla", "arceus", "阿尔宙斯", "洗翠", "宝可梦", "pc"],
+  },
+  {
     id: "super-wonders",
     titleZh: "超级马力欧兄弟 惊奇（SuperWonders）",
     game: "Super Mario Bros. Wonder",
