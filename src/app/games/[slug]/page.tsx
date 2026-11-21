@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fragment } from "react";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, ChevronDown, Flame, Layers, Star } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Flame, Layers, Star, Wrench } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
@@ -17,6 +17,7 @@ import { JsonLd } from "@/components/json-ld";
 import { ProjectCard } from "@/components/project-card";
 import { gameStats } from "@/lib/game-stats";
 import { games, getGame } from "@/lib/games";
+import { getGameGuide } from "@/lib/guides";
 import { adSlots } from "@/lib/ads";
 import { projectNotes } from "@/lib/comparisons";
 import { formatStars, platforms, projects, repoUrl, statuses } from "@/lib/projects";
@@ -171,6 +172,8 @@ export default async function GamePage({ params }: GamePageProps) {
     .slice(0, 8)
     .map((item) => item.game);
 
+  const guide = getGameGuide(game.slug);
+
   const seriesGames = games
     .filter((item) => item.series === game.series && item.slug !== game.slug)
     .sort((a, b) => b.stars - a.stars)
@@ -285,6 +288,7 @@ export default async function GamePage({ params }: GamePageProps) {
         items={[
           { href: "#conclusion", label: "快速结论" },
           { href: "#projects", label: "可用项目" },
+          ...(guide ? [{ href: "#guide", label: "上手须知" }] : []),
           { href: "#faq", label: "常见问题" },
           ...(reviews.length > 0
             ? [{ href: "#reviews", label: "AI 口碑" }]
@@ -587,6 +591,69 @@ export default async function GamePage({ params }: GamePageProps) {
           ))}
         </div>
       </section>
+
+      {guide ? (
+        <section
+          id="guide"
+          aria-labelledby="guide-heading"
+          className="mt-8 scroll-mt-24 border-t border-border pt-7"
+        >
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2
+                id="guide-heading"
+                className="flex items-center gap-2.5 text-[22px] font-bold tracking-tight sm:text-[24px]"
+              >
+                上手须知
+                <span className="rounded-full border border-border bg-muted/40 px-2.5 py-0.5 text-[11px] font-normal text-muted-foreground">
+                  安装前必读
+                </span>
+              </h2>
+              <p className="mt-2 max-w-xl text-[13px] leading-6 text-muted-foreground">
+                开始前准备与常见配置建议，减少首次运行的踩坑。
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-3.5 lg:grid-cols-[1.05fr_1fr]">
+            <div className="rounded-2xl border border-border bg-card p-4">
+              <h3 className="flex items-center gap-2 text-[13px] font-semibold">
+                <Wrench className="size-3.5 text-brand" />
+                开始前准备
+              </h3>
+              <ul className="mt-3 space-y-2">
+                {guide.prerequisites.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 text-[12.5px] leading-5 text-muted-foreground"
+                  >
+                    <Check className="mt-0.5 size-3.5 shrink-0 text-brand" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-2.5">
+              {guide.tips.map((tip) => (
+                <div
+                  key={tip.title}
+                  className="rounded-xl border border-border bg-card p-3.5"
+                >
+                  <h3 className="text-[12.5px] font-semibold">{tip.title}</h3>
+                  <p className="mt-1 text-[12px] leading-5 text-muted-foreground">
+                    {tip.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-3 text-[11px] leading-5 text-muted-foreground">
+            本站不提供游戏文件或密钥，请自备正版并从自己的卡带 / 数字版中提取。
+          </p>
+        </section>
+      ) : null}
 
       <section
         id="faq"
