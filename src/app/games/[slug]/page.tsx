@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fragment } from "react";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Flame, Gauge, Layers, Star, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Clock, Flame, Gauge, Layers, Sparkles, Star, Wrench } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
@@ -813,7 +813,7 @@ export default async function GamePage({ params }: GamePageProps) {
       </div>
 
       <aside className="mt-8 hidden lg:mt-0 lg:block">
-        <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto [scrollbar-width:none]">
+        <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto pb-1 [scrollbar-width:thin]">
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
               <Gauge className="size-3.5 text-brand" />
@@ -853,6 +853,44 @@ export default async function GamePage({ params }: GamePageProps) {
                 </span>
               ) : null}
             </div>
+          </div>
+
+          <div className="rounded-xl border border-brand/30 bg-gradient-to-br from-brand/[0.09] via-card to-card p-4">
+            <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-brand uppercase">
+              <Sparkles className="size-3.5" />
+              编辑推荐
+            </h2>
+            <Link
+              href={`/go/${recommended.id}`}
+              className="mt-2.5 block text-[13px] leading-5 font-semibold transition-colors hover:text-brand"
+            >
+              {recommended.titleZh}
+            </Link>
+            <p className="mt-1 line-clamp-3 text-[11.5px] leading-5 text-muted-foreground">
+              {projectNotes[recommended.id] ?? recommended.description}
+            </p>
+            <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10.5px] text-muted-foreground">
+              <span className="inline-flex items-center gap-1">
+                <span
+                  className={cn(
+                    "size-1.5 rounded-full",
+                    statuses[recommended.status].dot,
+                  )}
+                />
+                {statuses[recommended.status].label}
+              </span>
+              <span className="text-border">·</span>
+              <span className="tabular-nums">
+                {formatStars(recommended.stars)} Star
+              </span>
+            </div>
+            <Link
+              href={`/go/${recommended.id}`}
+              className="mt-3 inline-flex h-8 w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 text-[12px] font-semibold text-white outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
+            >
+              前往项目
+              <ArrowUpRight className="size-3.5" />
+            </Link>
           </div>
 
           {seriesGames.length > 0 ? (
@@ -919,6 +957,30 @@ export default async function GamePage({ params }: GamePageProps) {
               ))}
             </ol>
           </div>
+
+          {projectActivity.length > 0 ? (
+            <div className="rounded-xl border border-border bg-card p-4">
+              <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+                <Clock className="size-3.5 text-brand" />
+                最近更新
+              </h2>
+              <ul className="mt-3 space-y-2.5">
+                {projectActivity.slice(0, 3).map(({ project, updatedAt }) => (
+                  <li key={project.id}>
+                    <Link
+                      href={`/go/${project.id}`}
+                      className="flex items-baseline justify-between gap-2 text-[12px] transition-colors hover:text-brand"
+                    >
+                      <span className="truncate">{project.titleZh}</span>
+                      <span className="shrink-0 text-[10.5px] text-muted-foreground tabular-nums">
+                        {formatUpdateDate(updatedAt)}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </aside>
       </div>
