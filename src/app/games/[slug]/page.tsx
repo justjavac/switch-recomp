@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fragment } from "react";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Clock, Flame, Gauge, Layers, Sparkles, Star, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Flame, Gauge, Layers, Sparkles, Star, Wrench } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
@@ -185,7 +185,7 @@ export default async function GamePage({ params }: GamePageProps) {
   const seriesGames = games
     .filter((item) => item.series === game.series && item.slug !== game.slug)
     .sort((a, b) => b.stars - a.stars)
-    .slice(0, 4);
+    .slice(0, 3);
 
   const samePlatformProjects = [...projects]
     .filter(
@@ -194,7 +194,7 @@ export default async function GamePage({ params }: GamePageProps) {
         project.platforms.some((platform) => game.platforms.includes(platform)),
     )
     .sort((a, b) => b.stars - a.stars)
-    .slice(0, 5);
+    .slice(0, 4);
 
   const projectActivity = getRecentUpdatesFor(game.projects, 8);
 
@@ -813,7 +813,7 @@ export default async function GamePage({ params }: GamePageProps) {
       </div>
 
       <aside className="mt-8 hidden xl:mt-0 xl:block">
-        <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto pb-1 [scrollbar-width:thin]">
+        <div className="space-y-4">
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
               <Gauge className="size-3.5 text-brand" />
@@ -925,11 +925,7 @@ export default async function GamePage({ params }: GamePageProps) {
             </div>
           ) : null}
 
-          <AdSlot
-            slot={adSlots.gameSidebar}
-            format="vertical"
-            minHeight={300}
-          />
+          <AdSlot slot={adSlots.gameSidebar} format="vertical" minHeight={250} />
 
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
@@ -957,30 +953,6 @@ export default async function GamePage({ params }: GamePageProps) {
               ))}
             </ol>
           </div>
-
-          {projectActivity.length > 0 ? (
-            <div className="rounded-xl border border-border bg-card p-4">
-              <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
-                <Clock className="size-3.5 text-brand" />
-                最近更新
-              </h2>
-              <ul className="mt-3 space-y-2.5">
-                {projectActivity.slice(0, 3).map(({ project, updatedAt }) => (
-                  <li key={project.id}>
-                    <Link
-                      href={`/go/${project.id}`}
-                      className="flex items-baseline justify-between gap-2 text-[12px] transition-colors hover:text-brand"
-                    >
-                      <span className="truncate">{project.titleZh}</span>
-                      <span className="shrink-0 text-[10.5px] text-muted-foreground tabular-nums">
-                        {formatUpdateDate(updatedAt)}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
         </div>
       </aside>
       </div>
