@@ -813,7 +813,7 @@ export default async function GamePage({ params }: GamePageProps) {
       </div>
 
       <aside className="mt-8 hidden xl:mt-0 xl:block">
-        <div className="space-y-4">
+        <div className="fixed top-24 right-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] max-h-[calc(100dvh-7rem)] w-[320px] space-y-4 overflow-y-auto [scrollbar-width:none]">
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
               <Gauge className="size-3.5 text-brand" />
@@ -925,7 +925,7 @@ export default async function GamePage({ params }: GamePageProps) {
             </div>
           ) : null}
 
-          <AdSlot slot={adSlots.gameSidebar} format="vertical" minHeight={250} />
+          <AdSlot slot={adSlots.gameSidebar} format="vertical" minHeight={200} />
 
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
