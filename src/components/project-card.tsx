@@ -28,7 +28,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       style={{ animationDelay: `${Math.min(index, 12) * 24}ms` }}
     >
       <Card className="relative h-full gap-0 overflow-hidden rounded-2xl border border-border bg-card py-0 shadow-none transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-brand/40">
-        <CardContent className="flex h-full flex-col gap-3.5 p-4 sm:p-5">
+        <CardContent className="flex h-full flex-col gap-3 p-4">
           <div className="flex items-start gap-3">
             <span className="grid size-10 shrink-0 place-items-center rounded-lg border border-border bg-muted/40 text-foreground transition-colors group-hover:border-brand/30 group-hover:text-brand">
               <GameIcon className="size-[18px]" />
@@ -47,7 +47,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
           </div>
 
-          <p className="line-clamp-2 min-h-12 text-[13px] leading-6 text-muted-foreground">
+          <p className="line-clamp-2 min-h-10 text-[13px] leading-6 text-muted-foreground">
             {project.description}
           </p>
 

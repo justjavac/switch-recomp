@@ -391,9 +391,9 @@ export default async function GamePage({ params }: GamePageProps) {
                   </dd>
                 </div>
                 <div className="flex items-baseline gap-1.5">
-                  <dt className="text-muted-foreground">热度</dt>
+                  <dt className="text-muted-foreground">平台</dt>
                   <dd className="font-semibold tabular-nums">
-                    {formatStars(game.stars)} Star
+                    {game.platforms.length} 个
                   </dd>
                 </div>
                 <div className="flex items-baseline gap-1.5">
@@ -440,18 +440,11 @@ export default async function GamePage({ params }: GamePageProps) {
                 </a>
               </div>
             </div>
-
-            <div className="mt-4 border-t border-border pt-3">
-              <p className="text-[11px] leading-5 text-muted-foreground">
-                {game.projects.length} 个社区项目 · 数据快照{" "}
-                {siteConfig.snapshotDate}
-              </p>
-            </div>
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="projects-heading" className="mt-10">
+      <section aria-labelledby="projects-heading" className="mt-8">
         <div className="flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2
@@ -473,8 +466,8 @@ export default async function GamePage({ params }: GamePageProps) {
           </span>
         </div>
 
-        {sortedProjects.length >= 2 ? (
-          <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-card/60">
+        {sortedProjects.length >= 4 ? (
+          <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-card/60">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/70 px-4 py-3">
               <h3 className="text-[13px] font-semibold">项目对比</h3>
               <p className="text-[11.5px] text-muted-foreground">
@@ -575,7 +568,7 @@ export default async function GamePage({ params }: GamePageProps) {
           </div>
         ) : null}
 
-        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-4 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
           {sortedProjects.map((project, index) => (
             <Fragment key={project.id}>
               <ProjectCard project={project} index={index} />
@@ -598,7 +591,7 @@ export default async function GamePage({ params }: GamePageProps) {
       <section
         id="faq"
         aria-labelledby="faq-heading"
-        className="mt-10 scroll-mt-24 border-t border-border pt-8"
+        className="mt-8 scroll-mt-24 border-t border-border pt-7"
       >
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -645,7 +638,7 @@ export default async function GamePage({ params }: GamePageProps) {
         <section
           id="activity"
           aria-labelledby="activity-heading"
-          className="mt-10 scroll-mt-24 border-t border-border pt-8"
+          className="mt-8 scroll-mt-24 border-t border-border pt-7"
         >
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -707,7 +700,7 @@ export default async function GamePage({ params }: GamePageProps) {
       {relatedGames.length > 0 ? (
         <section
           aria-labelledby="related-heading"
-          className="mt-10 border-t border-border pt-8"
+          className="mt-8 border-t border-border pt-7"
         >
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -744,7 +737,7 @@ export default async function GamePage({ params }: GamePageProps) {
 
       </div>
 
-      <aside className="mt-10 hidden lg:mt-0 lg:block">
+      <aside className="mt-8 hidden lg:mt-0 lg:block">
         <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto [scrollbar-width:none]">
           {seriesGames.length > 0 ? (
             <div className="rounded-xl border border-border bg-card p-4">

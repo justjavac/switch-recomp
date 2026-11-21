@@ -159,7 +159,7 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
 
   return (
     <>
-      <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 sm:pt-8">
+      <section className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 sm:pt-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h1 className="flex items-center gap-2.5 text-[26px] leading-tight font-bold tracking-tight sm:text-[30px]">
@@ -307,7 +307,7 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
       <section
         id="games"
         aria-labelledby="games-heading"
-        className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-10 pb-12 sm:px-6"
+        className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-8 pb-10 sm:px-6"
       >
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -469,7 +469,7 @@ export function Directory({ stats }: { stats: Record<string, GameStats> }) {
         </div>
 
         {results.length > 0 ? (
-          <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {results.map((game, index) => (
               <Fragment key={game.slug}>
                 <GameCard
