@@ -271,7 +271,7 @@ export default async function GamePage({ params }: GamePageProps) {
     <div className="mx-auto max-w-7xl px-4 pt-6 pb-32 sm:px-6 lg:pb-20">
       <RecordRecentView slug={game.slug} />
       <JsonLd data={[videoGameLd, breadcrumbLd, projectsLd, faqLd]} />
-      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-10">
+      <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start xl:gap-10">
       <div className="min-w-0">
       <nav aria-label="面包屑" className="text-[12px] leading-6 text-muted-foreground">
         <Link href="/" className="transition-colors hover:text-foreground">
@@ -308,13 +308,13 @@ export default async function GamePage({ params }: GamePageProps) {
       />
 
       <section className="mt-5 overflow-hidden rounded-2xl border border-border bg-card">
-        <div className="grid lg:grid-cols-[1.15fr_1fr]">
-          <div className="relative border-b border-border lg:border-r lg:border-b-0">
+        <div className="grid xl:grid-cols-[1.05fr_1fr]">
+          <div className="relative border-b border-border xl:border-r xl:border-b-0">
             <GameArt
               game={game}
               preload
-              className="aspect-[16/9] lg:absolute lg:inset-0 lg:aspect-auto"
-              sizes="(max-width: 1024px) 100vw, 620px"
+              className="aspect-[16/9] max-h-[340px] w-full xl:absolute xl:inset-0 xl:aspect-auto xl:max-h-none"
+              sizes="(max-width: 1279px) 100vw, 560px"
             />
           </div>
 
@@ -382,7 +382,7 @@ export default async function GamePage({ params }: GamePageProps) {
 
               <div
                 id="conclusion"
-                className="mt-4 scroll-mt-28 rounded-xl border border-brand/20 bg-gradient-to-br from-brand/[0.07] via-background/60 to-background/40 p-3.5"
+                className="mt-3 scroll-mt-28 rounded-xl border border-brand/20 bg-gradient-to-br from-brand/[0.07] via-background/60 to-background/40 p-3"
               >
                 <h2 className="text-[11px] font-semibold text-brand">
                   快速结论
@@ -390,7 +390,7 @@ export default async function GamePage({ params }: GamePageProps) {
                 <p className="mt-1.5 text-[13.5px] leading-6 font-semibold">
                   {summaryHeadline}
                 </p>
-                <p className="mt-1 text-[12px] leading-6 text-muted-foreground">
+                <p className="mt-1 line-clamp-2 text-[12px] leading-6 text-muted-foreground">
                   {summaryBody}
                 </p>
               </div>
@@ -427,7 +427,7 @@ export default async function GamePage({ params }: GamePageProps) {
                     <Link
                       key={platformId}
                       href={`/platforms/${platform.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11.5px] text-foreground outline-none transition-colors hover:border-brand/40 hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
+                      className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2 py-0.5 text-[11px] text-foreground outline-none transition-colors hover:border-brand/40 hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
                     >
                       <PlatformIcon className="size-3 text-muted-foreground" />
                       {platform.label}
@@ -436,7 +436,7 @@ export default async function GamePage({ params }: GamePageProps) {
                 })}
               </div>
 
-              <div className="mt-4 hidden flex-wrap gap-2 lg:flex">
+              <div className="mt-4 hidden flex-wrap gap-2 xl:flex">
                 <Link
                   href={`/go/${recommended.id}`}
                   className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 px-4 text-[12.5px] font-semibold text-white shadow-[0_8px_20px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
@@ -812,7 +812,7 @@ export default async function GamePage({ params }: GamePageProps) {
 
       </div>
 
-      <aside className="mt-8 hidden lg:mt-0 lg:block">
+      <aside className="mt-8 hidden xl:mt-0 xl:block">
         <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto pb-1 [scrollbar-width:thin]">
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
@@ -996,7 +996,7 @@ export default async function GamePage({ params }: GamePageProps) {
       <div
         aria-label="项目快捷操作"
         data-mobile-cta
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md xl:hidden"
       >
         <div className="mx-auto flex max-w-7xl items-center gap-2">
           <Link
