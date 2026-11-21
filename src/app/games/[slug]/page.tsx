@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Fragment } from "react";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Flame, Layers, Star, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Flame, Gauge, Layers, Star, Wrench } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
@@ -174,6 +174,14 @@ export default async function GamePage({ params }: GamePageProps) {
 
   const guide = getGameGuide(game.slug);
 
+  const statusCounts = game.projects.reduce(
+    (counts, project) => {
+      counts[project.status] += 1;
+      return counts;
+    },
+    { playable: 0, beta: 0, experimental: 0 },
+  );
+
   const seriesGames = games
     .filter((item) => item.series === game.series && item.slug !== game.slug)
     .sort((a, b) => b.stars - a.stars)
@@ -260,10 +268,10 @@ export default async function GamePage({ params }: GamePageProps) {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-6 pb-32 sm:px-6 lg:pb-20">
+    <div className="mx-auto max-w-7xl px-4 pt-6 pb-32 sm:px-6 lg:pb-20">
       <RecordRecentView slug={game.slug} />
       <JsonLd data={[videoGameLd, breadcrumbLd, projectsLd, faqLd]} />
-      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start lg:gap-8">
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-10">
       <div className="min-w-0">
       <nav aria-label="面包屑" className="text-[12px] leading-6 text-muted-foreground">
         <Link href="/" className="transition-colors hover:text-foreground">
@@ -806,6 +814,47 @@ export default async function GamePage({ params }: GamePageProps) {
 
       <aside className="mt-8 hidden lg:mt-0 lg:block">
         <div className="sticky top-24 max-h-[calc(100dvh-7rem)] space-y-4 overflow-y-auto [scrollbar-width:none]">
+          <div className="rounded-xl border border-border bg-card p-4">
+            <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+              <Gauge className="size-3.5 text-brand" />
+              数据速览
+            </h2>
+            <dl className="mt-3 grid grid-cols-2 gap-2">
+              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
+                <dt className="text-[10.5px] text-muted-foreground">项目总数</dt>
+                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
+                  {game.projects.length}
+                </dd>
+              </div>
+              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
+                <dt className="text-[10.5px] text-muted-foreground">可玩</dt>
+                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
+                  {statusCounts.playable}
+                </dd>
+              </div>
+              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
+                <dt className="text-[10.5px] text-muted-foreground">测试中</dt>
+                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
+                  {statusCounts.beta}
+                </dd>
+              </div>
+              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
+                <dt className="text-[10.5px] text-muted-foreground">实验性</dt>
+                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
+                  {statusCounts.experimental}
+                </dd>
+              </div>
+            </dl>
+            <div className="mt-2.5 flex flex-wrap items-center justify-between gap-x-2 gap-y-1 border-t border-border pt-2.5 text-[10.5px] text-muted-foreground">
+              <span>覆盖平台 {game.platforms.length} 个</span>
+              {projectActivity[0] ? (
+                <span>
+                  最近更新 {formatUpdateDate(projectActivity[0].updatedAt)}
+                </span>
+              ) : null}
+            </div>
+          </div>
+
           {seriesGames.length > 0 ? (
             <div className="rounded-xl border border-border bg-card p-4">
               <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
@@ -887,7 +936,7 @@ export default async function GamePage({ params }: GamePageProps) {
         data-mobile-cta
         className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden"
       >
-        <div className="mx-auto flex max-w-6xl items-center gap-2">
+        <div className="mx-auto flex max-w-7xl items-center gap-2">
           <Link
             href={`/go/${recommended.id}`}
             className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-brand to-brand-2 px-4 text-[13px] font-semibold text-white shadow-[0_10px_24px_-12px_var(--brand)] outline-none transition-transform duration-150 active:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
