@@ -128,4 +128,22 @@ export const projectNotes: Record<string, string> = {
   // New 宝可梦随乐拍
   "new-snap-recomp": "早期重编译，Windows",
   "new-snap-maty": "社区分支，基于 AC / TotK Recomp",
+  // 滑板 3
+  "skate3-recomp": "主力版本，Win / Linux / macOS",
+  "skate3-5c8": "增强分支，联机与 SteamVR",
+  // 大金刚 64
+  "dk64-recomp": "596 Star，RT64 渲染增强",
+  // 恶魔城：月下夜想曲
+  "sotn-symphony": "1.1k Star，PSX 原版",
+  "sotn-nocturne": "XBLA 版，Win / Linux",
+  // 失落的奥德赛
+  "lost-odyssey-recomp": "实验阶段，Windows 原生",
+  // 但丁地狱
+  "dantes-inferno-recomp": "ReXGlue 重编译，Windows",
+  // 神鬼寓言 II
+  "fable2-recomp": "AI 辅助开发，尚未完整验证",
+  // GTA：罪恶都市传奇
+  "gtavcs-recomp": "Win / Linux 原生",
+  // 金刚
+  "king-kong-recomp": "Xbox 360 版移植",
 };

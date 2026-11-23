@@ -36,6 +36,8 @@ export type GameConsole =
   | "Nintendo 3DS"
   | "Nintendo Wii"
   | "Game Boy"
+  | "PlayStation"
+  | "PlayStation 2"
   | "Xbox 360"
   | "Xbox"
   | "iOS / Android"
@@ -116,6 +118,14 @@ const recentlyAdded: Record<string, string> = {
   "pokemon-legends-z-a": "2026-11-23",
   "tomodachi-life": "2026-11-23",
   "the-duskbloods": "2026-11-23",
+  "skate-3": "2026-11-23",
+  "donkey-kong-64": "2026-11-23",
+  "castlevania-symphony-of-the-night": "2026-11-23",
+  "lost-odyssey": "2026-11-23",
+  "dantes-inferno": "2026-11-23",
+  "fable-ii": "2026-11-23",
+  "gta-vice-city-stories": "2026-11-23",
+  "king-kong": "2026-11-23",
 };
 
 const gameDefinitions: GameDefinition[] = [
@@ -1446,6 +1456,118 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "FromSoftware 为 Switch 2 打造的多人在线动作游戏：血族们在黄昏世界争夺「初血」，展开 PvPvE 对抗。",
     projectIds: ["duskbloods-afterglow"],
+  },
+  {
+    slug: "skate-3",
+    titleZh: "滑板 3",
+    titleEn: "Skate 3",
+    series: "滑板",
+    year: 2010,
+    console: "Xbox 360",
+    category: "action",
+    icon: Sparkles,
+    cover: "from-[#33251a] via-[#1a120d] to-[#080605]",
+    blurb:
+      "在 Port Carverton 挑战花式动作与团队任务，强调真实物理、摔跤反馈与关卡编辑的滑板游戏。",
+    projectIds: ["skate3-recomp", "skate3-5c8"],
+  },
+  {
+    slug: "donkey-kong-64",
+    titleZh: "大金刚 64",
+    titleEn: "Donkey Kong 64",
+    series: "咚奇刚",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "donkey-kong",
+    icon: Banana,
+    cover: "from-[#1e3320] via-[#101b11] to-[#060806]",
+    blurb:
+      "Rare 的 3D 平台冒险：五名金刚各具能力，在多座岛屿收集香蕉与金香蕉，对抗 K. Rool。",
+    projectIds: ["dk64-recomp"],
+  },
+  {
+    slug: "castlevania-symphony-of-the-night",
+    titleZh: "恶魔城：月下夜想曲",
+    titleEn: "Castlevania: Symphony of the Night",
+    series: "恶魔城",
+    year: 1997,
+    console: "PlayStation",
+    category: "action",
+    icon: Sword,
+    cover: "from-[#251a3a] via-[#120d1e] to-[#060409]",
+    blurb:
+      "系列公认巅峰：阿鲁卡多探索倒置城堡，以装备、使魔与地图完成度定义「银河城」玩法。",
+    projectIds: ["sotn-symphony", "sotn-nocturne"],
+  },
+  {
+    slug: "lost-odyssey",
+    titleZh: "失落的奥德赛",
+    titleEn: "Lost Odyssey",
+    series: "失落的奥德赛",
+    year: 2007,
+    console: "Xbox 360",
+    category: "rpg",
+    icon: Mountain,
+    cover: "from-[#1a2a33] via-[#0d151a] to-[#050809]",
+    blurb:
+      "坂口博信主导的 Xbox 360 JRPG：千年不死的主角凯姆在战争中寻找记忆，以短篇小说式梦境叙事著称。",
+    projectIds: ["lost-odyssey-recomp"],
+  },
+  {
+    slug: "dantes-inferno",
+    titleZh: "但丁地狱",
+    titleEn: "Dante's Inferno",
+    series: "但丁地狱",
+    year: 2010,
+    console: "Xbox 360",
+    category: "action",
+    icon: Swords,
+    cover: "from-[#33130f] via-[#1a0907] to-[#080403]",
+    blurb:
+      "以《神曲》为蓝本的黑暗动作游戏：但丁手持死神镰刀穿越九层地狱，救回贝雅特丽齐。",
+    projectIds: ["dantes-inferno-recomp"],
+  },
+  {
+    slug: "fable-ii",
+    titleZh: "神鬼寓言 II",
+    titleEn: "Fable II",
+    series: "神鬼寓言",
+    year: 2008,
+    console: "Xbox 360",
+    category: "rpg",
+    icon: WandSparkles,
+    cover: "from-[#332b14] via-[#1a160a] to-[#080704]",
+    blurb:
+      "Lionhead 的奇幻 RPG：在阿尔比恩成长、战斗与抉择，每个选择都会改变外貌、声望与结局。",
+    projectIds: ["fable2-recomp"],
+  },
+  {
+    slug: "gta-vice-city-stories",
+    titleZh: "侠盗猎车手：罪恶都市传奇",
+    titleEn: "Grand Theft Auto: Vice City Stories",
+    series: "侠盗猎车手",
+    year: 2006,
+    console: "PlayStation 2",
+    category: "action",
+    icon: Car,
+    cover: "from-[#2a1233] via-[#15091a] to-[#070308]",
+    blurb:
+      "《罪恶都市》前传：维克托·万斯在 1984 年的罪恶城建立帝国，保留经典开放世界与电台。",
+    projectIds: ["gtavcs-recomp"],
+  },
+  {
+    slug: "king-kong",
+    titleZh: "金刚（2005）",
+    titleEn: "Peter Jackson's King Kong",
+    series: "金刚",
+    year: 2005,
+    console: "Xbox 360",
+    category: "action",
+    icon: Mountain,
+    cover: "from-[#14332e] via-[#0a1a17] to-[#040807]",
+    blurb:
+      "电影改编的第一人称冒险：在骷髅岛以武器与环境求生，并在杰克与金刚之间交替操作。",
+    projectIds: ["king-kong-recomp"],
   },
 ];
 
