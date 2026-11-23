@@ -37,6 +37,7 @@ export type GameConsole =
   | "Nintendo Wii"
   | "Game Boy"
   | "Xbox 360"
+  | "Xbox"
   | "iOS / Android"
   | "Windows / Mac";
 
@@ -586,7 +587,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#2a1010] via-[#150808] to-[#070505]",
     blurb:
       "暗黑系列第三作，Switch 版包含《夺魂之镰》与《死灵法师的崛起》，支持本地四人合作。",
-    projectIds: ["diablo3-port"],
+    projectIds: ["diablo3-port", "diablo3-switch-recomp"],
   },
   {
     slug: "star-fox",
@@ -1189,6 +1190,146 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "Rare 的成人向平台动作：松鼠 Conker 宿醉后踏上回家路，以黑色幽默恶搞电影与游戏桥段。",
     projectIds: ["conker-bfd-recomp"],
+  },
+  {
+    slug: "automobili-lamborghini",
+    titleZh: "Automobili Lamborghini",
+    titleEn: "Automobili Lamborghini",
+    series: "Automobili Lamborghini",
+    year: 1997,
+    console: "Nintendo 64",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#2c2410] via-[#171208] to-[#070605]",
+    blurb:
+      "兰博基尼授权竞速：驾驶 Diablo 等车型在公路与赛道上竞速，以当时的车辆建模与速度感著称。",
+    projectIds: ["lamborghini-recomp"],
+  },
+  {
+    slug: "aerogauge",
+    titleZh: "AeroGauge",
+    titleEn: "AeroGauge",
+    series: "AeroGauge",
+    year: 1998,
+    console: "Nintendo 64",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#101c33] via-[#08101c] to-[#05070a]",
+    blurb:
+      "未来悬浮车竞速：在立体赛道上高速漂移，通过能量管理触发加速，是 N64 的科幻竞速代表。",
+    projectIds: ["aerogauge-recomp"],
+  },
+  {
+    slug: "wcw-vs-nwo-world-tour",
+    titleZh: "WCW vs. nWo World Tour",
+    titleEn: "WCW vs. nWo World Tour",
+    series: "WCW",
+    year: 1997,
+    console: "Nintendo 64",
+    category: "fighting",
+    icon: Swords,
+    cover: "from-[#33150f] via-[#1a0b07] to-[#080504]",
+    blurb:
+      "AKI 开发的 N64 摔角首作，以流畅的反击与擒拿系统奠定了后续摔角游戏的操作基础。",
+    projectIds: ["wcw-world-tour-recomp"],
+  },
+  {
+    slug: "conker-live-and-reloaded",
+    titleZh: "Conker: Live & Reloaded",
+    titleEn: "Conker: Live & Reloaded",
+    series: "Conker",
+    year: 2005,
+    console: "Xbox",
+    category: "action",
+    icon: Ghost,
+    cover: "from-[#2a2214] via-[#161108] to-[#070605]",
+    blurb:
+      "《Conker's Bad Fur Day》的 Xbox 重制版，画面全面翻新并加入多人对战模式，保留原版黑色幽默。",
+    projectIds: ["conker-lr-recomp"],
+  },
+  {
+    slug: "wcw-nwo-revenge",
+    titleZh: "WCW/nWo Revenge",
+    titleEn: "WCW/nWo Revenge",
+    series: "WCW",
+    year: 1998,
+    console: "Nintendo 64",
+    category: "fighting",
+    icon: Swords,
+    cover: "from-[#2a1010] via-[#160808] to-[#070505]",
+    blurb:
+      "AKI 摔角系列第二作，收录大量 WCW 与 nWo 选手，四人同时对战与冠军模式广受好评。",
+    projectIds: ["wcw-revenge-recomp"],
+  },
+  {
+    slug: "body-harvest",
+    titleZh: "Body Harvest",
+    titleEn: "Body Harvest",
+    series: "Body Harvest",
+    year: 1998,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#1a2a1a] via-[#0e170e] to-[#060a06]",
+    blurb:
+      "DMA Design 的开放世界射击：穿越不同年代的地球，驾驶载具击退外星虫族，被视为 GTA 3D 化的前身。",
+    projectIds: ["body-harvest-recomp"],
+  },
+  {
+    slug: "iss-2000",
+    titleZh: "International Superstar Soccer 2000",
+    titleEn: "International Superstar Soccer 2000",
+    series: "ISS",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "action",
+    icon: CircleDot,
+    cover: "from-[#122a1c] via-[#0a180f] to-[#050a06]",
+    blurb:
+      "KONAMI 足球系列在 N64 的收官作，收录国家队与俱乐部，操作手感与解说在当时属上乘。",
+    projectIds: ["iss2000-recomp"],
+  },
+  {
+    slug: "wwf-wrestlemania-2000",
+    titleZh: "WWF WrestleMania 2000",
+    titleEn: "WWF WrestleMania 2000",
+    series: "WWF",
+    year: 2000,
+    console: "Nintendo 64",
+    category: "fighting",
+    icon: Swords,
+    cover: "from-[#2c1a10] via-[#170d08] to-[#070604]",
+    blurb:
+      "AKI 摔角系列：完整 WWF 阵容、深度自建选手与冠军之路模式，是《No Mercy》的前作。",
+    projectIds: ["wwf-wm2000-recomp"],
+  },
+  {
+    slug: "winback",
+    titleZh: "WinBack：秘密行动",
+    titleEn: "WinBack: Covert Operations",
+    series: "WinBack",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#14202c] via-[#0a1117] to-[#05080a]",
+    blurb:
+      "战术射击先驱：以掩体、激光瞄准与翻滚射击为核心，后来的《合金装备》式射击多受其影响。",
+    projectIds: ["winback-recomp"],
+  },
+  {
+    slug: "hybrid-heaven",
+    titleZh: "Hybrid Heaven",
+    titleEn: "Hybrid Heaven",
+    series: "Hybrid Heaven",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Ghost,
+    cover: "from-[#1c1c2c] via-[#0f0f18] to-[#06060a]",
+    blurb:
+      "KONAMI 的动作 RPG：地底基地中的外星阴谋，战斗采用可锁定部位的一对一格斗系统。",
+    projectIds: ["hybrid-heaven-recomp"],
   },
   {
     slug: "mario-kart-64",
