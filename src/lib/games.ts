@@ -36,6 +36,7 @@ export type GameConsole =
   | "Nintendo 3DS"
   | "Nintendo Wii"
   | "Game Boy"
+  | "Xbox 360"
   | "iOS / Android"
   | "Windows / Mac";
 
@@ -1048,6 +1049,146 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "《班卓熊大冒险》续作：更大的互联关卡、双人分屏与合作技能，巫婆格伦蒂尔达再度登场。",
     projectIds: ["banjo-tooie-recomp"],
+  },
+  {
+    slug: "snowboard-kids-2",
+    titleZh: "滑雪板少年 2",
+    titleEn: "Snowboard Kids 2",
+    series: "滑雪板少年",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#123042] via-[#0a1a24] to-[#05080b]",
+    blurb:
+      "卡通滑雪竞速：在雪道上用道具互相干扰，支持四人分屏，赛道从森林延伸到太空。",
+    projectIds: ["snowboard-kids-2-recomp"],
+  },
+  {
+    slug: "rush-2",
+    titleZh: "Rush 2：极限竞速 USA",
+    titleEn: "Rush 2: Extreme Racing USA",
+    series: "Rush",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#2f1f10] via-[#181107] to-[#080604]",
+    blurb:
+      "N64 街机竞速：以美国各地为舞台，主打特技跳跃与捷径探索，撞车后还能切换车辆继续比赛。",
+    projectIds: ["rush2-recomp"],
+  },
+  {
+    slug: "beetle-adventure-racing",
+    titleZh: "甲壳虫赛车",
+    titleEn: "Beetle Adventure Racing",
+    series: "甲壳虫赛车",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#3a2a10] via-[#1d1508] to-[#080604]",
+    blurb:
+      "以大众甲壳虫为主角的 N64 竞速，赛道藏有大量隐藏捷径与彩蛋，强调探索式驾驶。",
+    projectIds: ["beetle-adventure-recomp"],
+  },
+  {
+    slug: "spider-man-3",
+    titleZh: "蜘蛛侠 3",
+    titleEn: "Spider-Man 3",
+    series: "蜘蛛侠",
+    year: 2007,
+    console: "Xbox 360",
+    category: "action",
+    icon: Sparkles,
+    cover: "from-[#2a1014] via-[#16080a] to-[#070505]",
+    blurb:
+      "电影改编的开放世界动作游戏，在城市中荡蛛丝、打击罪犯，黑化战衣带来额外的战斗形态。",
+    projectIds: ["spiderman3-recomp"],
+  },
+  {
+    slug: "wwf-no-mercy",
+    titleZh: "WWF No Mercy",
+    titleEn: "WWF No Mercy",
+    series: "WWF",
+    year: 2000,
+    console: "Nintendo 64",
+    category: "fighting",
+    icon: Swords,
+    cover: "from-[#2c1a2c] via-[#170d17] to-[#070507]",
+    blurb:
+      "被公认为 N64 上最好的摔角游戏：完整的 WWF  roster、深度创建模式与流畅的擂台操作。",
+    projectIds: ["wwf-no-mercy-recomp"],
+  },
+  {
+    slug: "star-wars-rogue-squadron",
+    titleZh: "星球大战：侠盗中队",
+    titleEn: "Star Wars: Rogue Squadron",
+    series: "星球大战",
+    year: 1998,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#101a30] via-[#080d18] to-[#05070a]",
+    blurb:
+      "驾驶 X 翼、Y 翼等战机执行 16 个任务，结合空战与地面目标打击，是 N64 空战代表作。",
+    projectIds: ["rogue-squadron-recomp"],
+  },
+  {
+    slug: "jet-force-gemini",
+    titleZh: "Jet Force Gemini",
+    titleEn: "Jet Force Gemini",
+    series: "Jet Force Gemini",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#142a2c] via-[#0a1718] to-[#050a0a]",
+    blurb:
+      "Rare 的第三人称射击：双子星小队对抗虫族帝国，可切换三名角色，探索多个星球营救熊猫族。",
+    projectIds: ["jfg-recomp"],
+  },
+  {
+    slug: "killer-instinct-gold",
+    titleZh: "杀手本能 Gold",
+    titleEn: "Killer Instinct Gold",
+    series: "杀手本能",
+    year: 1996,
+    console: "Nintendo 64",
+    category: "fighting",
+    icon: Swords,
+    cover: "from-[#2c1420] via-[#170a11] to-[#070506]",
+    blurb:
+      "街机格斗《杀手本能 2》的 N64 版，以超长连段、连击终结技与高速战斗著称。",
+    projectIds: ["ki-gold-recomp"],
+  },
+  {
+    slug: "starcraft-64",
+    titleZh: "星际争霸 64",
+    titleEn: "StarCraft 64",
+    series: "星际争霸",
+    year: 2000,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Mountain,
+    cover: "from-[#121e2e] via-[#0a1018] to-[#05070a]",
+    blurb:
+      "《星际争霸》的 N64 移植，包含原版战役、隐藏关卡与双人分屏对战，用手柄操作三大种族。",
+    projectIds: ["starcraft-64-recomp"],
+  },
+  {
+    slug: "conkers-bad-fur-day",
+    titleZh: "Conker's Bad Fur Day",
+    titleEn: "Conker's Bad Fur Day",
+    series: "Conker",
+    year: 2001,
+    console: "Nintendo 64",
+    category: "action",
+    icon: Ghost,
+    cover: "from-[#2c2414] via-[#171208] to-[#070605]",
+    blurb:
+      "Rare 的成人向平台动作：松鼠 Conker 宿醉后踏上回家路，以黑色幽默恶搞电影与游戏桥段。",
+    projectIds: ["conker-bfd-recomp"],
   },
   {
     slug: "mario-kart-64",
