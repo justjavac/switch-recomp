@@ -309,151 +309,148 @@ export default async function GamePage({ params }: GamePageProps) {
       />
 
       <section className="mt-5 overflow-hidden rounded-2xl border border-border bg-card">
-        <div className="grid xl:grid-cols-[1.05fr_1fr]">
-          <div className="relative border-b border-border xl:border-r xl:border-b-0">
-            <GameArt
-              game={game}
-              preload
-              className="aspect-[16/9] max-h-[340px] w-full xl:absolute xl:inset-0 xl:aspect-auto xl:max-h-none"
-              sizes="(max-width: 1279px) 100vw, 560px"
-            />
-          </div>
+        <div className="p-5 sm:p-6">
+          <h1 className="text-[26px] leading-tight font-bold tracking-tight sm:text-3xl">
+            {game.titleZh}
+          </h1>
+          <p className="mt-1.5 truncate text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">
+            {game.titleEn}
+          </p>
 
-          <div className="flex flex-col p-5 sm:p-6">
-            <div>
-              <h1 className="text-[26px] leading-tight font-bold tracking-tight sm:text-3xl">
-                {game.titleZh}
-              </h1>
-              <p className="mt-1.5 truncate text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">
-                {game.titleEn}
-              </p>
-
-              <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12px] text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5 font-medium">
-                  <span className={cn("size-1.5 rounded-full", status.dot)} />
-                  {status.label}
-                </span>
-                <span aria-hidden className="h-3 w-px bg-border" />
-                <span>{game.year}</span>
-                {game.console !== "Nintendo Switch" ? (
-                  <span>{game.console}</span>
-                ) : null}
-                {seriesSlug ? (
-                  <Link
-                    href={`/series/${seriesSlug}`}
-                    className="transition-colors hover:text-foreground"
-                  >
-                    {game.series}
-                  </Link>
-                ) : (
-                  <span>{game.series}</span>
-                )}
-                <span>{game.genre}</span>
-                <span className="inline-flex items-center gap-1 font-medium tabular-nums">
-                  <Star className="size-3 fill-amber-400 text-amber-400" />
-                  {formatStars(game.stars)}
-                </span>
-              </div>
-
-              <p className="mt-3 text-[13.5px] leading-7 text-muted-foreground">
-                {game.blurb}
-              </p>
-
-              <div className="mt-3 flex flex-wrap items-center gap-2">
-                {reviews.length > 0 ? (
-                  <a
-                    href="#reviews"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11.5px] font-medium text-muted-foreground outline-none transition-colors hover:border-brand/40 hover:text-foreground focus-visible:ring-2 focus-visible:ring-brand/50"
-                  >
-                    <Star className="size-3 fill-amber-400 text-amber-400" />
-                    <span className="font-semibold text-foreground tabular-nums">
-                      {reviewSummary.average.toFixed(1)}
-                    </span>
-                    / 5
-                    <span aria-hidden className="h-2.5 w-px bg-border" />
-                    {reviewSummary.count} 条 AI 口碑
-                  </a>
-                ) : null}
-                <ShareButton
-                  title={`${game.titleZh} · ${siteConfig.name}`}
-                  url={`${siteConfig.url}/games/${game.slug}`}
-                />
-                <FavoriteButton slug={game.slug} />
-              </div>
-
-              <div
-                id="conclusion"
-                className="mt-3 scroll-mt-28 rounded-xl border border-brand/20 bg-gradient-to-br from-brand/[0.07] via-background/60 to-background/40 p-3"
+          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12px] text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5 font-medium">
+              <span className={cn("size-1.5 rounded-full", status.dot)} />
+              {status.label}
+            </span>
+            <span aria-hidden className="h-3 w-px bg-border" />
+            <span>{game.year}</span>
+            {game.console !== "Nintendo Switch" ? (
+              <span>{game.console}</span>
+            ) : null}
+            {seriesSlug ? (
+              <Link
+                href={`/series/${seriesSlug}`}
+                className="transition-colors hover:text-foreground"
               >
-                <h2 className="text-[11px] font-semibold text-brand">
-                  快速结论
-                </h2>
-                <p className="mt-1.5 text-[13.5px] leading-6 font-semibold">
-                  {summaryHeadline}
-                </p>
-                <p className="mt-1 line-clamp-2 text-[12px] leading-6 text-muted-foreground">
-                  {summaryBody}
-                </p>
-              </div>
-
-              <dl className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[11.5px]">
-                <div className="flex items-baseline gap-1.5">
-                  <dt className="text-muted-foreground">可玩</dt>
-                  <dd className="font-semibold tabular-nums">
-                    {playableCount} / {game.projects.length}
-                  </dd>
-                </div>
-                <div className="flex items-baseline gap-1.5">
-                  <dt className="text-muted-foreground">平台</dt>
-                  <dd className="font-semibold tabular-nums">
-                    {game.platforms.length} 个
-                  </dd>
-                </div>
-                <div className="flex items-baseline gap-1.5">
-                  <dt className="text-muted-foreground">快照</dt>
-                  <dd className="font-semibold tabular-nums">
-                    {siteConfig.snapshotDate}
-                  </dd>
-                </div>
-              </dl>
-
-              <div className="mt-2.5 flex flex-wrap gap-1.5">
-                {game.platforms.map((platformId) => {
-                  const platform = platforms.find(
-                    (item) => item.id === platformId,
-                  );
-                  if (!platform) return null;
-                  const PlatformIcon = platform.icon;
-                  return (
-                    <Link
-                      key={platformId}
-                      href={`/platforms/${platform.id}`}
-                      className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2 py-0.5 text-[11px] text-foreground outline-none transition-colors hover:border-brand/40 hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
-                    >
-                      <PlatformIcon className="size-3 text-muted-foreground" />
-                      {platform.label}
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div className="mt-4 hidden flex-wrap gap-2 xl:flex">
-                <Link
-                  href={`/go/${recommended.id}`}
-                  className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 px-4 text-[12.5px] font-semibold text-white shadow-[0_8px_20px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
-                >
-                  查看推荐项目
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
-                <a
-                  href="#projects"
-                  className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-border bg-background px-4 text-[12.5px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
-                >
-                  全部 {game.projects.length} 个项目
-                </a>
-              </div>
-            </div>
+                {game.series}
+              </Link>
+            ) : (
+              <span>{game.series}</span>
+            )}
+            <span>{game.genre}</span>
+            <span className="inline-flex items-center gap-1 font-medium tabular-nums">
+              <Star className="size-3 fill-amber-400 text-amber-400" />
+              {formatStars(game.stars)}
+            </span>
           </div>
+
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            {reviews.length > 0 ? (
+              <a
+                href="#reviews"
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 px-2.5 py-1 text-[11.5px] font-medium text-muted-foreground outline-none transition-colors hover:border-brand/40 hover:text-foreground focus-visible:ring-2 focus-visible:ring-brand/50"
+              >
+                <Star className="size-3 fill-amber-400 text-amber-400" />
+                <span className="font-semibold text-foreground tabular-nums">
+                  {reviewSummary.average.toFixed(1)}
+                </span>
+                / 5
+                <span aria-hidden className="h-2.5 w-px bg-border" />
+                {reviewSummary.count} 条 AI 口碑
+              </a>
+            ) : null}
+            <ShareButton
+              title={`${game.titleZh} · ${siteConfig.name}`}
+              url={`${siteConfig.url}/games/${game.slug}`}
+            />
+            <FavoriteButton slug={game.slug} />
+          </div>
+
+          <div
+            id="conclusion"
+            className="mt-3 scroll-mt-28 rounded-xl border border-brand/20 bg-gradient-to-br from-brand/[0.07] via-background/60 to-background/40 p-3"
+          >
+            <h2 className="text-[11px] font-semibold text-brand">快速结论</h2>
+            <p className="mt-1.5 text-[13.5px] leading-6 font-semibold">
+              {summaryHeadline}
+            </p>
+            <p className="mt-1 line-clamp-2 text-[12px] leading-6 text-muted-foreground">
+              {summaryBody}
+            </p>
+          </div>
+
+          <dl className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[11.5px]">
+            <div className="flex items-baseline gap-1.5">
+              <dt className="text-muted-foreground">可玩</dt>
+              <dd className="font-semibold tabular-nums">
+                {playableCount} / {game.projects.length}
+              </dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt className="text-muted-foreground">平台</dt>
+              <dd className="font-semibold tabular-nums">
+                {game.platforms.length} 个
+              </dd>
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <dt className="text-muted-foreground">快照</dt>
+              <dd className="font-semibold tabular-nums">
+                {siteConfig.snapshotDate}
+              </dd>
+            </div>
+          </dl>
+
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {game.platforms.map((platformId) => {
+              const platform = platforms.find(
+                (item) => item.id === platformId,
+              );
+              if (!platform) return null;
+              const PlatformIcon = platform.icon;
+              return (
+                <Link
+                  key={platformId}
+                  href={`/platforms/${platform.id}`}
+                  className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2 py-0.5 text-[11px] text-foreground outline-none transition-colors hover:border-brand/40 hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
+                >
+                  <PlatformIcon className="size-3 text-muted-foreground" />
+                  {platform.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link
+              href={`/go/${recommended.id}`}
+              className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 px-4 text-[12.5px] font-semibold text-white shadow-[0_8px_20px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
+            >
+              查看推荐项目
+              <ArrowUpRight className="size-3.5" />
+            </Link>
+            <a
+              href="#projects"
+              className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-border bg-background px-4 text-[12.5px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
+            >
+              全部 {game.projects.length} 个项目
+            </a>
+          </div>
+        </div>
+
+        <GameArt
+          game={game}
+          preload
+          className="aspect-[16/9] w-full border-y border-border"
+          sizes="(max-width: 1279px) 100vw, 900px"
+        />
+
+        <div className="p-5 sm:p-6">
+          <h2 className="text-[11px] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+            简介
+          </h2>
+          <p className="mt-2 text-[13.5px] leading-7 text-muted-foreground">
+            {game.blurb}
+          </p>
         </div>
       </section>
 
