@@ -177,6 +177,18 @@ export const seriesDefinitions: SeriesDefinition[] = [
     name: "魔法少女ノ魔女裁判",
     description: "哥特悬疑风格的魔法少女推理冒险系列。",
   },
+  {
+    slug: "tomodachi",
+    name: "朋友聚会",
+    description:
+      "任天堂的生活观察沙盒系列，以 Mii 居民的日常、社交与梦想为核心。",
+  },
+  {
+    slug: "duskbloods",
+    name: "黄昏血族",
+    description:
+      "FromSoftware 在 Switch 2 上的多人在线动作系列，围绕血族与「初血」的争夺展开。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions

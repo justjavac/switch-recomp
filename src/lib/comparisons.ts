@@ -97,4 +97,16 @@ export const projectNotes: Record<string, string> = {
   // 路易吉洋馆 2
   "lm2-recompiled": "Win / Linux 双平台，需欧版 ROM",
   "lm2-mansion2": "4K / 120 FPS 分支",
+  // 塞尔达无双：封印战记
+  "hwaoi-recomp": "Windows 实验版，需固定 60 FPS",
+  "hwaoi-decomp": "Win / Linux 整合包，RecompLauncher 就绪",
+  "hwaoi-android": "Android 原生移植，移动端尝鲜",
+  // 宝可梦传说 Z-A
+  "lza-recomp": "Windows 主力，同时覆盖《传说 阿尔宙斯》",
+  "plza-recomp": "Linux 便携 AppImage，解压即用",
+  // 朋友聚会：梦想生活
+  "tomodachi-recomp": "Windows 主力，仅含工具与运行时",
+  "tomodachi-ltd-recomp": "Linux Alpha，需自行构建",
+  // 黄昏血族
+  "duskbloods-afterglow": "Linux 优先，Windows 规划中",
 };

@@ -112,6 +112,10 @@ const recentlyAdded: Record<string, string> = {
   "super-kirby-clash": "2026-11-17",
   "kirby-air-riders": "2026-11-17",
   "mahou-shoujo-no-majo-saiban": "2026-11-17",
+  "hyrule-warriors-age-of-imprisonment": "2026-11-23",
+  "pokemon-legends-z-a": "2026-11-23",
+  "tomodachi-life": "2026-11-23",
+  "the-duskbloods": "2026-11-23",
 };
 
 const gameDefinitions: GameDefinition[] = [
@@ -1386,6 +1390,62 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "3DS 上的洋馆续作，以关卡制探索多座鬼屋，用「暗月之力」吸尘捉鬼并解开机关。",
     projectIds: ["lm2-recompiled", "lm2-mansion2"],
+  },
+  {
+    slug: "hyrule-warriors-age-of-imprisonment",
+    titleZh: "塞尔达无双：封印战记",
+    titleEn: "Hyrule Warriors: Age of Imprisonment",
+    series: "塞尔达无双",
+    year: 2025,
+    console: "Nintendo Switch 2",
+    category: "action",
+    icon: Swords,
+    cover: "from-[#2b1a3a] via-[#150d1d] to-[#070508]",
+    blurb:
+      "《王国之泪》之前的海拉鲁统一战争：塞尔达公主与贤者们并肩，在无双战场对抗加侬多夫的封印战争。",
+    projectIds: ["hwaoi-recomp", "hwaoi-decomp", "hwaoi-android"],
+  },
+  {
+    slug: "pokemon-legends-z-a",
+    titleZh: "宝可梦传说 Z-A",
+    titleEn: "Pokémon Legends: Z-A",
+    series: "宝可梦",
+    year: 2025,
+    console: "Nintendo Switch / Nintendo Switch 2",
+    category: "pokemon",
+    icon: CircleDot,
+    cover: "from-[#123a3a] via-[#0a1e1e] to-[#050a0a]",
+    blurb:
+      "舞台回到密阿雷市：围绕都市再开发与「ZA」计划，白天探索城市、夜晚在野生特区捕捉宝可梦。",
+    projectIds: ["lza-recomp", "plza-recomp"],
+  },
+  {
+    slug: "tomodachi-life",
+    titleZh: "朋友聚会：梦想生活",
+    titleEn: "Tomodachi Life: Living the Dream",
+    series: "朋友聚会",
+    year: 2026,
+    console: "Nintendo Switch 2",
+    category: "simulation",
+    icon: Sprout,
+    cover: "from-[#3a2a33] via-[#1e151a] to-[#0a0709]",
+    blurb:
+      "在岛上安置 Mii 居民，观察他们交友、恋爱、争吵与做梦的沙盒生活模拟，系列时隔多年的新作。",
+    projectIds: ["tomodachi-recomp", "tomodachi-ltd-recomp"],
+  },
+  {
+    slug: "the-duskbloods",
+    titleZh: "黄昏血族",
+    titleEn: "The Duskbloods",
+    series: "黄昏血族",
+    year: 2026,
+    console: "Nintendo Switch 2",
+    category: "action",
+    icon: Ghost,
+    cover: "from-[#2a0e14] via-[#15070a] to-[#070405]",
+    blurb:
+      "FromSoftware 为 Switch 2 打造的多人在线动作游戏：血族们在黄昏世界争夺「初血」，展开 PvPvE 对抗。",
+    projectIds: ["duskbloods-afterglow"],
   },
 ];
 
