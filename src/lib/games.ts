@@ -169,7 +169,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#3a1414] via-[#1c0a0a] to-[#080505]",
     blurb:
       "3D 马力欧的集大成之作：帽子伙伴凯皮让马力欧附身敌人与物体，环游各个国度营救碧姬公主。",
-    projectIds: ["smo-recomp", "smo-pc-recomp", "powerful-moon"],
+    projectIds: ["smo-recomp", "smo-pc-recomp", "smo-rwwo", "powerful-moon"],
   },
   {
     slug: "super-mario-maker-2",
@@ -391,7 +391,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#12304a] via-[#0a1a28] to-[#05080b]",
     blurb:
       "集合系列赛道与角色的卡丁车竞速，支持本地四人、线上对战与 48 条追加赛道。",
-    projectIds: ["racing-8-dx"],
+    projectIds: ["racing-8-dx", "mk8-dougchansan"],
   },
   {
     slug: "luigis-mansion-3",
@@ -512,7 +512,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#102f4a] via-[#081828] to-[#05080b]",
     blurb:
       "Switch 2 首发竞速大作：赛道与开放世界连成一体，支持 24 人同场竞速，并可驾车在赛道之间自由穿行。",
-    projectIds: ["mkw-recomp", "mkw-thwomp", "mkw-kartnative"],
+    projectIds: ["mkw-recomp", "mkw-thwomp", "mkw-kartnative", "mkw-kart-recomp"],
   },
   {
     slug: "xenoblade-chronicles-3",
@@ -552,7 +552,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#2a1d3a] via-[#150e1d] to-[#070508]",
     blurb:
       "火焰纹章系列在 Switch 2 上的新作：舞台是众神统治下的鞑古扎帝国，围绕斗技场与「愿望」展开新的战棋故事。",
-    projectIds: ["fefw-recomp", "fefw-may22es"],
+    projectIds: ["fefw-recomp", "fefw-metrist", "fefw-may22es"],
   },
   {
     slug: "dark-souls-remastered",
@@ -632,7 +632,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#143a22] via-[#0a1f12] to-[#050b07]",
     blurb:
       "在蓝蒂尔地区乘飞行器拍摄野生宝可梦的摄影冒险，生态表现与昼夜变化是系列亮点。",
-    projectIds: ["new-snap-recomp"],
+    projectIds: ["new-snap-recomp", "new-snap-maty"],
   },
   {
     slug: "yokai-watch-4",
@@ -1151,7 +1151,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#142a2c] via-[#0a1718] to-[#050a0a]",
     blurb:
       "Rare 的第三人称射击：双子星小队对抗虫族帝国，可切换三名角色，探索多个星球营救熊猫族。",
-    projectIds: ["jfg-recomp"],
+    projectIds: ["jfg-recomp", "jfg-tk22"],
   },
   {
     slug: "killer-instinct-gold",
@@ -1193,7 +1193,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#2c2414] via-[#171208] to-[#070605]",
     blurb:
       "Rare 的成人向平台动作：松鼠 Conker 宿醉后踏上回家路，以黑色幽默恶搞电影与游戏桥段。",
-    projectIds: ["conker-bfd-recomp"],
+    projectIds: ["conker-bfd-recomp", "conker-bfd-sciaschi"],
   },
   {
     slug: "automobili-lamborghini",
@@ -1249,7 +1249,7 @@ const gameDefinitions: GameDefinition[] = [
     cover: "from-[#2a2214] via-[#161108] to-[#070605]",
     blurb:
       "《Conker's Bad Fur Day》的 Xbox 重制版，画面全面翻新并加入多人对战模式，保留原版黑色幽默。",
-    projectIds: ["conker-lr-recomp"],
+    projectIds: ["conker-lr-recomp", "conker-lr-mabec"],
   },
   {
     slug: "wcw-nwo-revenge",

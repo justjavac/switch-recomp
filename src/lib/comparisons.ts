@@ -30,6 +30,7 @@ export const projectNotes: Record<string, string> = {
   // 超级马力欧：奥德赛
   "smo-recomp": "早期源码版本，暂无公开发布",
   "smo-pc-recomp": "高帧率、4 倍分辨率与 DLSS / FSR / XeSS",
+  "smo-rwwo": "1.0.0 专用，高分辨率与现代手柄",
   "powerful-moon": "Power Moon 分支，带安装器与 120 帧修复",
   // 超级马力欧兄弟 惊奇
   "wonder-recomp": "Windows / macOS / Android，MoltenVK 转译",
@@ -61,7 +62,8 @@ export const projectNotes: Record<string, string> = {
   "fe-engage": "基础版本，Windows 原生移植",
   "engage-imalti0r": "DLSS + 4K + 简中 UI，功能最全",
   // 火焰纹章 Fortune's Weave
-  "fefw-recomp": "主力版本，244 Star，Windows 原生",
+  "fefw-recomp": "Goldoire 分支，Windows 原生",
+  "fefw-metrist": "394 Star，与 Goldoire 分支并行更新",
   "fefw-may22es": "社区分支，需自备转储",
   // 异度神剑 3
   "xc3-recomp": "主力版本，可玩主线与 4 个 DLC",
@@ -109,4 +111,21 @@ export const projectNotes: Record<string, string> = {
   "tomodachi-ltd-recomp": "Linux Alpha，需自行构建",
   // 黄昏血族
   "duskbloods-afterglow": "Linux 优先，Windows 规划中",
+  // 马力欧卡丁车 8 豪华版
+  "racing-8-dx": "主力版本，FSR 3.1 与帧生成",
+  "mk8-dougchansan": "独立原生运行时，蘑菇杯约 60 FPS",
+  // 马力欧卡丁车 世界（kart-recomp）
+  "mkw-kart-recomp": "Win / Linux，支持 1.0.0 与 1.8.0",
+  // Conker's Bad Fur Day
+  "conker-bfd-recomp": "Conker64Recomp 版，Windows",
+  "conker-bfd-sciaschi": "独立实现，348 Star",
+  // Conker: Live & Reloaded
+  "conker-lr-recomp": "rashevskyv 分支，Win / Linux",
+  "conker-lr-mabec": "带启动器，最高 240 FPS 与联机",
+  // Jet Force Gemini
+  "jfg-recomp": "VibinToast 版，Win / Linux",
+  "jfg-tk22": "另一实现，强化鼠标键盘支持",
+  // New 宝可梦随乐拍
+  "new-snap-recomp": "早期重编译，Windows",
+  "new-snap-maty": "社区分支，基于 AC / TotK Recomp",
 };
