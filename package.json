@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/clean-build.mjs",
     "start": "next start",
     "lint": "eslint",
     "validate": "tsx scripts/validate-data.ts",

@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: { serverSourceMaps: false },
   cacheComponents: true,
   partialPrefetching: false,
   poweredByHeader: false,
