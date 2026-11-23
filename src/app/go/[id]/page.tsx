@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { ArrowLeft, ArrowUpRight, ShieldAlert, Star } from "lucide-react";
 import { GithubIcon, GitlabIcon } from "@/components/brand-icons";
 import { games } from "@/lib/games";
@@ -15,6 +16,8 @@ import {
 } from "@/lib/projects";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
+
+export const instant = false;
 
 type GoPageProps = {
   params: Promise<{ id: string }>;
@@ -46,13 +49,6 @@ function otherProjectReason(entry: Project, current: Project) {
   return "另一个社区实现，可对比构建说明";
 }
 
-export function generateStaticParams() {
-  return [
-    ...projects.map((project) => ({ id: project.id })),
-    { id: GITHUB_TARGET_ID },
-  ];
-}
-
 export async function generateMetadata({
   params,
 }: GoPageProps): Promise<Metadata> {
@@ -69,6 +65,7 @@ export async function generateMetadata({
 }
 
 export default async function GoPage({ params }: GoPageProps) {
+  await connection();
   const { id } = await params;
   const project = projects.find((item) => item.id === id);
   const isGithubProfile = id === GITHUB_TARGET_ID;

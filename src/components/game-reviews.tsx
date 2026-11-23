@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Gamepad2, Sparkles, Star } from "lucide-react";
+import { ChevronDown, Gamepad2, Sparkles } from "lucide-react";
 import type { GameReview, ReviewSummary } from "@/lib/reviews";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -13,27 +13,20 @@ function Stars({ value, className }: { value: number; className?: string }) {
     <span
       role="img"
       aria-label={`${value} 分，满分 5 分`}
-      className={cn("relative inline-flex shrink-0", className)}
+      className={cn(
+        "relative inline-block shrink-0 text-[13px] leading-none tracking-[0.08em] whitespace-nowrap",
+        className,
+      )}
     >
-      <span aria-hidden className="flex gap-0.5">
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Star
-            key={index}
-            className="size-3.5 fill-border text-border"
-          />
-        ))}
+      <span aria-hidden className="text-border">
+        ★★★★★
       </span>
       <span
         aria-hidden
-        className="absolute inset-y-0 left-0 flex gap-0.5 overflow-hidden"
+        className="absolute inset-y-0 left-0 overflow-hidden text-amber-400"
         style={{ width: `${(Math.min(value, 5) / 5) * 100}%` }}
       >
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Star
-            key={index}
-            className="size-3.5 shrink-0 fill-amber-400 text-amber-400"
-          />
-        ))}
+        ★★★★★
       </span>
     </span>
   );
