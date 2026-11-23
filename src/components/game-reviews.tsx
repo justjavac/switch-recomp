@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Gamepad2, Sparkles } from "lucide-react";
+import { ChevronDown, Sparkles } from "lucide-react";
 import type { GameReview, ReviewSummary } from "@/lib/reviews";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-const INITIAL_VISIBLE = 6;
+const INITIAL_VISIBLE = 3;
 
 function Stars({ value, className }: { value: number; className?: string }) {
   return (
@@ -14,7 +14,7 @@ function Stars({ value, className }: { value: number; className?: string }) {
       role="img"
       aria-label={`${value} 分，满分 5 分`}
       className={cn(
-        "relative inline-block shrink-0 text-[13px] leading-none tracking-[0.08em] whitespace-nowrap",
+        "relative inline-block shrink-0 text-[12px] leading-none tracking-[0.08em] whitespace-nowrap",
         className,
       )}
     >
@@ -32,10 +32,6 @@ function Stars({ value, className }: { value: number; className?: string }) {
   );
 }
 
-function formatDate(date: string) {
-  return date.replaceAll("-", ".");
-}
-
 type GameReviewsProps = {
   reviews: GameReview[];
   summary: ReviewSummary;
@@ -50,152 +46,95 @@ export function GameReviews({ reviews, summary }: GameReviewsProps) {
     <section
       id="reviews"
       aria-labelledby="reviews-heading"
-      className="mt-10 scroll-mt-24 border-t border-border pt-8"
+      className="mt-8 scroll-mt-24 border-t border-border pt-7"
     >
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2
-            id="reviews-heading"
-            className="flex flex-wrap items-center gap-2.5 text-[22px] font-bold tracking-tight sm:text-[24px]"
-          >
-            AI 口碑速览
-            <span className="inline-flex items-center gap-1 rounded-full border border-brand/25 bg-brand/10 px-2.5 py-1 text-[10.5px] font-semibold text-brand">
-              <Sparkles className="size-3" />
-              AI 生成
-            </span>
-            <span className="rounded-full border border-border bg-muted/40 px-2.5 py-0.5 text-[11px] font-normal text-muted-foreground tabular-nums">
-              {summary.count}
-            </span>
-          </h2>
-          <p className="mt-2 max-w-xl text-[13px] leading-6 text-muted-foreground">
-            AI 模拟的口碑摘要，帮你快速了解游戏风评与移植体验，不代表真实玩家评价。
-          </p>
-        </div>
-        <span className="inline-flex items-center gap-1.5 text-[11.5px] text-muted-foreground">
-          <Sparkles className="size-3.5" />
-          生成于 {siteConfig.snapshotDate} · 不开放投稿
+      <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+        <h2
+          id="reviews-heading"
+          className="text-[22px] font-bold tracking-tight sm:text-[24px]"
+        >
+          AI 口碑
+        </h2>
+        <span className="inline-flex items-center gap-1 rounded-full border border-brand/25 bg-brand/10 px-2 py-0.5 text-[10.5px] font-semibold text-brand">
+          <Sparkles className="size-3" />
+          AI 生成
+        </span>
+        <span className="rounded-full border border-border bg-muted/40 px-2.5 py-0.5 text-[11px] text-muted-foreground tabular-nums">
+          {summary.count} 条
+        </span>
+        <span className="ml-auto text-[11px] text-muted-foreground">
+          更新于 {siteConfig.snapshotDate}
+        </span>
+      </div>
+      <p className="mt-2 text-[12.5px] leading-6 text-muted-foreground">
+        基于公开资料模拟，仅用于快速了解风评，不代表真实玩家评价。
+      </p>
+
+      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-2xl border border-border bg-card px-4 py-3">
+        <span className="flex items-baseline gap-1">
+          <span className="text-[26px] leading-none font-bold tracking-tight tabular-nums">
+            {summary.average.toFixed(1)}
+          </span>
+          <span className="text-[11px] text-muted-foreground">/ 5</span>
+        </span>
+        <Stars value={summary.average} />
+        <span className="text-[12px] text-muted-foreground">
+          推荐度{" "}
+          <span className="font-semibold text-foreground tabular-nums">
+            {summary.recommendRate}%
+          </span>
+        </span>
+        <span className="text-[12px] text-muted-foreground">
+          共 {summary.count} 条评价
         </span>
       </div>
 
-      <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-[280px_1fr] lg:items-start">
-        <aside className="rounded-2xl border border-border bg-card p-5 lg:sticky lg:top-24">
-          <div className="flex items-end gap-3">
-            <span className="text-[42px] leading-none font-bold tracking-tight tabular-nums">
-              {summary.average.toFixed(1)}
-            </span>
-            <div className="pb-1">
-              <Stars value={summary.average} />
-              <p className="mt-1.5 text-[11px] text-muted-foreground">
-                基于 {summary.count} 条 AI 评价
-              </p>
+      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        {reviews.map((review, index) => (
+          <article
+            key={review.id}
+            className={cn(
+              "flex h-full flex-col rounded-xl border border-border bg-card p-4",
+              index >= INITIAL_VISIBLE && !expanded && "hidden",
+            )}
+          >
+            <div className="flex items-center justify-between gap-3">
+              <Stars value={review.rating} />
+              <span className="truncate text-[10.5px] text-muted-foreground">
+                {review.platform}
+              </span>
             </div>
-          </div>
-
-          <dl className="mt-5 space-y-1.5">
-            {summary.distribution.map((row) => (
-              <div key={row.rating} className="flex items-center gap-2">
-                <dt className="w-8 shrink-0 text-[11px] text-muted-foreground tabular-nums">
-                  {row.rating} 星
-                </dt>
-                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
-                  <div
-                    className="h-full rounded-full bg-amber-400"
-                    style={{ width: `${row.percent}%` }}
-                  />
-                </div>
-                <dd className="w-5 shrink-0 text-right text-[11px] text-muted-foreground tabular-nums">
-                  {row.count}
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <div className="mt-4 flex items-center justify-between rounded-xl border border-border bg-background/60 px-3 py-2">
-            <span className="text-[11px] text-muted-foreground">推荐度</span>
-            <span className="text-[13px] font-bold tabular-nums">
-              {summary.recommendRate}%
-            </span>
-          </div>
-
-          <p className="mt-4 flex gap-1.5 border-t border-border pt-3 text-[10.5px] leading-5 text-muted-foreground">
-            <Sparkles className="mt-0.5 size-3 shrink-0 text-brand" />
-            口碑内容由 AI 基于公开资料模拟生成，不代表真实玩家评价。
-          </p>
-        </aside>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {reviews.map((review, index) => (
-            <article
-              key={review.id}
-              className={cn(
-                "flex h-full flex-col rounded-2xl border border-border bg-card p-4 transition-colors duration-200 hover:border-brand/30 sm:p-5",
-                index >= INITIAL_VISIBLE && !expanded && "hidden",
-              )}
-            >
-              <div className="flex items-start gap-3">
-                <span
-                  aria-hidden
-                  className="grid size-9 shrink-0 place-items-center rounded-full border border-border bg-muted/50 text-muted-foreground"
-                >
-                  <Sparkles className="size-3.5" />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    <p className="truncate text-[13px] font-semibold">
-                      {review.author}
-                    </p>
-                    <span className="shrink-0 rounded border border-border bg-muted/40 px-1.5 py-px text-[10px] leading-4 text-muted-foreground">
-                      AI · {review.tag}
-                    </span>
-                  </div>
-                  <p className="mt-0.5 text-[10.5px] text-muted-foreground tabular-nums">
-                    {formatDate(review.date)}
-                  </p>
-                </div>
-                <Stars value={review.rating} />
-              </div>
-
-              <h3 className="mt-3.5 text-[13.5px] leading-6 font-bold">
-                {review.title}
-              </h3>
-              <p className="mt-1.5 text-[12.5px] leading-6 text-muted-foreground">
-                {review.content}
-              </p>
-
-              <div className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-border/70 pt-3 text-[10.5px] text-muted-foreground">
-                <span className="inline-flex items-center gap-1">
-                  <Gamepad2 className="size-3" />
-                  {review.platform}
-                </span>
-                <span aria-hidden className="h-2.5 w-px bg-border" />
-                <span className="tabular-nums">{review.playtime}</span>
-                <span className="ml-auto inline-flex items-center gap-1">
-                  <Sparkles className="size-3" />
-                  AI 模拟
-                </span>
-              </div>
-            </article>
-          ))}
-          {reviews.length > INITIAL_VISIBLE ? (
-            <div className="flex justify-center sm:col-span-2">
-              <button
-                type="button"
-                onClick={() => setExpanded((value) => !value)}
-                aria-expanded={expanded}
-                className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card px-4 text-[12px] font-medium text-muted-foreground transition-colors hover:border-brand/40 hover:text-foreground"
-              >
-                {expanded ? "收起评价" : `展开全部 ${reviews.length} 条评价`}
-                <ChevronDown
-                  className={cn(
-                    "size-3.5 transition-transform duration-200",
-                    expanded && "rotate-180",
-                  )}
-                />
-              </button>
-            </div>
-          ) : null}
-        </div>
+            <h3 className="mt-2 text-[13px] leading-5 font-semibold">
+              {review.title}
+            </h3>
+            <p className="mt-1.5 line-clamp-4 text-[12px] leading-5 text-muted-foreground">
+              {review.content}
+            </p>
+            <p className="mt-auto pt-2.5 text-[10.5px] text-muted-foreground tabular-nums">
+              {review.playtime}
+            </p>
+          </article>
+        ))}
       </div>
+
+      {reviews.length > INITIAL_VISIBLE ? (
+        <div className="mt-3 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setExpanded((value) => !value)}
+            aria-expanded={expanded}
+            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card px-4 text-[12px] font-medium text-muted-foreground transition-colors hover:border-brand/40 hover:text-foreground"
+          >
+            {expanded ? "收起评价" : `展开全部 ${reviews.length} 条评价`}
+            <ChevronDown
+              className={cn(
+                "size-3.5 transition-transform duration-200",
+                expanded && "rotate-180",
+              )}
+            />
+          </button>
+        </div>
+      ) : null}
     </section>
   );
 }
