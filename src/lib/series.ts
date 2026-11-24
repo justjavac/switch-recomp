@@ -189,6 +189,36 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "FromSoftware 在 Switch 2 上的多人在线动作系列，围绕血族与「初血」的争夺展开。",
   },
+  {
+    slug: "eternal-darkness",
+    name: "永恒黑暗",
+    description:
+      "以克苏鲁式恐怖与理智机制为核心的 GameCube 独占系列。",
+  },
+  {
+    slug: "skies-of-arcadia",
+    name: "永恒的阿卡迪亚",
+    description:
+      "世嘉的空贼题材 RPG 系列，以飞空船、空战与「发现」系统为特色。",
+  },
+  {
+    slug: "f-zero",
+    name: "F-Zero",
+    description:
+      "任天堂的高速未来竞速系列，以极速、能量管理和高难度赛道著称。",
+  },
+  {
+    slug: "god-of-war",
+    name: "战神",
+    description:
+      "以希腊与北欧神话为背景的动作系列，以链刃连招、QTE 与宏大 Boss 战闻名。",
+  },
+  {
+    slug: "star-wars",
+    name: "星球大战",
+    description:
+      "横跨电影与游戏的科幻系列，涵盖太空战、飞梭与光剑对决。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions

@@ -146,4 +146,20 @@ export const projectNotes: Record<string, string> = {
   "gtavcs-recomp": "Win / Linux 原生",
   // 金刚
   "king-kong-recomp": "Xbox 360 版移植",
+  // 路易吉洋馆
+  "luigis-mansion-recompiled": "Win / Linux / macOS，最高 320 帧插值",
+  // 永恒黑暗
+  "eternal-darkness-recomp": "仅支持欧版光盘，高清材质与高帧率",
+  // 永恒的阿卡迪亚
+  "skies-of-arcadia-recomp": "Win / Linux / macOS / Android，自研 GC 硬件层",
+  // F-Zero GX
+  "f-zero-gx-recomp": "源码构建，Win / macOS / Android，可选 VR",
+  // 马力欧卡丁车：双重冲击
+  "mario-kart-double-dash-recomp": "源码构建，Win / macOS / Android",
+  // 卡比飞天赛车
+  "kirby-air-ride-recomp": "Windows 版，内置联机服务器，City Trial 8 人",
+  // 战神
+  "god-of-war-recomp": "Windows 实验版，需自备 PS2 美版镜像",
+  // 星球大战：帝国阴影
+  "sote-recomp": "Windows 0.9.8 可玩，Linux 为实验构建",
 };
