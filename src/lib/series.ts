@@ -363,6 +363,54 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "EA 的双人合作射击系列，以雇佣兵搭档与武器改装为特色。",
   },
+  {
+    slug: "wet",
+    name: "WET",
+    description:
+      "风格化的复仇动作系列，以双枪刀剑、胶片闪回与摇滚配乐为标志。",
+  },
+  {
+    slug: "rogue-galaxy",
+    name: "侠盗银河",
+    description:
+      "Level-5 的太空海盗 RPG，以多星球冒险与工厂合成系统为特色。",
+  },
+  {
+    slug: "timesplitters",
+    name: "时空分裂者",
+    description:
+      "Free Radical 的快节奏射击系列，以时空穿越、多人对战与地图编辑器闻名。",
+  },
+  {
+    slug: "wwe",
+    name: "WWE",
+    description:
+      "以 WWE 摔角为主题的格斗游戏系列，涵盖生涯模式与多种硬核赛制。",
+  },
+  {
+    slug: "shadow-of-rome",
+    name: "罗马之影",
+    description:
+      "卡普空的古罗马动作冒险系列，融合角斗战斗与潜行解谜。",
+  },
+  {
+    slug: "guitar-hero",
+    name: "吉他英雄",
+    description:
+      "音乐节奏系列，以吉他控制器演奏摇滚名曲为核心玩法。",
+  },
+  {
+    slug: "devil-may-cry",
+    name: "鬼泣",
+    description:
+      "卡普空的动作系列，以但丁、双枪与风格评级系统为标志。",
+  },
+  {
+    slug: "twisted-metal",
+    name: "烈火战车",
+    description:
+      "车辆战斗系列，以武装车辆厮杀与黑暗剧情为特色。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions

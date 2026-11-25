@@ -228,4 +228,28 @@ export const projectNotes: Record<string, string> = {
   "starfox-assault-recomp": "Win / Linux，0.2.15",
   // 雇佣兵
   "army-of-two-recomp": "Windows 1.6.0，支持在线合作",
+  // 战争机器 2
+  "gears-of-war-2-recomp": "Win / Linux / Android，自研原生渲染器",
+  // WET
+  "wet-recomp": "Win / Linux，0.6.0",
+  // 侠盗银河
+  "rogue-galaxy-recomp": "Windows 0.3.0，需约 16GB 空间",
+  // 时空分裂者 2
+  "timesplitters-2-recomp": "Win / Linux，1.3.2，含在线联机",
+  // WWE HCTP
+  "wwe-hctp-recomp": "Windows 0.3.7",
+  // 极品飞车：碳化
+  "nfs-carbon-recomp": "Android APK，0.3.12",
+  // 罗马之影
+  "shadow-of-rome-recomp": "Windows 2.9.5，完整可通关",
+  // 吉他英雄 II
+  "guitar-hero-ii-recomp": "Win / Linux / macOS，0.9.1",
+  // 索尼克与暗黑骑士
+  "sonic-black-knight-recomp": "Win / Linux，1.0.1 正式版",
+  // 宝可公园 2
+  "pokepark-2-recomp": "Win / Linux / macOS / Android，0.4.2-alpha",
+  // 鬼泣
+  "dmc-recomp": "Windows 0.1.0-alpha，需自行构建",
+  // 烈火战车：黑
+  "twisted-metal-black-recomp": "Win / Linux，0.6.0",
 };
