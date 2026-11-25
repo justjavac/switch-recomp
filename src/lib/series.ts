@@ -219,6 +219,48 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "横跨电影与游戏的科幻系列，涵盖太空战、飞梭与光剑对决。",
   },
+  {
+    slug: "gears-of-war",
+    name: "战争机器",
+    description:
+      "以掩体射击与兽族战争为核心的第三人称动作系列，以电锯枪与粗犷美术著称。",
+  },
+  {
+    slug: "the-darkness",
+    name: "黑暗",
+    description:
+      "改编自漫画的黑暗奇幻系列，围绕黑帮复仇与「黑暗之力」的触手能力展开。",
+  },
+  {
+    slug: "midnight-club",
+    name: "午夜俱乐部",
+    description:
+      "Rockstar 的开放世界街头竞速系列，以夜间都市巡游与即兴约战为特色。",
+  },
+  {
+    slug: "ninja-gaiden",
+    name: "忍者龙剑传",
+    description:
+      "以高速斩杀与高难度著称的动作系列，主角隼龙与龙剑是系列标志。",
+  },
+  {
+    slug: "nfs",
+    name: "极品飞车",
+    description:
+      "EA 的长寿竞速系列，覆盖街头改装、警匪追逐与赛道竞速等多种玩法。",
+  },
+  {
+    slug: "simpsons",
+    name: "辛普森一家",
+    description:
+      "改编自同名动画的喜剧冒险系列，以恶搞与家庭成员的超能力为看点。",
+  },
+  {
+    slug: "call-of-duty",
+    name: "使命召唤",
+    description:
+      "以电影化战役与多人对战为核心的第一人称射击系列，横跨二战到现代战争。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions

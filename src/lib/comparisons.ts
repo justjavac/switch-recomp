@@ -162,4 +162,24 @@ export const projectNotes: Record<string, string> = {
   "god-of-war-recomp": "Windows 实验版，需自备 PS2 美版镜像",
   // 星球大战：帝国阴影
   "sote-recomp": "Windows 0.9.8 可玩，Linux 为实验构建",
+  // 大乱斗 X
+  "brawl-recomp": "Windows / Linux，支持 Wii 改版与 120 帧插值",
+  // 新超马 Wii
+  "nsmbw-recomp": "Win / Linux / Android，支持 4 人联机",
+  // 战争机器
+  "gears-of-war-recomp": "四部曲合集，Windows，支持 5K 与超宽屏",
+  // 蜘蛛侠：时间边缘
+  "spiderman-edge-of-time": "Win / Linux / macOS 全平台正式版",
+  // 黑暗
+  "the-darkness-recomp": "Win / Steam Deck，DX11 原生渲染",
+  // 午夜俱乐部
+  "midnight-club-la-recomp": "Windows 1.0.14 稳定版，另有 PS5 版",
+  // 忍者龙剑传 II
+  "ninja-gaiden-2-recomp": "Win / Linux，Vulkan 渲染与 8 倍缩放",
+  // 极品飞车：最高通缉
+  "nfs-most-wanted-recomp": "Win / Android，自研 Vulkan 渲染器",
+  // 辛普森一家
+  "simpsons-game-recomp": "Win / Linux / Android 预览，D3D12 与 Vulkan",
+  // 使命召唤 3
+  "cod3-recomp": "Windows 单人模式，实验性构建",
 };
