@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/components/app-link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Gauge, Star, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Layers, Star, Wrench } from "lucide-react";
 import { AdSlot } from "@/components/ad-slot";
 import { GameArt } from "@/components/game-art";
 import { GameCard } from "@/components/game-card";
@@ -128,7 +128,6 @@ export default async function GamePage({ params }: GamePageProps) {
     playableCount > 0
       ? `《${game.titleZh}》已有 ${playableCount} 个可玩项目，覆盖 ${platformLabels}。`
       : `《${game.titleZh}》目前有 ${game.projects.length} 个社区项目，尚未标注为完全可玩。`;
-  const summaryBody = `推荐先看「${recommended.titleZh}」：${formatStars(recommended.stars)} Star，状态为${recommendedStatus}，支持 ${recommendedPlatforms}。项目不含游戏本体，需要自备正版游戏转储。`;
 
   const faqs = [
     {
@@ -165,12 +164,17 @@ export default async function GamePage({ params }: GamePageProps) {
 
   const guide = getGameGuide(game.slug);
 
-  const statusCounts = game.projects.reduce(
-    (counts, project) => {
-      counts[project.status] += 1;
-      return counts;
-    },
-    { playable: 0, beta: 0, experimental: 0 },
+  const platformCounts = platforms
+    .map((platform) => ({
+      platform,
+      count: game.projects.filter((project) =>
+        project.platforms.includes(platform.id),
+      ).length,
+    }))
+    .filter((item) => item.count > 0);
+  const maxPlatformCount = Math.max(
+    1,
+    ...platformCounts.map((item) => item.count),
   );
 
   const videoGameLd = {
@@ -279,99 +283,107 @@ export default async function GamePage({ params }: GamePageProps) {
       />
 
       <section className="mt-5 overflow-hidden rounded-2xl border border-border bg-card">
-        <div className="p-5 sm:p-6">
-          <h1 className="text-[26px] leading-tight font-bold tracking-tight sm:text-3xl">
-            {game.titleZh}
-          </h1>
-          <p className="mt-1.5 truncate text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">
-            {game.titleEn}
-          </p>
-
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12px] text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5 font-medium">
-              <span className={cn("size-1.5 rounded-full", status.dot)} />
-              {status.label}
-            </span>
-            <span aria-hidden className="h-3 w-px bg-border" />
-            <span>{game.year}</span>
-            {game.console !== "Nintendo Switch" ? (
-              <span>{game.console}</span>
-            ) : null}
-            <span>{game.genre}</span>
-            <span className="inline-flex items-center gap-1 font-medium tabular-nums">
-              <Star className="size-3 fill-amber-400 text-amber-400" />
-              {formatStars(game.stars)}
-            </span>
-          </div>
-
-          <div className="mt-3 rounded-xl border border-brand/20 bg-gradient-to-br from-brand/[0.07] via-background/60 to-background/40 p-3">
-            <h2 className="text-[11px] font-semibold text-brand">快速结论</h2>
-            <p className="mt-1.5 text-[13.5px] leading-6 font-semibold">
-              {summaryHeadline}
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,44%)]">
+          <div className="flex flex-col p-5 sm:p-6">
+            <h1 className="text-[26px] leading-tight font-bold tracking-tight sm:text-3xl">
+              {game.titleZh}
+            </h1>
+            <p className="mt-1.5 truncate text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">
+              {game.titleEn}
             </p>
-            <p className="mt-1 line-clamp-2 text-[12px] leading-6 text-muted-foreground">
-              {summaryBody}
-            </p>
-          </div>
 
-          <div className="mt-2.5 flex flex-wrap gap-1.5">
-            {game.platforms.map((platformId) => {
-              const platform = platforms.find(
-                (item) => item.id === platformId,
-              );
-              if (!platform) return null;
-              const PlatformIcon = platform.icon;
-              return (
+            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[12px] text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5 font-medium">
+                <span className={cn("size-1.5 rounded-full", status.dot)} />
+                {status.label}
+              </span>
+              <span aria-hidden className="h-3 w-px bg-border" />
+              <span>{game.year}</span>
+              {game.console !== "Nintendo Switch" ? (
+                <span>{game.console}</span>
+              ) : null}
+              <span>{game.genre}</span>
+              <span className="inline-flex items-center gap-1 font-medium tabular-nums">
+                <Star className="size-3 fill-amber-400 text-amber-400" />
+                {formatStars(game.stars)}
+              </span>
+            </div>
+
+            <p className="mt-3 text-[13px] leading-6 text-muted-foreground">
+              {game.blurb}
+            </p>
+
+            <div className="mt-4 rounded-xl border border-brand/20 bg-gradient-to-br from-brand/[0.07] via-background/60 to-background/40 p-3">
+              <h2 className="text-[11px] font-semibold text-brand">快速结论</h2>
+              <p className="mt-1.5 text-[13px] leading-6 font-semibold">
+                {summaryHeadline}
+              </p>
+              <p className="mt-1 text-[12px] leading-6 text-muted-foreground">
+                推荐先看{" "}
                 <Link
-                  key={platformId}
-                  href={`/platforms/${platform.id}`}
-                  className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2 py-0.5 text-[11px] text-foreground outline-none transition-colors hover:border-brand/40 hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
+                  href={`/go/${recommended.id}`}
+                  className="font-medium text-brand underline-offset-2 hover:underline"
                 >
-                  <PlatformIcon className="size-3 text-muted-foreground" />
-                  {platform.label}
+                  {recommended.titleZh}
                 </Link>
-              );
-            })}
-          </div>
+                {` · ${formatStars(recommended.stars)} Star · ${recommendedStatus} · ${recommendedPlatforms}`}
+              </p>
+            </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            <Link
-              href={`/go/${recommended.id}`}
-              className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 px-4 text-[12.5px] font-semibold text-white shadow-[0_8px_20px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
-            >
-              查看推荐项目
-              <ArrowUpRight className="size-3.5" />
-            </Link>
-            <a
-              href="#projects"
-              className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-border bg-background px-4 text-[12.5px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
-            >
-              全部 {game.projects.length} 个项目
-            </a>
-            <div className="ml-auto flex items-center gap-2">
-              <ShareButton
-                title={`${game.titleZh} · ${siteConfig.name}`}
-                url={`${siteConfig.url}/games/${game.slug}`}
-              />
-              <FavoriteButton slug={game.slug} />
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {game.platforms.map((platformId) => {
+                const platform = platforms.find(
+                  (item) => item.id === platformId,
+                );
+                if (!platform) return null;
+                const PlatformIcon = platform.icon;
+                return (
+                  <Link
+                    key={platformId}
+                    href={`/platforms/${platform.id}`}
+                    className="inline-flex items-center gap-1 rounded-full border border-border bg-background/60 px-2 py-0.5 text-[11px] text-foreground outline-none transition-colors hover:border-brand/40 hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/50"
+                  >
+                    <PlatformIcon className="size-3 text-muted-foreground" />
+                    {platform.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <Link
+                href={`/go/${recommended.id}`}
+                className="inline-flex h-10 items-center gap-1.5 rounded-lg bg-gradient-to-r from-brand to-brand-2 px-4 text-[12.5px] font-semibold text-white shadow-[0_8px_20px_-12px_var(--brand)] outline-none transition-transform duration-150 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
+              >
+                下载推荐项目
+                <ArrowUpRight className="size-3.5" />
+              </Link>
+              {game.projects.length > 1 ? (
+                <a
+                  href="#projects"
+                  className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-border bg-background px-4 text-[12.5px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
+                >
+                  全部 {game.projects.length} 个项目
+                </a>
+              ) : null}
+              <div className="ml-auto flex items-center gap-2">
+                <ShareButton
+                  title={`${game.titleZh} · ${siteConfig.name}`}
+                  url={`${siteConfig.url}/games/${game.slug}`}
+                />
+                <FavoriteButton slug={game.slug} />
+              </div>
             </div>
           </div>
-        </div>
 
-        <GameArt
-          game={game}
-          preload
-          className="aspect-[16/9] w-full border-y border-border"
-          sizes="(max-width: 1279px) 100vw, 900px"
-        />
-
-        <div className="p-5 sm:p-6">
-          <h2 className="text-[11px] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
-            简介
-          </h2>
-          <p className="mt-2 text-[13.5px] leading-7 text-muted-foreground">
-            {game.blurb}
-          </p>
+          <div className="relative aspect-[16/9] w-full border-t border-border lg:aspect-auto lg:min-h-[360px] lg:border-t-0 lg:border-l">
+            <GameArt
+              game={game}
+              preload
+              className="absolute inset-0"
+              sizes="(max-width: 1023px) 100vw, 480px"
+            />
+          </div>
         </div>
       </section>
 
@@ -387,7 +399,7 @@ export default async function GamePage({ params }: GamePageProps) {
             {game.projects.length}
           </span>
           <span className="ml-auto text-[11.5px] text-muted-foreground">
-            按 Star 排序
+            {statusSummary || "暂无状态数据"} · 按 Star 排序
           </span>
         </div>
 
@@ -396,19 +408,32 @@ export default async function GamePage({ params }: GamePageProps) {
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/70 px-4 py-3">
               <h3 className="text-[13px] font-semibold">项目对比</h3>
               <p className="text-[11.5px] text-muted-foreground">
-                {sortedProjects.length} 个项目 · 按平台与成熟度选择
+                按平台与成熟度选择
               </p>
             </div>
             <ul className="divide-y divide-border/50 sm:hidden">
               {sortedProjects.map((project) => (
-                <li key={project.id} className="px-4 py-3">
+                <li
+                  key={project.id}
+                  className={cn(
+                    "px-4 py-3",
+                    project.id === recommended.id && "bg-brand/[0.04]",
+                  )}
+                >
                   <div className="flex items-start justify-between gap-3">
-                    <Link
-                      href={`/go/${project.id}`}
-                      className="min-w-0 text-[13px] leading-5 font-semibold transition-colors hover:text-brand"
-                    >
-                      {project.titleZh}
-                    </Link>
+                    <div className="flex min-w-0 items-center gap-1.5">
+                      <Link
+                        href={`/go/${project.id}`}
+                        className="min-w-0 text-[13px] leading-5 font-semibold transition-colors hover:text-brand"
+                      >
+                        {project.titleZh}
+                      </Link>
+                      {project.id === recommended.id ? (
+                        <span className="shrink-0 rounded-full bg-brand/10 px-1.5 py-0.5 text-[10px] font-medium text-brand">
+                          推荐
+                        </span>
+                      ) : null}
+                    </div>
                     <span className="shrink-0 text-[11px] text-muted-foreground tabular-nums">
                       {formatStars(project.stars)} Star
                     </span>
@@ -453,14 +478,27 @@ export default async function GamePage({ params }: GamePageProps) {
                 </thead>
                 <tbody>
                   {sortedProjects.map((project) => (
-                    <tr key={project.id} className="border-t border-border/50">
+                    <tr
+                      key={project.id}
+                      className={cn(
+                        "border-t border-border/50",
+                        project.id === recommended.id && "bg-brand/[0.04]",
+                      )}
+                    >
                       <td className="px-4 py-2.5 font-medium">
-                        <Link
-                          href={`/go/${project.id}`}
-                          className="transition-colors hover:text-brand"
-                        >
-                          {project.titleZh}
-                        </Link>
+                        <div className="flex items-center gap-1.5">
+                          <Link
+                            href={`/go/${project.id}`}
+                            className="transition-colors hover:text-brand"
+                          >
+                            {project.titleZh}
+                          </Link>
+                          {project.id === recommended.id ? (
+                            <span className="rounded-full bg-brand/10 px-1.5 py-0.5 text-[10px] font-medium text-brand">
+                              推荐
+                            </span>
+                          ) : null}
+                        </div>
                       </td>
                       <td className="px-3 py-2.5 text-muted-foreground">
                         {project.platforms
@@ -492,7 +530,12 @@ export default async function GamePage({ params }: GamePageProps) {
             </div>
           </div>
         ) : (
-          <div className="mt-4 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+          <div
+            className={cn(
+              "mt-4 grid grid-cols-1 gap-3.5",
+              sortedProjects.length > 1 && "sm:grid-cols-2",
+            )}
+          >
             {sortedProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
@@ -663,37 +706,37 @@ export default async function GamePage({ params }: GamePageProps) {
         <FixedSidebar>
           <div className="rounded-xl border border-border bg-card p-4">
             <h2 className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
-              <Gauge className="size-3.5 text-brand" />
-              数据速览
+              <Layers className="size-3.5 text-brand" />
+              平台分布
             </h2>
-            <dl className="mt-3 grid grid-cols-2 gap-2">
-              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
-                <dt className="text-[10.5px] text-muted-foreground">项目总数</dt>
-                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
-                  {game.projects.length}
-                </dd>
-              </div>
-              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
-                <dt className="text-[10.5px] text-muted-foreground">可玩</dt>
-                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
-                  {statusCounts.playable}
-                </dd>
-              </div>
-              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
-                <dt className="text-[10.5px] text-muted-foreground">测试中</dt>
-                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
-                  {statusCounts.beta}
-                </dd>
-              </div>
-              <div className="rounded-lg border border-border/70 bg-background/50 px-2.5 py-2">
-                <dt className="text-[10.5px] text-muted-foreground">实验性</dt>
-                <dd className="mt-0.5 text-[15px] font-bold tabular-nums">
-                  {statusCounts.experimental}
-                </dd>
-              </div>
-            </dl>
-            <div className="mt-2.5 border-t border-border pt-2.5 text-[10.5px] text-muted-foreground">
-              覆盖平台 {game.platforms.length} 个
+            <p className="mt-1 text-[10.5px] text-muted-foreground">
+              按支持该平台的项目数统计
+            </p>
+            <ul className="mt-3 space-y-2">
+              {platformCounts.map(({ platform, count }) => {
+                const PlatformIcon = platform.icon;
+                return (
+                  <li key={platform.id} className="flex items-center gap-2">
+                    <PlatformIcon className="size-3.5 shrink-0 text-muted-foreground" />
+                    <span className="text-[11.5px]">{platform.label}</span>
+                    <span
+                      aria-hidden
+                      className="ml-auto h-1 w-14 overflow-hidden rounded-full bg-border/70"
+                    >
+                      <span
+                        className="block h-full rounded-full bg-brand/70"
+                        style={{ width: `${(count / maxPlatformCount) * 100}%` }}
+                      />
+                    </span>
+                    <span className="w-4 text-right text-[11px] text-muted-foreground tabular-nums">
+                      {count}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="mt-3 border-t border-border pt-2.5 text-[10.5px] text-muted-foreground">
+              共 {game.projects.length} 个项目 · {statusSummary}
             </div>
           </div>
 
@@ -720,15 +763,17 @@ export default async function GamePage({ params }: GamePageProps) {
             href={`/go/${recommended.id}`}
             className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-brand to-brand-2 px-4 text-[13px] font-semibold text-white shadow-[0_10px_24px_-12px_var(--brand)] outline-none transition-transform duration-150 active:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand/50"
           >
-            查看推荐项目
+            下载推荐项目
             <ArrowUpRight className="size-3.5" />
           </Link>
-          <a
-            href="#projects"
-            className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl border border-border bg-card px-4 text-[13px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
-          >
-            全部 {game.projects.length} 个项目
-          </a>
+          {game.projects.length > 1 ? (
+            <a
+              href="#projects"
+              className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl border border-border bg-card px-4 text-[13px] font-semibold text-foreground outline-none transition-colors hover:border-foreground/30 focus-visible:ring-2 focus-visible:ring-brand/50"
+            >
+              全部 {game.projects.length} 个项目
+            </a>
+          ) : null}
         </div>
       </div>
     </div>

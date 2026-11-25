@@ -33,10 +33,10 @@ export function GameArt({
       />
 
       <div className="absolute inset-x-3.5 top-3 flex items-center justify-between gap-2 sm:inset-x-4">
-        <span className="rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-medium text-white/85 backdrop-blur-sm">
+        <span className="rounded-full bg-black/55 px-2.5 py-1 text-[10px] font-medium text-white/90 backdrop-blur-sm">
           {game.series} · {game.year}
         </span>
-        <div className="flex items-center gap-2 rounded-full bg-black/40 px-2.5 py-1.5 backdrop-blur-sm">
+        <div className="flex items-center gap-2 rounded-full bg-black/55 px-2.5 py-1.5 backdrop-blur-sm">
           {game.platforms.map((platformId) => {
             const platform = platforms.find((item) => item.id === platformId);
             if (!platform) return null;
