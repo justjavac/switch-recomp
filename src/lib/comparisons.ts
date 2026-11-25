@@ -204,4 +204,28 @@ export const projectNotes: Record<string, string> = {
   "halo-reach-recomp": "Linux 可玩，Windows 构建完善中",
   // 极限竞速：地平线 2
   "forza-horizon-2-recomp": "Android APK，0.4.5.1",
+  // 杀戮地带
+  "killzone-recomp": "Windows 0.1.7-alpha，键鼠瞄准",
+  // 勇者斗恶龙 VIII
+  "dq8-recomp": "Win / macOS / Linux，需约 8GB 空间",
+  // 神之手
+  "god-hand-recomp": "Windows 原生移植，需自备光盘",
+  // 密特罗德：另一个 M
+  "other-m-recomp": "Win / Linux / macOS / Android，1.0.0",
+  // 铁拳 6
+  "tekken-6-recomp": "Windows 构建器，0.9.4",
+  // 雷曼 3 HD
+  "rayman-3-hd-recomp": "Win 正式 / Linux 实验，1.4.0",
+  // 除暴战警
+  "crackdown-recomp": "Windows 正式，Linux 实验，0.6.2",
+  // 丧尸围城 2：Case Zero
+  "dead-rising-2-case-zero-recomp": "Win / Linux / macOS，1.1.3 完整可通关",
+  // 战地：叛逆连队
+  "battlefield-bad-company-recomp": "Windows 1.4.0，D3D12 渲染",
+  // 瓦力欧世界
+  "wario-world-recomp": "Windows 1.0，支持 HDR",
+  // 星际火狐：突袭
+  "starfox-assault-recomp": "Win / Linux，0.2.15",
+  // 雇佣兵
+  "army-of-two-recomp": "Windows 1.6.0，支持在线合作",
 };

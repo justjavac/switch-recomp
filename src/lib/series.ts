@@ -303,6 +303,66 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "微软的竞速系列，分为拟真赛道向的 Motorsport 与开放世界向的 Horizon。",
   },
+  {
+    slug: "killzone",
+    name: "杀戮地带",
+    description:
+      "Guerrilla 的科幻射击系列，以赫尔加斯特与 ISA 的战争为主线，美术冷峻。",
+  },
+  {
+    slug: "dragon-quest",
+    name: "勇者斗恶龙",
+    description:
+      "日本的国民级 RPG 系列，以鸟山明人设、回合制战斗与王道冒险故事著称。",
+  },
+  {
+    slug: "god-hand",
+    name: "神之手",
+    description:
+      "PS2 时代的硬核动作邪典，以高难度连段与恶搞演出闻名。",
+  },
+  {
+    slug: "tekken",
+    name: "铁拳",
+    description:
+      "南梦宫的 3D 格斗系列，围绕三岛家族的血缘恩怨展开。",
+  },
+  {
+    slug: "rayman",
+    name: "雷曼",
+    description:
+      "育碧的无肢英雄平台动作系列，以拳击、直升机头发与奇幻美术为特色。",
+  },
+  {
+    slug: "crackdown",
+    name: "除暴战警",
+    description:
+      "Xbox 的开放世界动作系列，以超级警察与球体强化成长为核心。",
+  },
+  {
+    slug: "dead-rising",
+    name: "丧尸围城",
+    description:
+      "卡普空的丧尸生存动作系列，以合成武器、时间压力与荒诞演出著称。",
+  },
+  {
+    slug: "battlefield",
+    name: "战地",
+    description:
+      "EA 的大规模战场射击系列，以载具、可破坏场景与多人协同为特色。",
+  },
+  {
+    slug: "wario",
+    name: "瓦力欧",
+    description:
+      "任天堂的反英雄系列，以瓦力欧的贪财、蛮力与恶搞风格为标志。",
+  },
+  {
+    slug: "army-of-two",
+    name: "雇佣兵",
+    description:
+      "EA 的双人合作射击系列，以雇佣兵搭档与武器改装为特色。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions
