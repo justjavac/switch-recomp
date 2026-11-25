@@ -182,4 +182,26 @@ export const projectNotes: Record<string, string> = {
   "simpsons-game-recomp": "Win / Linux / Android 预览，D3D12 与 Vulkan",
   // 使命召唤 3
   "cod3-recomp": "Windows 单人模式，实验性构建",
+  // 索尼克：释放
+  "sonic-unleashed-recomp": "Win / Linux / macOS，1.0.3 正式版",
+  // 索尼克 2006
+  "sonic-2006-recomp": "Win / Linux / macOS，修复原版问题",
+  // 索尼克：色彩
+  "sonic-colors-recomp": "Win / Linux，需欧版光盘",
+  // 寂静岭：暴雨
+  "silent-hill-downpour-recomp": "Windows，1080p / 60 帧稳定版",
+  // 现代战争 2
+  "cod-mw2-recomp": "Win / Linux，含联机包",
+  // 山脊赛车 6
+  "ridge-racer-6-recomp": "Windows 0.1.5，自带启动器",
+  // 密特罗德 究极 3
+  "metroid-prime-3-recomp": "Win / Linux，含三部曲插件",
+  // 龙腾世纪：起源
+  "dragon-age-origins-recomp": "Win / Linux，安装器与 AppImage",
+  // 生化危机 4
+  "re4-wii-android": "Android 专用，Wii 体感瞄准",
+  // 光环：致远星
+  "halo-reach-recomp": "Linux 可玩，Windows 构建完善中",
+  // 极限竞速：地平线 2
+  "forza-horizon-2-recomp": "Android APK，0.4.5.1",
 };

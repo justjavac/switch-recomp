@@ -261,6 +261,48 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "以电影化战役与多人对战为核心的第一人称射击系列，横跨二战到现代战争。",
   },
+  {
+    slug: "sonic",
+    name: "索尼克",
+    description:
+      "世嘉的高速动作系列，以蓝色刺猬索尼克的速度感与环状关卡设计闻名。",
+  },
+  {
+    slug: "silent-hill",
+    name: "寂静岭",
+    description:
+      "心理恐怖系列，以迷雾小镇、象征性怪物与压抑叙事著称。",
+  },
+  {
+    slug: "ridge-racer",
+    name: "山脊赛车",
+    description:
+      "南梦宫的街机竞速系列，以漂移过弯与电子乐配乐为标志。",
+  },
+  {
+    slug: "dragon-age",
+    name: "龙腾世纪",
+    description:
+      "Bioware 的黑暗奇幻 RPG 系列，强调队友关系、抉择与战术战斗。",
+  },
+  {
+    slug: "resident-evil",
+    name: "生化危机",
+    description:
+      "卡普空的生存恐怖系列，从固定视角到越肩射击不断演变。",
+  },
+  {
+    slug: "halo",
+    name: "光环",
+    description:
+      "微软的科幻第一人称射击系列，围绕士官长、星盟与光环环带展开。",
+  },
+  {
+    slug: "forza",
+    name: "极限竞速",
+    description:
+      "微软的竞速系列，分为拟真赛道向的 Motorsport 与开放世界向的 Horizon。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions
