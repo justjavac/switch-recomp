@@ -15,7 +15,9 @@ type SeriesPageProps = {
 };
 
 export function generateStaticParams() {
-  return seriesList.map((series) => ({ slug: series.slug }));
+  return seriesList
+    .filter((series) => series.games.length > 1)
+    .map((series) => ({ slug: series.slug }));
 }
 
 export async function generateMetadata({
