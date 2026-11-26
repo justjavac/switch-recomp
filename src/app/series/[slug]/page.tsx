@@ -14,11 +14,7 @@ type SeriesPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return seriesList
-    .filter((series) => series.games.length > 1)
-    .map((series) => ({ slug: series.slug }));
-}
+export const instant = false;
 
 export async function generateMetadata({
   params,
