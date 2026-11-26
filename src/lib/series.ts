@@ -411,6 +411,42 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "车辆战斗系列，以武装车辆厮杀与黑暗剧情为特色。",
   },
+  {
+    slug: "demons-souls",
+    name: "恶魔之魂",
+    description:
+      "FromSoftware 的魂系起点，以高难度探索、灵魂形态与关卡 Boss 为核心。",
+  },
+  {
+    slug: "drakengard",
+    name: "龙背上的骑兵",
+    description:
+      "横尾太郎执导的动作 RPG 系列，以骑龙空战、多结局与阴郁叙事闻名。",
+  },
+  {
+    slug: "ratchet",
+    name: "瑞奇与叮当",
+    description:
+      "Insomniac 的科幻平台射击系列，以武器改装、搭档协作与幽默演出为特色。",
+  },
+  {
+    slug: "driveclub",
+    name: "DriveClub",
+    description:
+      "强调俱乐部团队竞速的赛车系列，以动态天气与社交挑战为标志。",
+  },
+  {
+    slug: "resistance",
+    name: "抵抗",
+    description:
+      "Insomniac 的架空历史射击系列，围绕奇美拉入侵与人类抵抗军展开。",
+  },
+  {
+    slug: "final-fantasy",
+    name: "最终幻想",
+    description:
+      "Square Enix 的招牌 RPG 系列，涵盖正统编号作与战略版等衍生作品。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions

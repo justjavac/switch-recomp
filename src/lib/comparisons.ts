@@ -252,4 +252,28 @@ export const projectNotes: Record<string, string> = {
   "dmc-recomp": "Windows 0.1.0-alpha，需自行构建",
   // 烈火战车：黑
   "twisted-metal-black-recomp": "Win / Linux，0.6.0",
+  // 风之杖 HD
+  "wind-waker-hd-recomp": "Win / Linux / macOS / Android，0.5.2",
+  // Driveclub
+  "driveclub-recomp": "Win / Linux，0.4.2",
+  // 暗影刺猬
+  "shadow-the-hedgehog-recomp": "Win / Linux，1.0.1",
+  // 龙背上的骑兵 3
+  "drakengard-3-recomp": "Win / Linux / macOS，0.5.0-alpha",
+  // GTA V
+  "gtav-recomp": "Android APK，0.5.0",
+  // 恶魔之魂
+  "demons-souls-recomp": "Win / Linux / macOS，2026.11.22",
+  // 生化危机：代号维罗妮卡
+  "re-code-veronica-recomp": "Windows，2.1.0",
+  // 战神：登天之路
+  "gow-ascension-recomp": "Windows，0.2.0",
+  // 瑞奇与叮当：毁灭工具
+  "ratchet-tod-recomp": "Windows，1.3.0",
+  // 抵抗：灭绝人类
+  "resistance-fom-recomp": "Windows，0.3.1-beta",
+  // 宝可梦竞技场
+  "pokemon-stadium-recomp": "Windows，0.4.7-beta",
+  // 最终幻想战略版 Advance
+  "ffta-recomp": "Win / Linux / Android，2.2",
 };

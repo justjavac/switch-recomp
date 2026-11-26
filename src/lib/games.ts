@@ -36,9 +36,13 @@ export type GameConsole =
   | "Nintendo DS"
   | "Nintendo 3DS"
   | "Nintendo Wii"
+  | "Nintendo Wii U"
   | "Game Boy"
+  | "Game Boy Advance"
   | "PlayStation"
   | "PlayStation 2"
+  | "PlayStation 3"
+  | "PlayStation 4"
   | "Xbox 360"
   | "Xbox"
   | "iOS / Android"
@@ -181,6 +185,18 @@ const recentlyAdded: Record<string, string> = {
   "pokepark-2": "2026-11-26",
   "devil-may-cry": "2026-11-26",
   "twisted-metal-black": "2026-11-26",
+  "wind-waker-hd": "2026-11-27",
+  "driveclub": "2026-11-27",
+  "shadow-the-hedgehog": "2026-11-27",
+  "drakengard-3": "2026-11-27",
+  "gta-v": "2026-11-27",
+  "demon-souls": "2026-11-27",
+  "re-code-veronica": "2026-11-27",
+  "gow-ascension": "2026-11-27",
+  "ratchet-tod": "2026-11-27",
+  "resistance-fom": "2026-11-27",
+  "pokemon-stadium": "2026-11-27",
+  "ffta": "2026-11-27",
 };
 
 const gameDefinitions: GameDefinition[] = [
@@ -2365,6 +2381,174 @@ const gameDefinitions: GameDefinition[] = [
     blurb:
       "系列最黑暗的一作：在午夜城市驾驶武装车辆互相厮杀，剧情与氛围在系列中评价最高。",
     projectIds: ["twisted-metal-black-recomp"],
+  },
+  {
+    slug: "wind-waker-hd",
+    titleZh: "塞尔达传说：风之杖 HD",
+    titleEn: "The Legend of Zelda: The Wind Waker HD",
+    series: "塞尔达传说",
+    year: 2013,
+    console: "Nintendo Wii U",
+    category: "zelda",
+    icon: Sword,
+    cover: "from-[#12303a] via-[#0a1820] to-[#05090b]",
+    blurb:
+      "《风之杖》的 Wii U 高清重制：更快的帆船、更顺滑的拍照与明亮卡通渲染，海上冒险依旧自由。",
+    projectIds: ["wind-waker-hd-recomp"],
+  },
+  {
+    slug: "driveclub",
+    titleZh: "Driveclub",
+    titleEn: "Driveclub",
+    series: "DriveClub",
+    year: 2014,
+    console: "PlayStation 4",
+    category: "racing",
+    icon: Car,
+    cover: "from-[#2a1a14] via-[#150d0a] to-[#070505]",
+    blurb:
+      "强调俱乐部对抗的拟真竞速：动态天气与日夜循环、团队挑战，赛道横跨多国。",
+    projectIds: ["driveclub-recomp"],
+  },
+  {
+    slug: "shadow-the-hedgehog",
+    titleZh: "暗影刺猬",
+    titleEn: "Shadow the Hedgehog",
+    series: "索尼克",
+    year: 2005,
+    console: "Xbox",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#2a1010] via-[#150808] to-[#070404]",
+    blurb:
+      "以暗影为主角的射击动作外传：在英雄、中立与黑暗三条路线间选择，枪械与混沌能力并用。",
+    projectIds: ["shadow-the-hedgehog-recomp"],
+  },
+  {
+    slug: "drakengard-3",
+    titleZh: "龙背上的骑兵 3",
+    titleEn: "Drakengard 3",
+    series: "龙背上的骑兵",
+    year: 2013,
+    console: "PlayStation 3",
+    category: "action",
+    icon: Sword,
+    cover: "from-[#2e1226] via-[#170913] to-[#070508]",
+    blurb:
+      "横尾太郎执导的前传：零与五位妹妹歌姬的厮杀，空中骑龙与地面连段交替，结局依旧残酷。",
+    projectIds: ["drakengard-3-recomp"],
+  },
+  {
+    slug: "gta-v",
+    titleZh: "侠盗猎车手 V",
+    titleEn: "Grand Theft Auto V",
+    series: "侠盗猎车手",
+    year: 2013,
+    console: "Xbox 360",
+    category: "action",
+    icon: Sparkles,
+    cover: "from-[#123a2a] via-[#0a1d15] to-[#050b08]",
+    blurb:
+      "洛圣都三人组的故事：麦克、富兰克林与崔佛在开放世界里策划抢劫，线上模式另行延续。",
+    projectIds: ["gtav-recomp"],
+  },
+  {
+    slug: "demon-souls",
+    titleZh: "恶魔之魂",
+    titleEn: "Demon's Souls",
+    series: "恶魔之魂",
+    year: 2009,
+    console: "PlayStation 3",
+    category: "rpg",
+    icon: Swords,
+    cover: "from-[#1a1a2e] via-[#0d0d17] to-[#050508]",
+    blurb:
+      "魂系开山之作：柏雷塔尼亚陷落，玩家以灵魂形态探索五大关卡，死亡与重生构成核心循环。",
+    projectIds: ["demons-souls-recomp"],
+  },
+  {
+    slug: "re-code-veronica",
+    titleZh: "生化危机：代号维罗妮卡",
+    titleEn: "Resident Evil – Code: Veronica",
+    series: "生化危机",
+    year: 2000,
+    console: "PlayStation 3",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#331414] via-[#1a0a0a] to-[#080505]",
+    blurb:
+      "克莱尔潜入安布雷拉设施寻找哥哥，双主角切换与南极基地场景，被视为系列剧情转折点。",
+    projectIds: ["re-code-veronica-recomp"],
+  },
+  {
+    slug: "gow-ascension",
+    titleZh: "战神：登天之路",
+    titleEn: "God of War: Ascension",
+    series: "战神",
+    year: 2013,
+    console: "PlayStation 3",
+    category: "action",
+    icon: Sword,
+    cover: "from-[#331a10] via-[#1a0d08] to-[#080604]",
+    blurb:
+      "系列时间线的前传：奎托斯被复仇女神囚禁，加入多人竞技场与更流畅的链刃连段。",
+    projectIds: ["gow-ascension-recomp"],
+  },
+  {
+    slug: "ratchet-tod",
+    titleZh: "瑞奇与叮当：毁灭工具",
+    titleEn: "Ratchet & Clank Future: Tools of Destruction",
+    series: "瑞奇与叮当",
+    year: 2007,
+    console: "PlayStation 3",
+    category: "action",
+    icon: Sparkles,
+    cover: "from-[#1a2a3a] via-[#0d151d] to-[#05080a]",
+    blurb:
+      "PS3 首作：瑞奇追寻隆巴克斯族的身世，武器改装与时空裂缝玩法延续系列招牌。",
+    projectIds: ["ratchet-tod-recomp"],
+  },
+  {
+    slug: "resistance-fom",
+    titleZh: "抵抗：灭绝人类",
+    titleEn: "Resistance: Fall of Man",
+    series: "抵抗",
+    year: 2006,
+    console: "PlayStation 3",
+    category: "action",
+    icon: Crosshair,
+    cover: "from-[#2a2414] via-[#15120a] to-[#070605]",
+    blurb:
+      "PS3 首发射击：奇美拉入侵英国，玩家扮演美军士兵参与大规模战役与多人对战。",
+    projectIds: ["resistance-fom-recomp"],
+  },
+  {
+    slug: "pokemon-stadium",
+    titleZh: "宝可梦竞技场",
+    titleEn: "Pokémon Stadium",
+    series: "宝可梦",
+    year: 1999,
+    console: "Nintendo 64",
+    category: "pokemon",
+    icon: CircleDot,
+    cover: "from-[#1a2a3a] via-[#0d151d] to-[#05080a]",
+    blurb:
+      "N64 的 3D 对战舞台：读取 GB 存档组队挑战杯赛，另有迷你游戏与租借宝可梦模式。",
+    projectIds: ["pokemon-stadium-recomp"],
+  },
+  {
+    slug: "ffta",
+    titleZh: "最终幻想战略版 Advance",
+    titleEn: "Final Fantasy Tactics Advance",
+    series: "最终幻想",
+    year: 2003,
+    console: "Game Boy Advance",
+    category: "rpg",
+    icon: Crown,
+    cover: "from-[#1a2430] via-[#0d1218] to-[#05080a]",
+    blurb:
+      "GBA 战棋经典：少年马修被吸入异世界伊瓦利斯，以社团与法则系统展开回合制战斗。",
+    projectIds: ["ffta-recomp"],
   },
 ];
 
