@@ -276,4 +276,22 @@ export const projectNotes: Record<string, string> = {
   "pokemon-stadium-recomp": "Windows，0.4.7-beta",
   // 最终幻想战略版 Advance
   "ffta-recomp": "Win / Linux / Android，2.2",
+  // 声名狼藉 2
+  "infamous2-recomp": "Windows，0.1.47",
+  // 如龙：见参！
+  "yakuza-kenzan-recomp": "Win / Linux，1.0.2",
+  // 跑车浪漫旅 5
+  "gt5-recomp": "Windows，0.1.119",
+  // 灵魂能力 II
+  "soulcalibur2-recomp": "Win / Linux / macOS / Android，测试版",
+  // 水上摩托 64
+  "wave-race-64-recomp": "Win / Linux，1.0.2",
+  // 飞行俱乐部 64
+  "pilotwings-64-recomp": "Win / Linux，0.1.1",
+  // 火焰纹章：圣魔之光石
+  "sacred-stones-recomp": "Win / Android，0.1.20",
+  // 龙珠 Z：布欧的愤怒
+  "buus-fury-recomp": "Windows，0.0.10",
+  // 飞行俱乐部：度假胜地
+  "woohoo-flight-school": "Win / Linux，0.1.2",
 };

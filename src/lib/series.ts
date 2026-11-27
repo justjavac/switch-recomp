@@ -447,6 +447,48 @@ export const seriesDefinitions: SeriesDefinition[] = [
     description:
       "Square Enix 的招牌 RPG 系列，涵盖正统编号作与战略版等衍生作品。",
   },
+  {
+    slug: "infamous",
+    name: "声名狼藉",
+    description:
+      "Sucker Punch 的开放世界超能力动作系列，以善恶选择与城市攀爬为特色。",
+  },
+  {
+    slug: "yakuza",
+    name: "如龙",
+    description:
+      "世嘉的黑道题材动作冒险系列，以神室町、支线剧情与小游戏闻名。",
+  },
+  {
+    slug: "gran-turismo",
+    name: "跑车浪漫旅",
+    description:
+      "索尼的拟真赛车系列，强调车辆调校、驾照挑战与真实赛道。",
+  },
+  {
+    slug: "soulcalibur",
+    name: "灵魂能力",
+    description:
+      "以武器格斗与「灵魂能力」为特色的 3D 对战系列，客串角色是传统。",
+  },
+  {
+    slug: "wave-race",
+    name: "水上摩托",
+    description:
+      "任天堂的水上竞速系列，以浪面操作与浮标路线为核心。",
+  },
+  {
+    slug: "pilotwings",
+    name: "飞行俱乐部",
+    description:
+      "任天堂的飞行模拟系列，以滑翔、火箭背包与限时挑战为特色。",
+  },
+  {
+    slug: "dragon-ball",
+    name: "龙珠",
+    description:
+      "改编自鸟山明漫画的动作与 RPG 游戏系列，覆盖多个世代的剧情。",
+  },
 ];
 
 export const seriesList: Series[] = seriesDefinitions
